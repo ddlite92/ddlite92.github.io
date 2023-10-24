@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0;
+}
+
+main {
+    padding: 20px;
+}
+
+article {
+    width: 60%;
+    float: left;
+}
+
+aside {
+    width: 30%;
+    float: right;
+}
+
+footer {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+}
