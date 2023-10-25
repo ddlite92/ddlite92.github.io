@@ -3,28 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flip Clock</title>
+    <title>DD Lite</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="flip-clock">
-        <div class="flip-clock-section">
-            <div class="flip-clock-digit">0</div>
-            <div class="flip-clock-digit">0</div>
-        </div>
-        <div class="flip-clock-dots">:</div>
-        <div class="flip-clock-section">
-            <div class="flip-clock-digit">0</div>
-            <div class="flip-clock-digit">0</div>
-        </div>
-    </div>
+    <header>
+        <nav class="navbar">
+            <div class="logo">DD Lite</div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Pricing</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    <script src="flipclock.js"></script>
-    <script>
-        var clock = new FlipClock($('.flip-clock'), {
-            clockFace: 'TwentyFourHourClock'
-        });
-        clock.start();
-    </script>
-</body>
-</html>
+    <main>
+        <section class="hero-section">
+            <div class="hero-image"></div>
+            <div class="hero-content">
+                <h1>DD Lite</h1>
+                <h2>Your One-Stop Solution for Data Delivery</h2>
+                <a href="#" class="btn">Get Started</a>
+            </div>
+        </section>
+
+        <section class="features-section">
+            <div class="feature-box">
+                <i class="icon"></i>
+                <h3>Fast and Reliable Delivery</h3>
+                <p>Our cutting-edge technology ensures the fastest and most reliable data delivery.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="icon"></i>
+                <h3>Secure and Encrypted Data Transfer</h3>
+                <p>Your data is protected with the highest level of security and encryption.</p>
+            </div>
+
+            <div class="feature-box">
+                <i class="icon"></i>
+                <h3>Scalable and Customizable Solutions</h3>
+                <p>We offer scalable and customizable solutions to meet your specific needs.</p>
+            </div>
+        </section>
+
+        <section class="pricing-section">
+            <div class="pricing-plan">
+                <h3>Basic</h3>
+                <span>$10/month</span>
+                <ul>
+                    <li>5GB Storage</li>
+                    <li>10GB Data Transfer</li>
+                    <li>Basic Support</li>
+                </ul>
+                <a href="#" class="btn">Get Started</a>
+            </div>
+
+            <div class="pricing-plan">
+                <h3>Pro</h3>
+                <span>$25/month</span>
+                <ul>
+                    <li>25GB Storage</li>
+                    <li>50GB Data Transfer</li>
+                    <li>Priority Support</li>
+                </ul>
+                <a href="#" class="btn">Get Started</a>
+            </div>
+
+            <div class="pricing-plan">
+                <h3>Enterprise</h3>
+                <span>$50/month</span>
+                <ul>
+                    <li>Unlimited Storage</li>
+                    <li>Unlimited Data Transfer</li>
+                    <li>Dedicated Support</li>
+                </ul>
+                <a href="#" class="btn">Get Started</a>
+            </div>
+        </section>
+
+        <section class="contact-section">
+            <h2>Contact Us</h2>
+            <form action="#">
+                <label for="name">Name:</label>
+                <input type="text" id="name" placeholder="Enter your name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" placeholder="Enter your email address">
+
+                <label for="message">Message:</label>
+                <textarea id="message" placeholder="Enter your message"></textarea>
+
+                <input type="submit" value="Submit" class="btn">
+            </form>
+        </section>
