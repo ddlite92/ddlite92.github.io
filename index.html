@@ -8,6 +8,18 @@
 </head>
 <body>
     <header>
+        <div class="flip-clock">
+            <div class="flip-clock-section">
+                <div class="flip-clock-digit">0</div>
+                <div class="flip-clock-digit">0</div>
+            </div>
+            <div class="flip-clock-dots">:</div>
+            <div class="flip-clock-section">
+                <div class="flip-clock-digit">0</div>
+                <div class="flip-clock-digit">0</div>
+            </div>
+        </div>
+
         <h1>My Artwork and Projects</h1>
         <nav>
             <ul>
@@ -42,7 +54,7 @@
                     </a>
                     <h3>Artwork Title</h3>
                 </div>
-                </div>
+            </div>
         </section>
 
         <section id="projects">
@@ -69,12 +81,20 @@
                     <h3>Project Title</h3>
                     <p>Brief project description.</p>
                 </div>
-                </div>
+            </div>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2023 My Artwork and Projects</p>
     </footer>
+
+    <script src="flipclock.js"></script>
+    <script>
+        var clock = new FlipClock($('.flip-clock'), {
+            clockFace: 'TwentyFourHourClock'
+        });
+        clock.start();
+    </script>
 </body>
 </html>
