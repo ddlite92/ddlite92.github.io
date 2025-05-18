@@ -40,6 +40,10 @@ h1, h2 {
     color: #007bff;
 }
 
+h3 {
+    color: #ffffff;
+}
+
 p {
     line-height: 1.6;
 }
