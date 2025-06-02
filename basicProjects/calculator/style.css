@@ -1,0 +1,19 @@
+.calculator {
+    width: 200px;
+    margin: 50px auto;
+}
+
+input {
+    width: 100%;
+    padding: 53px;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+}
+
+button {
+    padding: 30px;
+}
