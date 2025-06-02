@@ -1,0 +1,116 @@
+.code-section {
+  max-width: 1800px;
+  margin: 1rem auto;
+  font-family: 'Courier New', monospace;
+}
+
+.code-container {
+  background: #1e1e1e;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.code-header {
+  background: #2d2d2d;
+  padding: 6px 12px;
+  display: flex;
+  align-items: center;
+}
+
+.code-dots {
+  display: flex;
+  gap: 8px;
+  margin-right: 15px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+.code-title {
+  color: #aaa;
+  font-size: 0.9rem;
+}
+
+.code-body {
+  padding: 20px;
+  color: #e0e0e0;
+  line-height: 1.5;
+}
+
+.code-line {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.prompt {
+  color: #4CAF50;
+  margin-right: 10px;
+}
+
+.typing {
+  color: #e0e0e0;
+}
+
+.cursor {
+  animation: blink 1s infinite;
+  color: #e0e0e0;
+}
+
+.code-output {
+  font-family: monospace;
+  color: #00ff00; /* Classic terminal green */
+  white-space: pre-wrap;
+  line-height: 1.5;
+  margin-top: 15px;
+}
+
+.terminal-header {
+  margin-bottom: 15px;
+  white-space: pre;
+  line-height: 1.5;
+}
+
+.terminal-title {
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+  margin-top: -50px;
+  letter-spacing: 0.2em;
+  
+}
+
+.terminal-subtitle {
+  color: #ffffff;
+  font-style: italic;
+  margin-bottom: 10px;
+  margin-top: -30px;
+}
+
+.terminal-text {
+  color: #00ff00;
+  margin-top: -50px;
+  text-align: left;
+}
+
+.terminal-check {
+  color: #4CAF50;
+}
+
+/* Cursor animation */
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}

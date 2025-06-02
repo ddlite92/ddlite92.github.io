@@ -6,16 +6,32 @@
         <meta charset="utf-8">
         <title>Didi Portfolio</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="terminal.css">
         <script src="script.js" defer></script>
+        <script src="terminal.js" defer></script>
     </head>
     <body>
         <div>
             <main>
-                <section class="info">
-                    <h1>DIANAH | LRC Artist + Programmer</h1>
-                    <h2>"From Lighting Art to Pipeline Code – Bridging the Gap for Smoother Dev"</h2>
-                    <p class="heading">Lighting artist + pipeline coder. Turning workflow headaches into automated solutions. Wholeheartedly Love Cats! 
-                        I am currently working as a LRC Artist with various animation project and also learning to be Full Stack Developer.</p>
+                <section class="code-section">
+                  <div class="code-container">
+                    <div class="code-header">
+                      <div class="code-dots">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                      </div>
+                      <div class="code-title">dd@lite</div>
+                    </div>
+                    <div class="code-body">
+                      <div class="code-line">
+                        <span class="prompt">$</span> 
+                        <span class="typing" id="typing-text"></span>
+                        <span class="cursor">|</span>
+                      </div>
+                      <div class="code-output" id="code-output"></div>
+                    </div>
+                  </div>
                 </section>
                 <!-- YouTube Showcase Section -->
                 <section class="youtube-showcase">
