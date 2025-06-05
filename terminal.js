@@ -93,12 +93,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const headerLines = [
       '<div class="terminal-header">',
       '  <div class="terminal-title">DIANAH | LRC Artist + Programmer</div>',
-      '  <div class="terminal-subtitle">"From Lighting Art to Pipeline Code – Bridging the Gap for Smoother Dev"</div>',
+      '  <div class="terminal-subtitle">"From Lighting Art to Building Tools – Learning to Create Better Pipelines"</div>',
       '  <div class="terminal-text">',
       '    Lighting artist + pipeline coder. Turning workflow headaches into automated solutions. Wholeheartedly Love Cats!',
       '    I am currently working as a LRC Artist with various animation projects and also learning to be a Full Stack Developer.',
-      '  </div>',
-      '</div>'
+      '  </div>'
     ];
     
     let currentLine = 0;

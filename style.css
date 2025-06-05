@@ -17,6 +17,7 @@ body {
   padding: 2rem;
   overflow: hidden;
   margin-top: -25px;
+  
 }
 
 .slider-container {
@@ -153,6 +154,7 @@ body {
   margin-left: 35px;
   margin-top: -25px;
   margin-bottom: 35px;
+  color: #666;
 }
 .coding-showcase .section-title a {
   text-decoration: none; /* Removes underline */
@@ -261,4 +263,3 @@ body {
 .demo-btn:hover, .code-btn:hover {
   opacity: 0.5;
 }
-
