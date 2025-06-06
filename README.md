@@ -6,12 +6,12 @@
 
 ## Projects
 
-- [DSA Repository](https://github.com/ddlite92/DSA)
-  - Solutions to 100+ LeetCode problems in Python.
-- [Web Dev Projects](https://github.com/ddlite92/Web-Dev)
-  - Built with React and Node.js.
+- [Blender Pipeline Tools (WIP)](https://github.com/ddlite92/BlenderPipelineTools)
+  - Creating tools to maximize rendering process.
+- [Godot Learning Curve](https://github.com/ddlite92/Godot)
+  - Built Godot.
 
 ## Contact
 
-- LinkedIn: [Your Profile](...)
+- LinkedIn: [Your Profile](https://www.linkedin.com/in/dianah-rosli-247a2a94/)
 - Email: junki2497@yahoo.com
