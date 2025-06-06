@@ -1,3 +1,6 @@
-theme: jekyll-theme-cayman
-title: "Didi Portfolio"  # Customize this
+theme: jekyll-theme-midnight
+title: "DIANAH's Portfolio"
 description: A showcase of my projects and skills.
+plugins:
+  - jekyll-optional-front-matter # Allows README.md as homepage
+

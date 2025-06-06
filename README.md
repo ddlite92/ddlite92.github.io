@@ -1,3 +1,8 @@
+---
+layout: default
+title: Home
+---
+
 # .github.io
 
 # 👋 Hi, I'm DIANAH
