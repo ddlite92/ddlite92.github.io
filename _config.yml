@@ -4,3 +4,7 @@ description: A showcase of my projects and skills.
 plugins:
   - jekyll-optional-front-matter # Allows README.md as homepage
 
+sass:
+  sass_dir: _sass
+  style: compressed
+
