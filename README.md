@@ -18,5 +18,5 @@ title: Home
 
 ## Contact
 
-- LinkedIn: [Your Profile](https://www.linkedin.com/in/dianah-rosli-247a2a94/)
+- LinkedIn: [My LinkedIn](https://www.linkedin.com/in/dianah-rosli-247a2a94/)
 - Email: junki2497@yahoo.com
