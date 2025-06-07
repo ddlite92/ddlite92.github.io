@@ -1,0 +1,195 @@
+/* ===== Base Styles ===== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* ===== Layout Structure ===== */
+.main-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.left-panel {
+  flex: 1;
+  padding: 2rem;
+  max-width: 60%;
+  background-color: white;
+}
+
+.right-panel {
+  flex: 1;
+  padding: 2rem;
+  background-color: #f5f5f5;
+  border-left: 1px solid #e0e0e0;
+  max-width: 40%;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+/* ===== Food Selection Area ===== */
+.food-ordering {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.food-title {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.cat-image {
+  width: 250px;
+  display: block;
+  margin: 0 auto 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+#input-field {
+  width: 93%;
+  padding: 1rem;
+  font-size: 1rem;
+  text-align: center;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  background-color: #fff9f0;
+  cursor: pointer;
+}
+
+/* ===== Button Styles ===== */
+.primary-btn {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.primary-btn:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== Food Options ===== */
+.food-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  justify-content: center;
+}
+
+.food-option {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.food-option:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.food-option.selected {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* ===== Order History Panel ===== */
+.history-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e0e0e0;
+  margin-bottom: 1.5rem;
+}
+
+#clear-history {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s;
+}
+
+#clear-history:hover {
+  background-color: #c0392b;
+}
+
+#order-history {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item {
+  background-color: white;
+  padding: 1.2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.order-item h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 1rem;
+}
+
+.order-item ul {
+  padding-left: 1.5rem;
+  margin-bottom: 0;
+}
+
+.empty-history {
+  color: #7f8c8d;
+  text-align: center;
+  padding: 2rem;
+  font-style: italic;
+}
+
+/* ===== Responsive Design ===== */
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+  }
+  
+  .left-panel, .right-panel {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  
+  .right-panel {
+    border-left: none;
+    border-top: 1px solid #e0e0e0;
+    height: auto;
+  }
+  
+  .cat-image {
+    width: 200px;
+  }
+}

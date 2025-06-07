@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cat Food Order</title>
+        <link rel="stylesheet" href="style.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head> 
+    <body>
+        <div class="main-container">
+            <div class="left-panel">
+                <div class="food-ordering">
+                    <h2 class="food-title">food for my cat</h2>
+                    <img src="fornt_img.jpg" alt="cute cat" class="cat-image">
+                    <div class="input-group">
+                        <input type="text" id="input-field" placeholder="Select food items..." readonly>
+                        <button id="add-btn" class="primary-btn">Add to cart</button>
+                    </div>
+                    
+                    <div class="food-options">
+                        <button class="food-option" data-food="tuna">tuna</button>
+                        <button class="food-option" data-food="mackarel">mackarel</button>
+                        <button class="food-option" data-food="chicken">chicken</button>
+                        <button class="food-option" data-food="salmon">salmon</button>
+                        <button class="food-option" data-food="meat">meat</button>
+                        <button class="food-option" data-food="steak">steak</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="right-panel">
+                <div class="history-header">
+                    <h2>Order History</h2>
+                    <button id="clear-history">Clear History</button>
+                </div>
+                <div id="order-history">
+                    <p class="empty-history">No orders yet</p>
+                </div>
+            </div>
+        </div>
+        
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-database-compat.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
