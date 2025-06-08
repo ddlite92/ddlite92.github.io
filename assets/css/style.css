@@ -193,12 +193,15 @@ a:focus, button:focus {
   opacity: 0.5;
 }
 
-/* Grid Layout */
+/* Grid Layout - Improved Left-to-Right Flow */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
-  justify-items: center;
+  gap: 2.5rem; /* Increased gap for better separation */
+  justify-items: stretch; /* Changed to stretch for equal width */
+  align-items: start; /* Align cards to top */
+  padding: 1rem;
+  grid-auto-rows: 1fr;
 }
 
 /* Project Cards */
@@ -218,20 +221,19 @@ a:focus, button:focus {
 }
 
 .project-image {
-  width: 35%; /* Adjust as needed */
-  max-width: 250px; /* Prevents over-stretching */
-  height: auto;
-  margin: 0 auto 1rem; /* Centers horizontally with bottom margin */
-  border-radius: 8px;
-  aspect-ratio: 32/16; /* Prevent layout shift */
+  width: 70%; /* Full width of card */
+  height: 180px; /* Fixed height */
   object-fit: cover;
-  background: #1a1a1a; /* Fallback while loading */
+  border-radius: 12px 12px 0 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
+
 
 .project-info {
   padding: 1.5rem;
   text-align: center;
   flex-grow: 1;
+  flex: 1;
 }
 
 .project-info h3 {
