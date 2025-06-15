@@ -17,3 +17,12 @@ input {
 button {
     padding: 30px;
 }
+
+/* Make the C button span all 4 columns */
+    .clear-btn {
+        grid-column: span 4;
+    }
+    
+#display {
+    margin-bottom: 15px;
+}
