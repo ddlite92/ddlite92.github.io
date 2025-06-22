@@ -147,8 +147,8 @@ a:focus, button:focus {
 }
 .coding-showcase {
   margin-left: 35px;
-  margin-bottom: 0.5rem;
-  margin-top: -35px;
+  margin-bottom: 1rem; /* Changed from 0.5rem */
+  margin-top: 0; /* Changed from -35px */
   font-size: 1.5rem;
   display: flex;
   align-items: center;
@@ -161,6 +161,21 @@ a:focus, button:focus {
   color: #666;
   line-height: 1.5;
   margin-bottom: 1.5rem; /* Added for spacing */
+}
+
+/* Add a new class for the projects section title */
+.projects-section .section-title {
+  margin-left: 35px;
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+}
+
+.projects-section .section-description {
+  margin-left: 35px;
+  margin-top: 0; /* Changed from -25px */
+  margin-bottom: 1.5rem; /* Changed from 35px */
+  color: #666;
+  line-height: 1.5;
 }
 
 
