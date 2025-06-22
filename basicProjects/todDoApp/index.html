@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Productivity Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="dashboard">
+    <!-- Menu Section -->
+    <div class="menu">
+      <div class="menu-section">
+        <h3>Schedule</h3>
+        <ul class="menu-list">
+          <li id="upcoming-btn"><i class="fas fa-calendar-week"></i> Upcoming</li>
+          <li id="today-btn"><i class="fas fa-sun"></i> Today</li>
+          <li id="calendar-btn"><i class="fas fa-calendar-alt"></i> Calendar</li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="content">
+      <div class="content-header">
+        <h2 id="view-title">Today</h2>
+      </div>
+      
+      <ul class="task-list" id="json-viewer">
+        <!-- Tasks will be loaded here from JSON -->
+      </ul>
+      
+      <div class="add-task">
+        <input type="text" placeholder="Add new task...">
+        <button><i class="fas fa-plus"></i></button>
+      </div>
+    </div>
+  </div>
+  
+  <script src="dashboard.js"></script>
+</body>
+</html>
