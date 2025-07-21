@@ -17,13 +17,14 @@
           <li id="upcoming-btn"><i class="fas fa-calendar-week"></i> Upcoming</li>
           <li id="today-btn"><i class="fas fa-sun"></i> Today</li>
           <li id="calendar-btn"><i class="fas fa-calendar-alt"></i> Calendar</li>
+          <li id="stash-btn"><i class="fas fa-archive"></i> Stash <span id="stash-count" class="stash-count">0</span></li>
         </ul>
       </div>
     </div>
     
     <!-- Main Content -->
     <div class="content">
-      <div class="content-header">
+      <div class="content-header" id="content-header">
         <h2 id="view-title">Today</h2>
       </div>
       
@@ -38,6 +39,11 @@
     </div>
   </div>
   
-  <script src="dashboard.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/views/today.js"></script>
+  <script src="js/views/upcoming.js"></script>
+  <script src="js/views/calendar.js"></script>
+  <script src="js/views/stash.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

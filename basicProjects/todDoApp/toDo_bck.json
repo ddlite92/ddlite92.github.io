@@ -1,0 +1,210 @@
+{
+  "metadata": {
+    "updated": "2025-06-17",
+    "completed_last_week": {
+      "fcc": "Quiz Project Certification",
+      "codewars": "18x 8kyu + 1x 7kyu started",
+      "projects": "Flamenco (partial success)"
+    },
+    "carryover_tasks": [
+      "Portfolio Development",
+      "JavaScript Practice",
+      "Python Automation"
+    ]
+  },
+  "next_week_schedule": {
+    "priority_focus": "Certification Projects → 7kyu Mastery → Error Debugging",
+    "daily_blocks": {
+      "morning": "4:00-5:30 AM",
+      "evening": "8:00-9:30 PM"
+    },
+    "weekly_plan": [
+      {
+        "day": "Monday",
+        "tasks": [
+          {
+            "time": "morning",
+            "focus": "FCC Tribute Page",
+            "goals": [
+              "Complete mobile layout",
+              "Implement CSS variables"
+            ],
+            "resources": "FCC: Responsive Web Design Certification"
+          },
+          {
+            "time": "evening",
+            "focus": "Python 7kyu Kata",
+            "goals": [
+              "Solve 'Disemvowel Trolls'",
+              "Analyze 2 top solutions"
+            ],
+            "resources": "Codewars Python Track"
+          }
+        ]
+      },
+      {
+        "day": "Tuesday",
+        "tasks": [
+          {
+            "time": "morning",
+            "focus": "FCC Tribute Page",
+            "goals": [
+              "Add media queries",
+              "Test cross-browser"
+            ]
+          },
+          {
+            "time": "evening",
+            "focus": "Debug Flamenco App",
+            "goals": [
+              "Isolate error source",
+              "Write test cases"
+            ],
+            "method": "Rubber Duck Debugging"
+          }
+        ]
+      },
+      {
+        "day": "Wednesday",
+        "tasks": [
+          {
+            "time": "morning",
+            "focus": "Portfolio Catch-up",
+            "goals": [
+              "Implement dark mode toggle",
+              "Add project filter skeleton"
+            ]
+          },
+          {
+            "time": "evening",
+            "focus": "Python Automation",
+            "goals": [
+              "Build file organizer script",
+              "Handle edge cases"
+            ],
+            "template": "https://github.com/realpython/python-scripts"
+          }
+        ]
+      },
+      {
+        "day": "Thursday",
+        "tasks": [
+          {
+            "time": "morning",
+            "focus": "JavaScript Practice",
+            "goals": [
+              "DOM manipulation drills",
+              "Portfolio interactivity"
+            ],
+            "exercises": [
+              "Event listener playground",
+              "LocalStorage practice"
+            ]
+          },
+          {
+            "time": "evening",
+            "focus": "7kyu Kata Deep Dive",
+            "goals": [
+              "Solve 'List Filtering'",
+              "Time complexity analysis"
+            ]
+          }
+        ]
+      },
+      {
+        "day": "Friday",
+        "tasks": [
+          {
+            "time": "morning",
+            "focus": "FCC Certification",
+            "goals": [
+              "Submit Tribute Page",
+              "Start Survey Form project"
+            ]
+          },
+          {
+            "time": "evening",
+            "focus": "Project Debugging",
+            "goals": [
+              "AppFlowy error logs review",
+              "Deadline app architecture check"
+            ]
+          }
+        ]
+      },
+      {
+        "day": "Saturday",
+        "tasks": [
+          {
+            "time": "9:00-12:00",
+            "focus": "Portfolio Sprint",
+            "milestones": [
+              "Deploy current version",
+              "Add 3 project cards"
+            ]
+          },
+          {
+            "time": "2:00-4:00",
+            "focus": "Python Automation",
+            "milestones": [
+              "Complete README generator",
+              "Build Twitter scheduler stub"
+            ]
+          }
+        ]
+      },
+      {
+        "day": "Sunday",
+        "tasks": [
+          {
+            "time": "10:00-12:00",
+            "focus": "Weekly Review",
+            "activities": [
+              "Codewars progress analysis",
+              "FCC certification checklist",
+              "Error documentation"
+            ]
+          },
+          {
+            "time": "flex",
+            "focus": "Wildcard Time",
+            "options": [
+              "Explore new CSS framework",
+              "JavaScript mini-game",
+              "7kyu kata refinement"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "adjustments_from_previous": {
+    "increased_focus": [
+      "FCC Certification Projects",
+      "Error Debugging Techniques"
+    ],
+    "decreased_focus": [
+      "New kata quantity (quality over quantity)",
+      "Experimental apps (focus on 1 project)"
+    ],
+    "new_elements": [
+      "Rubber duck debugging sessions",
+      "Time complexity analysis",
+      "LocalStorage practice"
+    ]
+  },
+  "success_metrics": {
+    "fcc": {
+      "target": "Complete Tribute Page + Start Survey Form",
+      "acceptance_criteria": "Pass all FCC test cases"
+    },
+    "codewars": {
+      "target": "3x 7kyu solved + analyzed",
+      "acceptance_criteria": "100% test coverage + 1 refactor"
+    },
+    "portfolio": {
+      "target": "Deployable version",
+      "acceptance_criteria": "Mobile-responsive + 3 projects"
+    }
+  }
+}

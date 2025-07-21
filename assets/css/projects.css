@@ -1,0 +1,96 @@
+.projects-section {
+    margin: 25px 55px; /* Increased top/bottom margin */
+    max-width: 1200px;
+}
+
+.projects-container {
+    position: relative;
+    margin-bottom: 40px; /* Added space below container */
+}
+
+.projects-grid {
+    display: grid;
+    gap: 20px; /* Increased gap between cards */
+    margin-bottom: 40px; /* Increased space between grids */
+}
+
+.lighting-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    margin-bottom: 30px; /* Specific space after lighting grid */
+}
+
+.developer-grid {
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    margin-top: 30px; /* Specific space before developer grid */
+}
+
+.project-card {
+    background: #252525;
+    border-radius: 8px;
+    padding: 12px; /* Slightly increased padding */
+    border-left: 2px solid #6af7a2;
+    transition: all 0.3s ease;
+    height: 100%;
+    margin-bottom: 10px; /* Space below each card */
+}
+
+.project-card:hover {
+    transform: translateY(-2px); /* Smaller hover lift */
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2); /* More subtle shadow */
+}
+
+.project-media {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio maintained */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 8px; /* Reduced margin */
+}
+
+.project-media iframe,
+.project-media img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.project-card h3 {
+    font-size: 1rem; /* Smaller heading */
+    margin-bottom: 6px; /* Reduced spacing */
+}
+
+.project-card p {
+    font-size: 0.8rem; /* Smaller text */
+    margin-bottom: 8px; /* Reduced spacing */
+    line-height: 1.3; /* Tighter line height */
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px; /* Reduced gap */
+    margin: 8px 0; /* Reduced margin */
+}
+
+.project-tech span {
+    font-size: 0.7rem; /* Smaller tech tags */
+    background: #333;
+    padding: 2px 6px; /* Reduced padding */
+    border-radius: 3px; /* Smaller radius */
+}
+
+.project-link, .youtube-link {
+    color: #6af7a2;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    margin-top: 5px; /* Reduced margin */
+    font-size: 0.8rem; /* Smaller link text */
+}
+
+.project-link:hover, .youtube-link:hover {
+    text-decoration: underline;
+}

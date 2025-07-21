@@ -1,0 +1,45 @@
+/* Navigation */
+.main-header nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.main-header nav a {
+    color: #88a826;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.3rem 0;
+    transition: all 0.3s ease;
+    display: inline-block; /* Changed to inline-block for better pseudo-element positioning */
+    position: relative; /* Required for pseudo-element positioning */
+}
+.main-header nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #98CD00;
+    transition: width 0.3s ease;
+}
+
+.main-header nav a:hover::after {
+    width: 100%;
+}
+
+/* Active State - With permanent green underline */
+.main-header nav a.active {
+    color: white;
+    font-weight: 500;
+}
+
+.main-header nav a.active::after {
+    width: 100%;
+    background-color: #98CD00; /* Same green as hover effect */
+}

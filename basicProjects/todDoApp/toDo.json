@@ -1,88 +1,45 @@
 {
   "metadata": {
-    "updated": "2025-06-17",
+    "updated": "2025-06-26",
     "completed_last_week": {
-      "fcc": "Quiz Project Certification",
-      "codewars": "18x 8kyu + 1x 7kyu started",
-      "projects": "Flamenco (partial success)"
+      "fcc": "Quiz Project Certification + Tribute Page Started",
+      "codewars": "18x 8kyu + 2x 7kyu completed",
+      "projects": "Tilix Completed, AppFlowy Modified, Flamenco API Debugged"
     },
     "carryover_tasks": [
-      "Portfolio Development",
-      "JavaScript Practice",
-      "Python Automation"
+      "FCC Survey Form",
+      "Portfolio Dark Mode",
+      "Python Email Automation"
     ]
   },
   "next_week_schedule": {
-    "priority_focus": "Certification Projects → 7kyu Mastery → Error Debugging",
+    "priority_focus": "Certification → Portfolio → Automation",
     "daily_blocks": {
-      "morning": "4:00-5:30 AM",
+      "morning": "6:00-7:30 AM",
       "evening": "8:00-9:30 PM"
     },
     "weekly_plan": [
-      {
-        "day": "Monday",
-        "tasks": [
-          {
-            "time": "morning",
-            "focus": "FCC Tribute Page",
-            "goals": [
-              "Complete mobile layout",
-              "Implement CSS variables"
-            ],
-            "resources": "FCC: Responsive Web Design Certification"
-          },
-          {
-            "time": "evening",
-            "focus": "Python 7kyu Kata",
-            "goals": [
-              "Solve 'Disemvowel Trolls'",
-              "Analyze 2 top solutions"
-            ],
-            "resources": "Codewars Python Track"
-          }
-        ]
-      },
-      {
-        "day": "Tuesday",
-        "tasks": [
-          {
-            "time": "morning",
-            "focus": "FCC Tribute Page",
-            "goals": [
-              "Add media queries",
-              "Test cross-browser"
-            ]
-          },
-          {
-            "time": "evening",
-            "focus": "Debug Flamenco App",
-            "goals": [
-              "Isolate error source",
-              "Write test cases"
-            ],
-            "method": "Rubber Duck Debugging"
-          }
-        ]
-      },
       {
         "day": "Wednesday",
         "tasks": [
           {
             "time": "morning",
-            "focus": "Portfolio Catch-up",
+            "focus": "FCC Survey Form",
             "goals": [
-              "Implement dark mode toggle",
-              "Add project filter skeleton"
-            ]
+              "Build form structure",
+              "Add validation",
+              "Test submission"
+            ],
+            "resources": "FCC: Responsive Web Design Certification"
           },
           {
             "time": "evening",
-            "focus": "Python Automation",
+            "focus": "Portfolio Upgrade",
             "goals": [
-              "Build file organizer script",
-              "Handle edge cases"
-            ],
-            "template": "https://github.com/realpython/python-scripts"
+              "Implement dark mode toggle",
+              "Add project filter",
+              "Optimize images"
+            ]
           }
         ]
       },
@@ -91,22 +48,20 @@
         "tasks": [
           {
             "time": "morning",
-            "focus": "JavaScript Practice",
+            "focus": "Python Automation",
             "goals": [
-              "DOM manipulation drills",
-              "Portfolio interactivity"
-            ],
-            "exercises": [
-              "Event listener playground",
-              "LocalStorage practice"
+              "Build email notifier",
+              "Handle attachment cases",
+              "Test with mock server"
             ]
           },
           {
             "time": "evening",
-            "focus": "7kyu Kata Deep Dive",
+            "focus": "Codewars 7kyu",
             "goals": [
               "Solve 'List Filtering'",
-              "Time complexity analysis"
+              "Analyze 3 solutions",
+              "Document patterns"
             ]
           }
         ]
@@ -116,18 +71,20 @@
         "tasks": [
           {
             "time": "morning",
-            "focus": "FCC Certification",
+            "focus": "FCC Survey Form",
             "goals": [
-              "Submit Tribute Page",
-              "Start Survey Form project"
+              "Add accessibility features",
+              "Implement CSS grid",
+              "Mobile optimization"
             ]
           },
           {
             "time": "evening",
-            "focus": "Project Debugging",
+            "focus": "JavaScript Practice",
             "goals": [
-              "AppFlowy error logs review",
-              "Deadline app architecture check"
+              "DOM manipulation drills",
+              "LocalStorage exercises",
+              "Portfolio enhancements"
             ]
           }
         ]
@@ -137,18 +94,20 @@
         "tasks": [
           {
             "time": "9:00-12:00",
-            "focus": "Portfolio Sprint",
+            "focus": "Portfolio Completion",
             "milestones": [
-              "Deploy current version",
-              "Add 3 project cards"
+              "Connect GitHub API",
+              "Add build badges",
+              "Final deployment"
             ]
           },
           {
             "time": "2:00-4:00",
-            "focus": "Python Automation",
+            "focus": "Documentation",
             "milestones": [
-              "Complete README generator",
-              "Build Twitter scheduler stub"
+              "Write project READMEs",
+              "Create demo videos",
+              "Update logs"
             ]
           }
         ]
@@ -159,19 +118,19 @@
           {
             "time": "10:00-12:00",
             "focus": "Weekly Review",
-            "activities": [
-              "Codewars progress analysis",
-              "FCC certification checklist",
-              "Error documentation"
+            "milestones": [
+              "Assess progress",
+              "Plan next week",
+              "Troubleshoot blockers"
             ]
           },
           {
-            "time": "flex",
-            "focus": "Wildcard Time",
-            "options": [
-              "Explore new CSS framework",
-              "JavaScript mini-game",
-              "7kyu kata refinement"
+            "time": "2:00-4:00",
+            "focus": "Exploration",
+            "milestones": [
+              "Try new CSS feature",
+              "Experiment with JS library",
+              "Read tech articles"
             ]
           }
         ]
@@ -179,32 +138,45 @@
     ]
   },
   "adjustments_from_previous": {
-    "increased_focus": [
-      "FCC Certification Projects",
-      "Error Debugging Techniques"
+    "new_focus_areas": [
+      "Form Validation",
+      "API Integration",
+      "Documentation"
     ],
-    "decreased_focus": [
-      "New kata quantity (quality over quantity)",
-      "Experimental apps (focus on 1 project)"
+    "simplified_tasks": [
+      "Consolidated FCC projects",
+      "Streamlined portfolio tasks",
+      "Focused automation scope"
     ],
-    "new_elements": [
-      "Rubber duck debugging sessions",
-      "Time complexity analysis",
-      "LocalStorage practice"
-    ]
+    "debugging_resources": {
+      "portfolio": {
+        "starter_mods": [
+          "Add prefers-color-scheme detection",
+          "Implement GitHub API fetch",
+          "Create responsive image component"
+        ]
+      },
+      "python": {
+        "starter_mods": [
+          "Use smtplib for emails",
+          "Add error logging",
+          "Test with MailHog"
+        ]
+      }
+    }
   },
   "success_metrics": {
     "fcc": {
-      "target": "Complete Tribute Page + Start Survey Form",
-      "acceptance_criteria": "Pass all FCC test cases"
-    },
-    "codewars": {
-      "target": "3x 7kyu solved + analyzed",
-      "acceptance_criteria": "100% test coverage + 1 refactor"
+      "target": "Completed Survey Form",
+      "acceptance_criteria": "Passes all tests + mobile-friendly"
     },
     "portfolio": {
-      "target": "Deployable version",
-      "acceptance_criteria": "Mobile-responsive + 3 projects"
+      "target": "Version 1.0 Live",
+      "acceptance_criteria": "3 projects showcased + dark mode"
+    },
+    "codewars": {
+      "target": "2x 7kyu solutions",
+      "acceptance_criteria": "Patterns documented + refactored"
     }
   }
 }

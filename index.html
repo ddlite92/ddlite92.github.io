@@ -1,114 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- TODO: Styling using css-->
- <!-- TODO: Java interactive-->
     <head>
-        <meta charset="utf-8">
-        <title>Dianah Portfolio</title>
-        <link rel="stylesheet" href="assets/css/style.css">
-        <link rel="stylesheet" href="assets/css/terminal.css">
-        <link rel="stylesheet" href="assets/css/project.css">
-        <script src="assets/js/youtube.js" defer></script>
-        <script src="assets/js/terminal.js" defer></script>
-        <script src="assets/js/project.js" defer></script>
+        <meta charset="utf-8" />
+        <title>DIANAH FOLIO</title>
+        <link href="assets/css/style.css" rel="stylesheet" />
+        <link href="assets/css/aboutme.css" rel="stylesheet" />
+        <link href="assets/css/experiences.css" rel="stylesheet" />
+        <link href="assets/css/tools.css" rel="stylesheet" />
+        <link href="assets/css/navigation.css" rel="stylesheet" />
+        <link href="assets/css/projects.css" rel="stylesheet" />
+        <link href="assets/css/contact.css" rel="stylesheet" />
         <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <link rel="preconnect" href="https://www.youtube.com">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     </head>
     <body>
-      <main>
-          <section class="code-section">
-            <div class="code-container">
-              <div class="code-header">
-                <div class="code-dots">
-                  <span class="dot red"></span>
-                  <span class="dot yellow"></span>
-                  <span class="dot green"></span>
+        <div class="sidebar">
+            <section class="intro-container">
+                <div class="name">
+                    <h1 class="dianah">DIANAH ROSLI</h1>
+                    <p class="pro-title">LRC ARTIST | PROGRAMMER</p> 
+                    <p class="tagline">From Lighting Art to Building Tools – Learning to Create Better Pipelines</p> 
                 </div>
-                <div class="code-title">dd@lite</div>
-              </div>
-              <div class="code-body">
-                <div class="code-line">
-                  <span class="prompt">$</span> 
-                  <span class="typing" id="typing-text"></span>
-                  <span class="cursor">|</span>
+            </section>
+            
+            <header class="main-header">
+                <nav aria-label="Primary navigation">
+                    <ul>
+                        <li><a href="#about-me">ABOUT</a></li>
+                        <li><a href="#experiences">EXPERIENCE</a></li>
+                        <li><a href="#projects">PROJECTS</a></li>
+                        <li><a href="#tools">TOOLBOX</a></li>
+                    </ul> 
+                </nav>  
+            </header>
+            
+            <!-- Optional footer -->
+            <div class="sidebar-footer">
+                <div class="contact-icons">
+                    <a href="mailto:junki2497@yahoo.com" aria-label="Email">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    </a>
+                    <a href="https://github.com/ddlite92" target="_blank" aria-label="GitHub">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                    </a>
+                    <a href="https://www.linkedin.com/in/dianah-rosli-247a2a94/" target="_blank" aria-label="LinkedIn">
+                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.339 18.337H5.667v-8.59h2.672v8.59zM7.003 8.574a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm11.335 9.763h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.71z"/></svg>
+                    </a>
                 </div>
-                <div class="code-output" id="code-output"></div>
-              </div>
+            </div>
+        </div>
+        <main>
+           <!-- About Me Section -->
+            <section class="about-section" id="about-me">
+                <div class="about-card">
+                    <h2 class="about-title">ABOUT ME</h2>
+                    <div class="about-content">
+                        <p>I'm an <span class="about-highlight">LRC Artist</span> turned <span class="about-highlight">developer</span>, passionate about building tools that enhance render and lighting pipelines through code. My work lives at the intersection of lighting artistry and technical development, creating solutions that to help teams while pushing technical boundaries.</p>
+                        
+                        <p>With <span class="about-highlight">8+ years</span> in animation industry, I've developed a unique hybrid skillset that combines artistic vision with technical problem-solving. My experience spans the full animation pipeline - from animating on <span class="about-highlight">Didi & Friends</span> into optimizing lighting workflows for animated series and films - giving me rare insight to where technical solutions can most impact creative work.</p>
+                        
+                        <p>I'm currently focused on <span class="about-highlight">Python development</span> and <span class="about-highlight">pipeline tools</span>, having earned certifications from MDEC and Google. My goal is to transition into a technical artist or tools developer role where I can apply both my production experience and growing programming skills to build better creative pipelines.</p>
+                        
+                        <p>When I'm not debugging shaders or solving CodeWars problems, you'll find me experimenting with Blender's Python API, contributing to open-source animation tools, or prototyping lighting automation scripts - always looking for ways to bridge the gap between art and code.</p>
+                    </div>
+                </div>
+            </section>
+            <!-- Work Section -->
+            <section class="experience-section" id="experiences">
+                <div class="experience-container">
+                    <div class="job-card">
+                        <span class="job-date">2023 - Present</span>
+                        <h3 class="job-title">LRC Artist at <a href="https://www.youtube.com/@Monsta" class="company-link"> Animonsta studio →</a></h3>
+                        <p class="job-description">
+                            Experiencing an upgraded workflow to produce <br>the highest-quality output.
+                            Working with the <br>compositor team day to day in <br>Mechamato Season 3 and Boboiboy Galaxy S2
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Rendering</span>
+                            <span class="tech-item">Lighting</span>
+                            <span class="tech-item">Blender</span>
+                            <span class="tech-item">Maya</span>
+                            <span class="tech-item">AWS</span>
+                            <span class="tech-item">Python</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <span class="job-date">2021 - 2023</span>
+                        <h3 class="job-title">3D Render Artist at <a href="https://www.youtube.com/@didiandfriendsmalaysia" class="company-link"> Warnakala Studio →</a></h3>
+                        <p class="job-description">
+                            Conduct day-to-day render farm progress, issues, <br>coordination, and management across multiple teams.<br>
+                            Organized coordinating  Didi & Friends The Movie <br>with the technical director, compositor and lighting artist.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Render Management</span>
+                            <span class="tech-item">Lighting</span>
+                            <span class="tech-item">Blender</span>
+                            <span class="tech-item">Davinci Resolve</span>
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">Linux</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <span class="job-date">2016 - 2021</span>
+                        <h3 class="job-title">3D Render Artist at <a href="https://www.youtube.com/@OmarHanaLaguKanakKanakIslam" class="company-link"> Digital Durian →</a></h3>
+                        <p class="job-description">
+                            Collaborated efforts with team compositor and modeler.<br>
+                            Played a crucial role in the success of Didi & Friends songs <br>and Konsert Hora Horey Wayang.
+                        </p>
+                        <div class="tech-stack">
+                            <span class="tech-item">Render Management</span>
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">Blender</span>
+                        </div>
+                    </div>
+                    <div class="job-card">
+                        <span class="job-date">2015 - 2016</span>
+                        <h3 class="job-title">Animator at <a href="https://www.youtube.com/@OmarHanaLaguKanakKanakIslam" class="company-link"> Digital Durian →</a></h3>
+                        <p class="job-description">
+                            Started as Junior Animator with 20 people in the company.<br> Learning curve through work and time management.<br>
+                            Animated series of Didi and Friends season  1 and 2. 
+                        <div class="tech-stack">
+                            <span class="tech-item">Animator</span>
+                            <span class="tech-item">Blender</span>  
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="projects-section" id="projects">
+                <div class="projects-container">
+                    <h2 class="section-title">PROJECTS</h2>
+                        
+                    <!-- Lighting Projects -->
+                    <div class="projects-grid lighting-grid">
+                        <!-- Papa Zola Project -->
+                        <div class="project-card">
+                            <div class="project-media">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/JDJDkld6f48?si=4QZKaYkEiZn0RgST" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <h3>PAPA ZOLA THE MOVIE</h3>
+                            <p>Official Teaser Trailer (December 2025)</p>
+                            <a href="https://www.youtube.com/watch?v=JDJDkld6f48&list=PL_Br331M3f_5GJ6znCQxZBT9qcgwOQbxG&index=2" class="youtube-link" target="_blank">View on Youtube</a>
+                        </div>
+                        <!-- FINALE EP04 - BoBoiBoy Galaxy Gentar -->
+                        <div class="project-card">
+                            <div class="project-media">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/MDMR_xdMcEw" title="FINALE EP04 - BoBoiBoy Galaxy Gentar | BuBaDiBaKo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <h3>FINALE EP04 - BoBoiBoy Galaxy Gentar</h3>
+                            <p>BuBaDiBaKo</p>
+                            <a href="https://www.youtube.com/watch?v=MDMR_xdMcEw&t=1s" class="youtube-link" target="_blank">View on Youtube</a>
+                        </div>
+                        <!-- Didi and Friends The Movie -->
+                        <div class="project-card">
+                            <div class="project-media">
+                                <iframe width="560" height="315" src="https://www.youtube.com/embed/iFv85FbfKqs" title="Didi &amp; Friends The Movie I Di Pawagam 23 Februari 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <h3>Didi & Friends The Movie</h3>
+                            <p>Di Pawagam 23 Februari 2023</p>
+                            <a href="https://www.youtube.com/watch?v=iFv85FbfKqs" class="youtube-link" target="_blank">View on Youtube</a>
+                        </div>
+                        <!-- Didi and Friends The Movie -->
+                        <div class="project-card">
+                            <div class="project-media">
+                                <iframe width="1228" height="480" src="https://www.youtube.com/embed/SG_du6oKdIQ" title="Enjit-Enjit Semut | Lagu Terbaru Musim Ke-7 | Didi &amp; Friends Kembara Muzikal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            </div>
+                            <h3>Didi & Friends Kembara Muzikal</h3>
+                            <p>Enjit-Enjit Semut | Lagu Terbaru Musim Ke-7</p>
+                            <a href="https://www.youtube.com/watch?v=SG_du6oKdIQ" class="youtube-link" target="_blank">View on Youtube</a>
+                        </div>
+                        </div>
+                        <div class="see-more-card">
+                            <a href="https://www.youtube.com/@Monsta" target="_blank" class="see-more-link">
+                                <div class="see-more-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                    </svg>
+                                    <span>See More on Monsta YouTube</span>
+                                </div>
+                            </a>
+                            <a href="https://www.youtube.com/@Monsta" target="_blank" class="see-more-link">
+                                <div class="see-more-content">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="12" cy="12" r="10"></circle>
+                                        <line x1="12" y1="8" x2="12" y2="16"></line>
+                                        <line x1="8" y1="12" x2="16" y2="12"></line>
+                                    </svg>
+                                    <span>See More on Didi and Friends YouTube</span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Developer Projects -->
+                <div class="projects-grid developer-grid">
+                    <!-- Blender Pipeline Project -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/basicProjects/BlenderPipelineTools/images/blender_addon.png" alt="Blender Pipeline Tools">
+                        </div>
+                        <h3>Blender Pipeline Tools</h3>
+                        <p>Python-based tools for Blender production pipeline</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Blender API</span>
+                        </div>
+                        <a href="https://github.com/ddlite92/BlenderPipelineTools" class="project-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- File Organizer -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/assets/thumbnail/thumbnail.png" alt="File Organizer">
+                        </div>
+                        <h3>File Organizer</h3>
+                        <p>Automatically organize files into its respective folder by its extension.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Qt Designer</span>
+                        </div>
+                        <a href="https://github.com/ddlite92/files_organizer" class="project-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- File Renamer -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/assets/thumbnail/thmbnail_renamer.png" alt="File Renamer">
+                        </div>
+                        <h3>File Renamer</h3>
+                        <p>Simple rename files by replacing text or changing number prefix</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Qt Designer</span>
+                        </div>
+                        <a href="https://github.com/ddlite92/files_renamer" class="project-link" target="_blank">View on GitHub</a>
+                    </div>
+                    <!-- Maya Scene Processor -->
+                    <div class="project-card">
+                        <div class="project-media">
+                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/assets/thumbnail/thumb_mayaSceneProcessir.png" alt="Maya Scene Processor">
+                        </div>
+                        <h3>Maya Scene Processor</h3>
+                        <p>A PyQt5-based GUI tool for batch processing Maya scene files with custom Python scripts.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Qt Designer</span>
+                        </div>
+                        <a href="https://github.com/ddlite92/maya_scene_processor" class="project-link" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+                <a href="https://github.com/ddlite92" target="_blank" class="see-more-link">
+                    <div class="see-more-content">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <line x1="12" y1="8" x2="12" y2="16"></line>
+                            <line x1="8" y1="12" x2="16" y2="12"></line>
+                        </svg>
+                        <span>See More on my GitHub</span>
+                    </div>
+                </a>
             </div>
           </section>
-          <!-- YouTube Showcase Section -->
-          <section class="youtube-showcase">
-              <h3 class="section-title">Youtube Showcase :</h3>
-              <p class="section-description">
-              This section introduces the lighting and rendering results made as an LRC Artist. 
-              It's a collaborative effort with the team! See more at 
-              <a href="https://www.youtube.com/@Monsta" target="_blank">Monsta</a>, <a href="https://www.youtube.com/@didiandfriendsmalaysia" target="_blank">Didi&Friends</a>.
-              </p>
-          </section>
-              <div class="slider-container">
-                  <button aria-label="Previous video" class="slider-arrow left-arrow">&lt;</button>  
-                  <div class="slider">
-                    <!-- Video Card 1 -->
-                    <div class="video-card">
-                      <div class="video-wrapper">
-                          <iframe width="512" height="315" src="https://www.youtube.com/embed/JDJDkld6f48?si=g1-Az0RqrC7_P00j" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      </div>
-                    </div>
-                    <div class="video-card">
-                      <div class="video-wrapper">
-                          <iframe width="512" height="315" src="https://www.youtube.com/embed/iFv85FbfKqs?si=ZMQ34Isi4QS53K14" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      </div>
-                    </div>
-                    <div class="video-card">
-                      <div class="video-wrapper">
-                          <iframe width="512" height="315" src="https://www.youtube.com/embed/MDMR_xdMcEw?si=kZDPuEhUizmD7Vdb" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      </div>
-                    </div>
-                    <div class="video-card">
-                      <div class="video-wrapper">
-                          <iframe width="512" height="315" src="https://www.youtube.com/embed/aeKeqvgu2Mk?si=sa4nBi3i6n6Ilip8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      </div>
-                    </div>
-                    <div class="video-card">
-                      <div class="video-wrapper">
-                          <iframe width="512" height="315" src="https://www.youtube.com/embed/SG_du6oKdIQ?si=_s3Yh0NJ1bCU4A0w" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      </div>
-                    </div>
-                    <div class="video-card">
-                      <div class="video-wrapper">
-                          <iframe width="512" height="315" src="https://www.youtube.com/embed/KZ0h8gWV7mI?si=AWxdOOV33ZP2r1H0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                      </div>
-                    </div>
-              </div>
-              <button class="slider-arrow right-arrow">&gt;</button>
-            </div>
-          </section>
-          <section class="coding-showcase">
-              <!--<p>You can send me an email to get further information at : <strong>junki2497@yahoo.com</strong></p>-->
-              <h3 class="section-title">Projects and Tools Showcase :  
-                  <a href="https://www.blender.org/" target="_blank" rel="noreferrer"> 
-                      <img src="https://download.blender.org/branding/community/blender_community_badge_white.svg" alt="blender" width="40" height="40"/> </a> 
-                  <a href="https://www.python.org" target="_blank" rel="noreferrer"> 
-                      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a>
-                  <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> 
-                      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> 
-                  <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> 
-                      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a>
-                  <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> 
-                      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a>  
-                  <a href="https://cloud.google.com" target="_blank" rel="noreferrer"> 
-                      <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40"/> </a> 
-                  <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> 
-                      <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> 
-                  <a href="https://aws.amazon.com" target="_blank" rel="noreferrer"> 
-                      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40"/> </a>
-                  <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> 
-                      <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a>
-              </h3>
-          </section>
-          <section class="projects-section" id="projects">
-            <!-- Content will be loaded dynamically by projects.js -->
-          </section>
-      </main>
-    </body>   
+          <section class="language-section" id="tools">
+                <h3 class="section-title">TECHNICAL TOOLBOX</h3>
+                <div class="tools-grid">
+                    <a href="https://www.blender.org/" target="_blank" rel="noreferrer" title="Blender" class="tool-item" > 
+                        <img src="https://download.blender.org/branding/community/blender_community_badge_white.svg" alt="blender" width="40" height="40" class="tool-icon"/><span>Blender</span> </a> 
+                    <a href="https://www.python.org" target="_blank" rel="noreferrer" title="Python" class="tool-item" > 
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40" class="tool-icon"/><span>Python</span> </a>
+                    <a href="https://www.linux.org/" target="_blank" rel="noreferrer" title="Linux" class="tool-item" > 
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40" class="tool-icon"/><span>Linux</span> </a> 
+                    <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer" title="HTML5" class="tool-item" > 
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40" class="tool-icon"/><span>HTML5</span> </a>
+                    <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer" title="CSS" class="tool-item" > 
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40" class="tool-icon"/><span>CSS</span> </a>  
+                    <a href="https://cloud.google.com" target="_blank" rel="noreferrer" title="Google Cloud" class="tool-item" > 
+                        <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40" class="tool-icon"/><span>Google Cloud</span> </a> 
+                    <a href="https://git-scm.com/" target="_blank" rel="noreferrer" title="Git" class="tool-item" > 
+                        <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40" class="tool-icon"/><span>Git</span> </a> 
+                    <a href="https://aws.amazon.com" target="_blank" rel="noreferrer" title="AWS" class="tool-item" > 
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40" class="tool-icon"/><span>AWS</span> </a>
+                    <a href="https://www.docker.com/" target="_blank" rel="noreferrer" title="Docker" class="tool-item" > 
+                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40" class="tool-icon"/><span>Docker</span> </a>
+                </div>  
+            </section>
+        </main>
+        <footer class="main-footer">
+            <div class="footer-content"></div>
+        </footer> 
+    <script src="assets/js/navigation.js"></script>  
+    </body>
 </html>

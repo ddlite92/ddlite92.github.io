@@ -223,3 +223,42 @@ body {
     background-color: rgba(67, 97, 238, 0.3);
   }
 }
+
+.stash-count {
+  background: var(--warning);
+  color: white;
+  border-radius: 50%;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.stash-item {
+  opacity: 0.7;
+  background: rgba(247, 37, 133, 0.1) !important;
+}
+
+.stash-item:hover {
+  opacity: 1;
+}
+
+.stash-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.clear-stash {
+  background: var(--warning);
+  color: white;
+  border: none;
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.clear-stash:hover {
+  background: #d41e6e;
+}
+

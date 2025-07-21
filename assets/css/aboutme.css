@@ -1,0 +1,45 @@
+/* About Me Section */
+.about-section {
+    margin: 15px 55px;
+    max-width: 800px;
+    animation: fadeIn 1.5s ease-out;
+    animation-fill-mode: forwards;
+}
+
+.about-card {
+    background-color: #212121;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease-out;
+}
+
+
+.about-title {
+    font-size: 1.3rem;
+    color: #98CD00;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.5px;
+    position: relative;
+    display: inline-block;
+}
+
+.about-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #98CD00, transparent);
+}
+
+.about-content {
+    line-height: 1.6;
+    color: #b3b3b3;
+}
+
+.about-highlight {
+    color: #6af7a2;
+    font-weight: 500;
+}

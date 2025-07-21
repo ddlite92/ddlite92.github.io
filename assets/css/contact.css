@@ -1,0 +1,32 @@
+/* Contact Icons */
+.sidebar-footer {
+    margin-top: auto; /* Pushes to bottom of sidebar */
+    padding: 20px 0;
+}
+
+.contact-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    fill: #b3b3b3;
+    transition: all 0.3s ease;
+}
+
+.icon:hover {
+    fill: #98CD00;
+    transform: translateY(-2px);
+}
+
+/* Adjust sidebar layout */
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+}
