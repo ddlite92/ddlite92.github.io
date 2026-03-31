@@ -1,0 +1,9 @@
+# Archived / superseded files
+_old/
+
+# Local docs (not published)
+docs/
+
+# OS / editor
+.DS_Store
+Thumbs.db
