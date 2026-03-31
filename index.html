@@ -1,292 +1,1408 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <title>DIANAH FOLIO</title>
-        <link href="assets/css/style.css" rel="stylesheet" />
-        <link href="assets/css/aboutme.css" rel="stylesheet" />
-        <link href="assets/css/experiences.css" rel="stylesheet" />
-        <link href="assets/css/tools.css" rel="stylesheet" />
-        <link href="assets/css/navigation.css" rel="stylesheet" />
-        <link href="assets/css/projects.css" rel="stylesheet" />
-        <link href="assets/css/contact.css" rel="stylesheet" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    </head>
-    <body>
-        <div class="sidebar">
-            <section class="intro-container">
-                <div class="name">
-                    <h1 class="dianah">DIANAH ROSLI</h1>
-                    <p class="pro-title">LRC ARTIST | PROGRAMMER</p> 
-                    <p class="tagline">From Lighting Art to Building Tools – Learning to Create Better Pipelines</p> 
-                </div>
-            </section>
-            
-            <header class="main-header">
-                <nav aria-label="Primary navigation">
-                    <ul>
-                        <li><a href="#about-me">ABOUT</a></li>
-                        <li><a href="#experiences">EXPERIENCE</a></li>
-                        <li><a href="#projects">PROJECTS</a></li>
-                        <li><a href="#tools">TOOLBOX</a></li>
-                    </ul> 
-                </nav>  
-            </header>
-            
-            <!-- Optional footer -->
-            <div class="sidebar-footer">
-                <div class="contact-icons">
-                    <a href="mailto:junki2497@yahoo.com" aria-label="Email">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                    </a>
-                    <a href="https://github.com/ddlite92" target="_blank" aria-label="GitHub">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/dianah-rosli-247a2a94/" target="_blank" aria-label="LinkedIn">
-                        <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 3H4a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1zM8.339 18.337H5.667v-8.59h2.672v8.59zM7.003 8.574a1.548 1.548 0 1 1 0-3.096 1.548 1.548 0 0 1 0 3.096zm11.335 9.763h-2.669V14.16c0-.996-.018-2.277-1.388-2.277-1.39 0-1.601 1.086-1.601 2.207v4.248h-2.667v-8.59h2.56v1.174h.037c.355-.675 1.227-1.387 2.524-1.387 2.704 0 3.203 1.778 3.203 4.092v4.71z"/></svg>
-                    </a>
-                </div>
-            </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dianah Rosli — LRC Artist & Pipeline TD. 8+ years in animation production. Python tooling, render farm management, and pipeline automation." />
+  <meta property="og:title" content="Dianah Rosli — Pipeline TD & LRC Artist" />
+  <meta property="og:description" content="8+ years in animation production. Building tools that make pipelines disappear." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://didi.is-a.dev" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Dianah Rosli — Pipeline TD & LRC Artist" />
+  <meta name="twitter:description" content="8+ years in animation production. Building tools that make pipelines disappear." />
+  <title>Dianah Rosli — Pipeline TD & LRC Artist</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:      #111111;
+      --surface: #1a1a1a;
+      --border:  #2a2a2a;
+      --accent:  #a3e635;
+      --text:    #f0f0f0;
+      --muted:   #6b7280;
+      --font-body: 'DM Sans', sans-serif;
+      --font-head: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --sidebar-w: 220px;
+    }
+
+    /* ── Base ───────────────────────────────────────────────── */
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── Scrollbar ──────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--bg);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 20px 24px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-profile {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 32px;
+    }
+
+    .avatar-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-initials {
+      width: 100%;
+      height: 100%;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-head);
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .sidebar-name {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .sidebar-role {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* Nav */
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex: 1;
+    }
+
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      border-radius: 4px;
+      border-left: 2px solid transparent;
+      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+      cursor: pointer;
+    }
+
+    .nav-link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .nav-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: rgba(163, 230, 53, 0.05);
+    }
+
+    .nav-link .nav-num {
+      font-size: 10px;
+      color: #3a3a3a;
+    }
+
+    .nav-link.active .nav-num {
+      color: rgba(163,230,53,0.4);
+    }
+
+    /* CV button */
+    .btn-cv {
+      margin-top: 24px;
+      display: block;
+      text-align: center;
+      padding: 9px 16px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      transition: background 150ms ease, color 150ms ease;
+    }
+
+    .btn-cv:hover {
+      background: var(--accent);
+      color: #111;
+    }
+
+    /* Hamburger (mobile only) */
+    .hamburger {
+      display: none;
+      position: fixed;
+      top: 16px;
+      left: 16px;
+      z-index: 200;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      width: 40px;
+      height: 40px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 18px;
+      height: 1.5px;
+      background: var(--text);
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
+
+    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 99;
+    }
+
+    /* ── Main content ────────────────────────────────────────── */
+    .content {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Section scaffold ────────────────────────────────────── */
+    section {
+      padding: 80px 60px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    /* ── Fade-in animation ───────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 300ms ease-out, transform 300ms ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Shared: card ────────────────────────────────────────── */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+
+    .card:hover {
+      border-color: rgba(163, 230, 53, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* ── Shared: tech tags ───────────────────────────────────── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      background: #222;
+      border: 1px solid #333;
+      padding: 2px 8px;
+      border-radius: 3px;
+      color: var(--muted);
+    }
+
+    /* ── Shared: terminal block ──────────────────────────────── */
+    .terminal {
+      background: #0d0d0d;
+      border-left: 2px solid var(--accent);
+      padding: 12px 16px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.7;
+      border-radius: 0 4px 4px 0;
+      margin-top: 16px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    .terminal .cmd { color: var(--accent); }
+    .terminal .out { color: var(--muted); }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* HERO                                                        */
+    /* ─────────────────────────────────────────────────────────── */
+    #hero {
+      padding-top: 100px;
+      padding-bottom: 80px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    #hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(42px, 5.5vw, 72px);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    #hero h1 .line { display: block; }
+    #hero h1 .accent { color: var(--accent); }
+
+    #hero .subheading {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 520px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 22px;
+      background: var(--accent);
+      color: #111;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      border-radius: 4px;
+      transition: background 150ms ease, transform 150ms ease;
+    }
+
+    .btn-primary:hover {
+      background: #b5f045;
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 11px 22px;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      transition: border-color 150ms ease, color 150ms ease, transform 150ms ease;
+    }
+
+    .btn-outline:hover {
+      border-color: rgba(163,230,53,0.5);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      padding: 20px 28px;
+      border: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .stat:first-child { border-radius: 6px 0 0 6px; }
+    .stat:last-child  { border-radius: 0 6px 6px 0; }
+    .stat + .stat     { border-left: none; }
+
+    .stat-val {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* WORK                                                        */
+    /* ─────────────────────────────────────────────────────────── */
+    .subsection-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    /* Production credits */
+    .credits-scroll {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 12px;
+      margin-bottom: 56px;
+      scrollbar-width: thin;
+      scrollbar-color: #3a3a3a var(--bg);
+    }
+
+    .credit-card {
+      min-width: 240px;
+      max-width: 260px;
+      flex-shrink: 0;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+
+    .credit-card:hover {
+      border-color: rgba(163, 230, 53, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .credit-title {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .credit-studio-year {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .credit-role {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+      background: #222;
+      border: 1px solid #333;
+      padding: 3px 8px;
+      border-radius: 3px;
+      color: var(--muted);
+      align-self: flex-start;
+    }
+
+    .btn-watch {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 3px;
+      transition: color 150ms ease, border-color 150ms ease;
+      align-self: flex-start;
+    }
+
+    .btn-watch:hover {
+      color: var(--text);
+      border-color: #4a4a4a;
+    }
+
+    /* Dev tools grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .tool-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+
+    .tool-card:hover {
+      border-color: rgba(163, 230, 53, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .tool-cat {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    .tool-title {
+      font-family: var(--font-head);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .tool-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .tool-footer {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 4px;
+    }
+
+    .btn-github {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      border-radius: 3px;
+      transition: color 150ms ease, border-color 150ms ease;
+    }
+
+    .btn-github:hover {
+      color: var(--text);
+      border-color: #4a4a4a;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* EXPERIENCE                                                  */
+    /* ─────────────────────────────────────────────────────────── */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .timeline-entry {
+      position: relative;
+      padding: 0 0 40px 32px;
+    }
+
+    .timeline-entry:last-child { padding-bottom: 0; }
+
+    .timeline-entry::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--border);
+      border: 2px solid var(--bg);
+      transition: background 200ms ease;
+    }
+
+    .timeline-entry:hover::before {
+      background: var(--accent);
+    }
+
+    .entry-date {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 6px;
+      letter-spacing: 0.05em;
+    }
+
+    .entry-company {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 4px;
+      transition: opacity 150ms ease;
+    }
+
+    .entry-company:hover { opacity: 0.8; }
+
+    .entry-role {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .entry-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 600px;
+      margin-bottom: 4px;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* TOOLBOX                                                     */
+    /* ─────────────────────────────────────────────────────────── */
+    .toolbox-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .toolbox-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      transition: border-color 200ms ease, transform 200ms ease;
+    }
+
+    .toolbox-card:hover {
+      border-color: rgba(163, 230, 53, 0.4);
+      transform: translateY(-2px);
+    }
+
+    .toolbox-cat {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .toolbox-title {
+      font-family: var(--font-head);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .toolbox-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .toolbox-list li {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .toolbox-list li::before {
+      content: '\2014';
+      color: #3a3a3a;
+      flex-shrink: 0;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* CONTACT                                                     */
+    /* ─────────────────────────────────────────────────────────── */
+    #contact {
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-family: var(--font-head);
+      font-size: clamp(26px, 3.5vw, 40px);
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    #contact .contact-sub {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      transition: border-color 200ms ease, color 200ms ease, transform 200ms ease;
+    }
+
+    .contact-link:hover {
+      border-color: rgba(163,230,53,0.4);
+      color: var(--text);
+      transform: translateY(-2px);
+    }
+
+    .contact-link svg {
+      width: 15px;
+      height: 15px;
+      flex-shrink: 0;
+    }
+
+    .site-footer {
+      margin-top: 60px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: #3d3d3d;
+      text-align: center;
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* TOP NAVBAR                                                  */
+    /* ─────────────────────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 52px;
+      padding: 0 60px;
+      background: rgba(17, 17, 17, 0.85);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar-logo {
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .topbar-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      padding: 6px 12px;
+      border-radius: 3px;
+      transition: color 150ms ease, background 150ms ease;
+    }
+
+    .topbar-link:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .topbar-link.active {
+      color: var(--accent);
+    }
+
+    .topbar-cta {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 14px;
+      border-radius: 3px;
+      flex-shrink: 0;
+      transition: border-color 150ms ease, color 150ms ease;
+    }
+
+    .topbar-cta:hover {
+      border-color: rgba(163,230,53,0.5);
+      color: var(--accent);
+    }
+
+    /* ─────────────────────────────────────────────────────────── */
+    /* RESPONSIVE                                                  */
+    /* ─────────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      section { padding: 60px 40px; }
+      .tools-grid { grid-template-columns: 1fr; }
+      .toolbox-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .topbar { display: none; }
+
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        z-index: 100;
+        transform: translateX(-100%);
+        transition: transform 250ms ease;
+        border-right: 1px solid var(--border);
+      }
+
+      .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+      }
+
+      .overlay.visible { display: block; }
+      .hamburger { display: flex; }
+
+      section { padding: 60px 24px; }
+      #hero { padding-top: 80px; }
+
+      .stat {
+        flex: 1 1 calc(50% - 1px);
+        min-width: 120px;
+      }
+
+      .stat:first-child { border-radius: 6px 0 0 0; }
+      .stat:nth-child(2) { border-radius: 0 6px 0 0; }
+      .stat:nth-child(3) { border-top: none; border-left: none; border-radius: 0 0 0 6px; }
+      .stat:last-child   { border-top: none; border-left: 1px solid var(--border); border-radius: 0 0 6px 0; }
+
+      .tools-grid { grid-template-columns: 1fr; }
+      .toolbox-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      section { padding: 50px 20px; }
+      .credit-card { min-width: 200px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Mobile hamburger -->
+  <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <!-- Overlay for mobile -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <div class="layout">
+
+    <!-- ── Sidebar ──────────────────────────────────────────── -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-profile">
+        <div class="avatar-wrap">
+          <img
+            src="images/emok.jpg"
+            alt="Dianah Rosli"
+            id="avatar-img"
+          />
         </div>
-        <main>
-           <!-- About Me Section -->
-            <section class="about-section" id="about-me">
-                <div class="about-card">
-                    <h2 class="about-title">ABOUT ME</h2>
-                    <div class="about-content">
-                        <p>I'm an <span class="about-highlight">LRC Artist</span> turned <span class="about-highlight">developer</span>, passionate about building tools that enhance render and lighting pipelines through code. My work lives at the intersection of lighting artistry and technical development, creating solutions that to help teams while pushing technical boundaries.</p>
-                        
-                        <p>With <span class="about-highlight">8+ years</span> in animation industry, I've developed a unique hybrid skillset that combines artistic vision with technical problem-solving. My experience spans the full animation pipeline - from animating on <span class="about-highlight">Didi & Friends</span> into optimizing lighting workflows for animated series and films - giving me rare insight to where technical solutions can most impact creative work.</p>
-                        
-                        <p>I'm currently focused on <span class="about-highlight">Python development</span> and <span class="about-highlight">pipeline tools</span>, having earned certifications from MDEC and Google. My goal is to transition into a technical artist or tools developer role where I can apply both my production experience and growing programming skills to build better creative pipelines.</p>
-                        
-                        <p>When I'm not debugging shaders or solving CodeWars problems, you'll find me experimenting with Blender's Python API, contributing to open-source animation tools, or prototyping lighting automation scripts - always looking for ways to bridge the gap between art and code.</p>
-                    </div>
-                </div>
-            </section>
-            <!-- Work Section -->
-            <section class="experience-section" id="experiences">
-                <div class="experience-container">
-                    <div class="job-card">
-                        <span class="job-date">2023 - Present</span>
-                        <h3 class="job-title">LRC Artist at <a href="https://www.youtube.com/@Monsta" class="company-link"> Animonsta studio →</a></h3>
-                        <p class="job-description">
-                            Experiencing an upgraded workflow to produce <br>the highest-quality output.
-                            Working with the <br>compositor team day to day in <br>Mechamato Season 3 and Boboiboy Galaxy S2
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">Rendering</span>
-                            <span class="tech-item">Lighting</span>
-                            <span class="tech-item">Blender</span>
-                            <span class="tech-item">Maya</span>
-                            <span class="tech-item">AWS</span>
-                            <span class="tech-item">Python</span>
-                        </div>
-                    </div>
-                    <div class="job-card">
-                        <span class="job-date">2021 - 2023</span>
-                        <h3 class="job-title">3D Render Artist at <a href="https://www.youtube.com/@didiandfriendsmalaysia" class="company-link"> Warnakala Studio →</a></h3>
-                        <p class="job-description">
-                            Conduct day-to-day render farm progress, issues, <br>coordination, and management across multiple teams.<br>
-                            Organized coordinating  Didi & Friends The Movie <br>with the technical director, compositor and lighting artist.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">Render Management</span>
-                            <span class="tech-item">Lighting</span>
-                            <span class="tech-item">Blender</span>
-                            <span class="tech-item">Davinci Resolve</span>
-                            <span class="tech-item">Python</span>
-                            <span class="tech-item">Linux</span>
-                        </div>
-                    </div>
-                    <div class="job-card">
-                        <span class="job-date">2016 - 2021</span>
-                        <h3 class="job-title">3D Render Artist at <a href="https://www.youtube.com/@OmarHanaLaguKanakKanakIslam" class="company-link"> Digital Durian →</a></h3>
-                        <p class="job-description">
-                            Collaborated efforts with team compositor and modeler.<br>
-                            Played a crucial role in the success of Didi & Friends songs <br>and Konsert Hora Horey Wayang.
-                        </p>
-                        <div class="tech-stack">
-                            <span class="tech-item">Render Management</span>
-                            <span class="tech-item">Python</span>
-                            <span class="tech-item">Blender</span>
-                        </div>
-                    </div>
-                    <div class="job-card">
-                        <span class="job-date">2015 - 2016</span>
-                        <h3 class="job-title">Animator at <a href="https://www.youtube.com/@OmarHanaLaguKanakKanakIslam" class="company-link"> Digital Durian →</a></h3>
-                        <p class="job-description">
-                            Started as Junior Animator with 20 people in the company.<br> Learning curve through work and time management.<br>
-                            Animated series of Didi and Friends season  1 and 2. 
-                        <div class="tech-stack">
-                            <span class="tech-item">Animator</span>
-                            <span class="tech-item">Blender</span>  
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="projects-section" id="projects">
-                <div class="projects-container">
-                    <h2 class="section-title">PROJECTS</h2>
-                        
-                    <!-- Lighting Projects -->
-                    <div class="projects-grid lighting-grid">
-                        <!-- Papa Zola Project -->
-                        <div class="project-card">
-                            <div class="project-media">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/JDJDkld6f48?si=4QZKaYkEiZn0RgST" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <h3>PAPA ZOLA THE MOVIE</h3>
-                            <p>Official Teaser Trailer (December 2025)</p>
-                            <a href="https://www.youtube.com/watch?v=JDJDkld6f48&list=PL_Br331M3f_5GJ6znCQxZBT9qcgwOQbxG&index=2" class="youtube-link" target="_blank">View on Youtube</a>
-                        </div>
-                        <!-- FINALE EP04 - BoBoiBoy Galaxy Gentar -->
-                        <div class="project-card">
-                            <div class="project-media">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/MDMR_xdMcEw" title="FINALE EP04 - BoBoiBoy Galaxy Gentar | BuBaDiBaKo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <h3>FINALE EP04 - BoBoiBoy Galaxy Gentar</h3>
-                            <p>BuBaDiBaKo</p>
-                            <a href="https://www.youtube.com/watch?v=MDMR_xdMcEw&t=1s" class="youtube-link" target="_blank">View on Youtube</a>
-                        </div>
-                        <!-- Didi and Friends The Movie -->
-                        <div class="project-card">
-                            <div class="project-media">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/iFv85FbfKqs" title="Didi &amp; Friends The Movie I Di Pawagam 23 Februari 2023" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <h3>Didi & Friends The Movie</h3>
-                            <p>Di Pawagam 23 Februari 2023</p>
-                            <a href="https://www.youtube.com/watch?v=iFv85FbfKqs" class="youtube-link" target="_blank">View on Youtube</a>
-                        </div>
-                        <!-- Didi and Friends The Movie -->
-                        <div class="project-card">
-                            <div class="project-media">
-                                <iframe width="1228" height="480" src="https://www.youtube.com/embed/SG_du6oKdIQ" title="Enjit-Enjit Semut | Lagu Terbaru Musim Ke-7 | Didi &amp; Friends Kembara Muzikal" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                            </div>
-                            <h3>Didi & Friends Kembara Muzikal</h3>
-                            <p>Enjit-Enjit Semut | Lagu Terbaru Musim Ke-7</p>
-                            <a href="https://www.youtube.com/watch?v=SG_du6oKdIQ" class="youtube-link" target="_blank">View on Youtube</a>
-                        </div>
-                        </div>
-                        <div class="see-more-card">
-                            <a href="https://www.youtube.com/@Monsta" target="_blank" class="see-more-link">
-                                <div class="see-more-content">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                                    </svg>
-                                    <span>See More on Monsta YouTube</span>
-                                </div>
-                            </a>
-                            <a href="https://www.youtube.com/@Monsta" target="_blank" class="see-more-link">
-                                <div class="see-more-content">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <circle cx="12" cy="12" r="10"></circle>
-                                        <line x1="12" y1="8" x2="12" y2="16"></line>
-                                        <line x1="8" y1="12" x2="16" y2="12"></line>
-                                    </svg>
-                                    <span>See More on Didi and Friends YouTube</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Developer Projects -->
-                <div class="projects-grid developer-grid">
-                    <!-- Blender Pipeline Project -->
-                    <div class="project-card">
-                        <div class="project-media">
-                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/basicProjects/BlenderPipelineTools/images/blender_addon.png" alt="Blender Pipeline Tools">
-                        </div>
-                        <h3>Blender Pipeline Tools</h3>
-                        <p>Python-based tools for Blender production pipeline</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Blender API</span>
-                        </div>
-                        <a href="https://github.com/ddlite92/BlenderPipelineTools" class="project-link" target="_blank">View on GitHub</a>
-                    </div>
-                    <!-- File Organizer -->
-                    <div class="project-card">
-                        <div class="project-media">
-                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/assets/thumbnail/thumbnail.png" alt="File Organizer">
-                        </div>
-                        <h3>File Organizer</h3>
-                        <p>Automatically organize files into its respective folder by its extension.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Qt Designer</span>
-                        </div>
-                        <a href="https://github.com/ddlite92/files_organizer" class="project-link" target="_blank">View on GitHub</a>
-                    </div>
-                    <!-- File Renamer -->
-                    <div class="project-card">
-                        <div class="project-media">
-                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/assets/thumbnail/thmbnail_renamer.png" alt="File Renamer">
-                        </div>
-                        <h3>File Renamer</h3>
-                        <p>Simple rename files by replacing text or changing number prefix</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Qt Designer</span>
-                        </div>
-                        <a href="https://github.com/ddlite92/files_renamer" class="project-link" target="_blank">View on GitHub</a>
-                    </div>
-                    <!-- Maya Scene Processor -->
-                    <div class="project-card">
-                        <div class="project-media">
-                            <img src="https://ddfoliowebsite.s3.ap-southeast-1.amazonaws.com/assets/thumbnail/thumb_mayaSceneProcessir.png" alt="Maya Scene Processor">
-                        </div>
-                        <h3>Maya Scene Processor</h3>
-                        <p>A PyQt5-based GUI tool for batch processing Maya scene files with custom Python scripts.</p>
-                        <div class="project-tech">
-                            <span>Python</span>
-                            <span>Qt Designer</span>
-                        </div>
-                        <a href="https://github.com/ddlite92/maya_scene_processor" class="project-link" target="_blank">View on GitHub</a>
-                    </div>
-                </div>
-                <a href="https://github.com/ddlite92" target="_blank" class="see-more-link">
-                    <div class="see-more-content">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="12" y1="8" x2="12" y2="16"></line>
-                            <line x1="8" y1="12" x2="16" y2="12"></line>
-                        </svg>
-                        <span>See More on my GitHub</span>
-                    </div>
-                </a>
+        <div>
+          <div class="sidebar-name">Dianah Rosli</div>
+          <div class="sidebar-role">Pipeline TD · LRC Dev</div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+        <a class="nav-link active" data-section="work" href="#work">
+          <span class="nav-num">01</span> Work
+        </a>
+        <a class="nav-link" data-section="experience" href="#experience">
+          <span class="nav-num">02</span> Experience
+        </a>
+        <a class="nav-link" data-section="toolbox" href="#toolbox">
+          <span class="nav-num">03</span> Toolbox
+        </a>
+        <a class="nav-link" data-section="contact" href="#contact">
+          <span class="nav-num">04</span> Contact
+        </a>
+      </nav>
+
+      <a href="#" class="btn-cv">&#8595; DOWNLOAD CV</a>
+    </aside>
+
+    <!-- ── Main content ──────────────────────────────────────── -->
+    <main class="content" id="main-content">
+
+      <!-- ── Top navbar ────────────────────────────────────────── -->
+      <header class="topbar">
+        <a href="#hero" class="topbar-logo">Dianah Rosli</a>
+        <nav class="topbar-nav" aria-label="Top navigation">
+          <a class="topbar-link active" data-section="work" href="#work">Work</a>
+          <a class="topbar-link" data-section="experience" href="#experience">Experience</a>
+          <a class="topbar-link" data-section="toolbox" href="#toolbox">Toolbox</a>
+          <a class="topbar-link" data-section="contact" href="#contact">Contact</a>
+        </nav>
+        <a href="#contact" class="topbar-cta">CONTACT &#8594;</a>
+      </header>
+
+      <!-- ── Hero ─────────────────────────────────────────────── -->
+      <section id="hero">
+        <p class="section-label fade-in">PORTFOLIO</p>
+        <h1 class="fade-in" style="transition-delay:60ms">
+          <span class="line">LRC Artist</span>
+          <span class="line"><span class="accent">&amp;</span> Pipeline TD.</span>
+        </h1>
+        <p class="subheading fade-in" style="transition-delay:120ms">
+          8+ years in animation production. Building tools that make pipelines disappear.
+        </p>
+        <div class="cta-row fade-in" style="transition-delay:180ms">
+          <a href="#work" class="btn-primary">VIEW WORK &#8594;</a>
+          <a href="#toolbox" class="btn-outline">EXPLORE STACK</a>
+        </div>
+        <div class="stats-row fade-in" style="transition-delay:240ms">
+          <div class="stat">
+            <span class="stat-val">8+</span>
+            <span class="stat-label">YRS EXP</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">3</span>
+            <span class="stat-label">STUDIOS</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">~60</span>
+            <span class="stat-label">NODE RENDER FARM</span>
+          </div>
+          <div class="stat">
+            <span class="stat-val">4</span>
+            <span class="stat-label">PRODUCTIONS</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── Work ─────────────────────────────────────────────── -->
+      <section id="work">
+        <p class="section-label">SELECTED WORK</p>
+
+        <!-- Production credits -->
+        <p class="subsection-label fade-in">PRODUCTION CREDITS</p>
+        <div class="credits-scroll fade-in" style="transition-delay:60ms">
+
+          <div class="credit-card">
+            <div>
+              <div class="credit-title">Papa Zola The Movie</div>
+              <div class="credit-studio-year">Animonsta Studios &middot; 2025</div>
             </div>
-          </section>
-          <section class="language-section" id="tools">
-                <h3 class="section-title">TECHNICAL TOOLBOX</h3>
-                <div class="tools-grid">
-                    <a href="https://www.blender.org/" target="_blank" rel="noreferrer" title="Blender" class="tool-item" > 
-                        <img src="https://download.blender.org/branding/community/blender_community_badge_white.svg" alt="blender" width="40" height="40" class="tool-icon"/><span>Blender</span> </a> 
-                    <a href="https://www.python.org" target="_blank" rel="noreferrer" title="Python" class="tool-item" > 
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40" class="tool-icon"/><span>Python</span> </a>
-                    <a href="https://www.linux.org/" target="_blank" rel="noreferrer" title="Linux" class="tool-item" > 
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40" class="tool-icon"/><span>Linux</span> </a> 
-                    <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer" title="HTML5" class="tool-item" > 
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40" class="tool-icon"/><span>HTML5</span> </a>
-                    <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer" title="CSS" class="tool-item" > 
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40" class="tool-icon"/><span>CSS</span> </a>  
-                    <a href="https://cloud.google.com" target="_blank" rel="noreferrer" title="Google Cloud" class="tool-item" > 
-                        <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40" class="tool-icon"/><span>Google Cloud</span> </a> 
-                    <a href="https://git-scm.com/" target="_blank" rel="noreferrer" title="Git" class="tool-item" > 
-                        <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40" class="tool-icon"/><span>Git</span> </a> 
-                    <a href="https://aws.amazon.com" target="_blank" rel="noreferrer" title="AWS" class="tool-item" > 
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" alt="aws" width="40" height="40" class="tool-icon"/><span>AWS</span> </a>
-                    <a href="https://www.docker.com/" target="_blank" rel="noreferrer" title="Docker" class="tool-item" > 
-                        <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40" class="tool-icon"/><span>Docker</span> </a>
-                </div>  
-            </section>
-        </main>
-        <footer class="main-footer">
-            <div class="footer-content"></div>
-        </footer> 
-    <script src="assets/js/navigation.js"></script>  
-    </body>
+            <span class="credit-role">LIGHTING &middot; RENDERING</span>
+            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
+          </div>
+
+          <div class="credit-card">
+            <div>
+              <div class="credit-title">BoBoiBoy Galaxy Gentar</div>
+              <div class="credit-studio-year">Animonsta Studios</div>
+            </div>
+            <span class="credit-role">LIGHTING &middot; RENDERING</span>
+            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
+          </div>
+
+          <div class="credit-card">
+            <div>
+              <div class="credit-title">Didi &amp; Friends The Movie</div>
+              <div class="credit-studio-year">Warnakala Studio &middot; 2023</div>
+            </div>
+            <span class="credit-role">LIGHTING &middot; RENDERING</span>
+            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
+          </div>
+
+          <div class="credit-card">
+            <div>
+              <div class="credit-title">Didi &amp; Friends Kembara Muzikal</div>
+              <div class="credit-studio-year">Digital Durian</div>
+            </div>
+            <span class="credit-role">LIGHTING &middot; RENDERING</span>
+            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
+          </div>
+
+        </div>
+
+        <!-- Dev tools -->
+        <p class="subsection-label fade-in">DEV TOOLS</p>
+        <div class="tools-grid">
+
+          <div class="tool-card fade-in" style="transition-delay:60ms">
+            <span class="tool-cat">PYTHON TOOL</span>
+            <h3 class="tool-title">Blender Pipeline Tools</h3>
+            <p class="tool-desc">Automates render submission and output validation for Blender scenes.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Blender API</span>
+            </div>
+            <pre class="terminal"><span class="cmd">$ blender_pipeline --submit scene.blend</span>
+<span class="out">  &#8594; Parsing scene: scene.blend</span>
+<span class="out">  &#8594; Validating output paths... OK</span>
+<span class="out">  &#8594; Submitting 240 frames to Afanasy</span>
+<span class="out">  &#8594; Job ID: af_job_00412 queued &#10003;</span></pre>
+            <div class="tool-footer">
+              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
+            </div>
+          </div>
+
+          <div class="tool-card fade-in" style="transition-delay:120ms">
+            <span class="tool-cat">PYTHON TOOL</span>
+            <h3 class="tool-title">File Organizer</h3>
+            <p class="tool-desc">Sorts and categorizes files by type, date, and project prefix.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyQt5</span>
+            </div>
+            <pre class="terminal"><span class="cmd">$ file_organizer --watch /renders/output</span>
+<span class="out">  &#8594; Watching: /renders/output</span>
+<span class="out">  &#8594; [exr]  shot_010_beauty.0001.exr &#8594; /exr/</span>
+<span class="out">  &#8594; [png]  shot_010_preview.png    &#8594; /preview/</span>
+<span class="out">  &#8594; 14 files organized &#10003;</span></pre>
+            <div class="tool-footer">
+              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
+            </div>
+          </div>
+
+          <div class="tool-card fade-in" style="transition-delay:180ms">
+            <span class="tool-cat">PYTHON TOOL</span>
+            <h3 class="tool-title">File Renamer</h3>
+            <p class="tool-desc">Batch-renames files using configurable naming conventions.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyQt5</span>
+            </div>
+            <pre class="terminal"><span class="cmd">$ file_renamer --pattern "{shot}_{frame:04d}"</span>
+<span class="out">  &#8594; Pattern: {shot}_{frame:04d}.exr</span>
+<span class="out">  &#8594; render_001.exr &#8594; shot_010_0001.exr</span>
+<span class="out">  &#8594; render_002.exr &#8594; shot_010_0002.exr</span>
+<span class="out">  &#8594; 48 files renamed &#10003;</span></pre>
+            <div class="tool-footer">
+              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
+            </div>
+          </div>
+
+          <div class="tool-card fade-in" style="transition-delay:240ms">
+            <span class="tool-cat">PYTHON TOOL</span>
+            <h3 class="tool-title">Maya Scene Processor</h3>
+            <p class="tool-desc">Processes Maya scenes: cleanup, export, and validation pipeline.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">PyQt5</span>
+            </div>
+            <pre class="terminal"><span class="cmd">$ maya_proc --validate --export scene.ma</span>
+<span class="out">  &#8594; Loading: scene.ma</span>
+<span class="out">  &#8594; Checking references... OK</span>
+<span class="out">  &#8594; Unused nodes removed: 37</span>
+<span class="out">  &#8594; Export complete &#8594; /export/scene_clean.ma &#10003;</span></pre>
+            <div class="tool-footer">
+              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Experience ────────────────────────────────────────── -->
+      <section id="experience">
+        <p class="section-label">CAREER ARC</p>
+        <div class="timeline">
+
+          <div class="timeline-entry fade-in">
+            <p class="entry-date">2023 &#8211; PRESENT</p>
+            <a href="#" class="entry-company" target="_blank" rel="noopener">Animonsta Studios</a>
+            <h3 class="entry-role">LRC Artist / Pipeline Dev</h3>
+            <p class="entry-desc">Upgraded render workflows for Mechamato S3 and BoBoiBoy Galaxy S2. Managing ~60-node Afanasy render farm. Python tooling for automation and Kitsu project management integration.</p>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Blender</span>
+              <span class="tag">Afanasy/CGRU</span>
+              <span class="tag">Kitsu</span>
+              <span class="tag">Linux</span>
+              <span class="tag">AWS</span>
+            </div>
+          </div>
+
+          <div class="timeline-entry fade-in" style="transition-delay:60ms">
+            <p class="entry-date">2021 &#8211; 2023</p>
+            <a href="#" class="entry-company" target="_blank" rel="noopener">Warnakala Studio</a>
+            <h3 class="entry-role">3D Render Artist</h3>
+            <p class="entry-desc">Day-to-day render farm coordination across multiple teams. Coordinated Didi &amp; Friends The Movie with TD, compositor and lighting artists.</p>
+            <div class="tags">
+              <span class="tag">Render Management</span>
+              <span class="tag">Blender</span>
+              <span class="tag">DaVinci Resolve</span>
+              <span class="tag">Python</span>
+              <span class="tag">Linux</span>
+            </div>
+          </div>
+
+          <div class="timeline-entry fade-in" style="transition-delay:120ms">
+            <p class="entry-date">2016 &#8211; 2021</p>
+            <a href="#" class="entry-company" target="_blank" rel="noopener">Digital Durian</a>
+            <h3 class="entry-role">3D Render Artist</h3>
+            <p class="entry-desc">Collaborated with compositor and modeler teams. Render management for Didi &amp; Friends songs and Konsert Hora Horey Wayang.</p>
+            <div class="tags">
+              <span class="tag">Render Management</span>
+              <span class="tag">Python</span>
+              <span class="tag">Blender</span>
+            </div>
+          </div>
+
+          <div class="timeline-entry fade-in" style="transition-delay:180ms">
+            <p class="entry-date">2015 &#8211; 2016</p>
+            <a href="#" class="entry-company" target="_blank" rel="noopener">Digital Durian</a>
+            <h3 class="entry-role">Animator</h3>
+            <p class="entry-desc">Junior Animator on Didi and Friends Season 1 and 2.</p>
+            <div class="tags">
+              <span class="tag">Blender</span>
+              <span class="tag">Animation</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Toolbox ────────────────────────────────────────────── -->
+      <section id="toolbox">
+        <p class="section-label">TECH STACK</p>
+        <div class="toolbox-grid">
+
+          <div class="toolbox-card fade-in">
+            <p class="toolbox-cat">PIPELINE &amp; AUTOMATION</p>
+            <h3 class="toolbox-title">Pipeline &amp; Automation</h3>
+            <ul class="toolbox-list">
+              <li>Python</li>
+              <li>Afanasy/CGRU</li>
+              <li>Kitsu</li>
+              <li>RQ/Redis</li>
+              <li>Flask</li>
+              <li>n8n</li>
+            </ul>
+          </div>
+
+          <div class="toolbox-card fade-in" style="transition-delay:60ms">
+            <p class="toolbox-cat">3D &amp; RENDERING</p>
+            <h3 class="toolbox-title">3D &amp; Rendering</h3>
+            <ul class="toolbox-list">
+              <li>Blender (+ Python API)</li>
+              <li>Maya</li>
+              <li>Cycles</li>
+              <li>OIDN/OptiX denoiser</li>
+              <li>Blender bpy</li>
+            </ul>
+          </div>
+
+          <div class="toolbox-card fade-in" style="transition-delay:120ms">
+            <p class="toolbox-cat">INFRASTRUCTURE</p>
+            <h3 class="toolbox-title">Infrastructure</h3>
+            <ul class="toolbox-list">
+              <li>Linux (Arch/Ubuntu)</li>
+              <li>Docker</li>
+              <li>Coolify</li>
+              <li>Traefik</li>
+              <li>Garage S3</li>
+              <li>GCP</li>
+              <li>Syncthing</li>
+              <li>Cloudflare Zero Trust</li>
+            </ul>
+          </div>
+
+          <div class="toolbox-card fade-in" style="transition-delay:180ms">
+            <p class="toolbox-cat">DEV &amp; WORKFLOW</p>
+            <h3 class="toolbox-title">Dev &amp; Workflow</h3>
+            <ul class="toolbox-list">
+              <li>Git</li>
+              <li>GitHub Actions</li>
+              <li>PyQt5/Qt Designer</li>
+              <li>VS Code</li>
+              <li>Hyprland</li>
+              <li>rclone</li>
+            </ul>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── Contact ────────────────────────────────────────────── -->
+      <section id="contact">
+        <p class="section-label">GET IN TOUCH</p>
+        <h2 class="fade-in">Let's build something that works.</h2>
+        <p class="contact-sub fade-in" style="transition-delay:60ms">
+          Open to pipeline TD, tools developer, or technical artist roles.
+        </p>
+        <div class="contact-links fade-in" style="transition-delay:120ms">
+
+          <a href="https://github.com/ddlite92" class="contact-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+            </svg>
+            github.com/ddlite92
+          </a>
+
+          <a href="#" class="contact-link" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+              <rect x="2" y="9" width="4" height="12"/>
+              <circle cx="4" cy="4" r="2"/>
+            </svg>
+            LinkedIn
+          </a>
+
+          <a href="mailto:dianah.rosli@monsta.com" class="contact-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            dianah.rosli@monsta.com
+          </a>
+
+        </div>
+
+        <footer class="site-footer">
+          &copy; 2025 Dianah Rosli &mdash; Built with HTML, CSS &amp; JavaScript
+        </footer>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // ── Avatar fallback ──────────────────────────────────────────
+    var avatarImg = document.getElementById('avatar-img');
+    avatarImg.addEventListener('error', function() {
+      var wrap = this.parentElement;
+      wrap.innerHTML = '<div class="avatar-initials">DR</div>';
+    });
+
+    // ── Mobile sidebar toggle ─────────────────────────────────────
+    var toggle  = document.getElementById('nav-toggle');
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('overlay');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('visible');
+      toggle.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('visible');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    toggle.addEventListener('click', function() {
+      if (sidebar.classList.contains('open')) { closeSidebar(); } else { openSidebar(); }
+    });
+
+    overlay.addEventListener('click', closeSidebar);
+
+    // ── Smooth scroll nav ─────────────────────────────────────────
+    document.querySelectorAll('[data-section]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var id = this.getAttribute('data-section');
+        var target = document.getElementById(id);
+        if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        if (window.innerWidth <= 768) { closeSidebar(); }
+      });
+    });
+
+    // ── Active nav on scroll ──────────────────────────────────────
+    var sections = document.querySelectorAll('section[id]');
+    var navLinks = document.querySelectorAll('.nav-link[data-section]');
+    var topbarLinks = document.querySelectorAll('.topbar-link[data-section]');
+
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var id = entry.target.id;
+          navLinks.forEach(function(link) {
+            if (link.getAttribute('data-section') === id) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+          topbarLinks.forEach(function(link) {
+            if (link.getAttribute('data-section') === id) {
+              link.classList.add('active');
+            } else {
+              link.classList.remove('active');
+            }
+          });
+        }
+      });
+    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
+
+    sections.forEach(function(s) { sectionObserver.observe(s); });
+
+    // ── Fade-in on scroll ─────────────────────────────────────────
+    var fadeEls = document.querySelectorAll('.fade-in');
+
+    var fadeObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    // Hero elements: fire immediately on load
+    document.querySelectorAll('#hero .fade-in').forEach(function(el) {
+      el.classList.add('visible');
+    });
+
+    // All other sections: observe on scroll
+    fadeEls.forEach(function(el) {
+      if (!el.closest('#hero')) { fadeObserver.observe(el); }
+    });
+  </script>
+
+</body>
 </html>
