@@ -314,6 +314,70 @@
     .terminal .cmd { color: var(--accent); }
     .terminal .out { color: var(--muted); }
 
+    /* ── Terminal hero ────────────────────────────────────────── */
+    .terminal-hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 60px;
+    }
+
+    .terminal-hero .terminal {
+      width: 100%;
+      max-width: 700px;
+      height: auto;
+      background: #0d0d0d;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .terminal-line {
+      opacity: 0;
+      min-height: 1.8em;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+
+    .terminal-line.visible {
+      opacity: 1;
+    }
+
+    .terminal-line.cmd { color: var(--accent); }
+    .terminal-line.out { color: var(--muted); }
+    .terminal-line.prompt { color: #666; }
+
+    .terminal-cursor {
+      display: inline-block;
+      width: 8px;
+      height: 1em;
+      background: var(--accent);
+      margin-left: 2px;
+      animation: cursor-blink 1s infinite;
+    }
+
+    @keyframes cursor-blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+
+    .terminal-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+      opacity: 0;
+      transition: opacity 500ms ease-out;
+    }
+
+    .terminal-cta.visible {
+      opacity: 1;
+    }
+
     /* ─────────────────────────────────────────────────────────── */
     /* HERO                                                        */
     /* ─────────────────────────────────────────────────────────── */
@@ -873,6 +937,14 @@
     @media (max-width: 768px) {
       .topbar { display: none; }
 
+      .terminal-hero {
+        padding: 60px 24px;
+      }
+
+      .terminal-hero .terminal {
+        font-size: 12px;
+      }
+
       .layout {
         grid-template-columns: 1fr;
       }
@@ -983,36 +1055,26 @@
         <a href="#contact" class="topbar-cta">CONTACT &#8594;</a>
       </header>
 
-      <!-- ── Hero ─────────────────────────────────────────────── -->
-      <section id="hero">
-        <p class="section-label fade-in">PORTFOLIO</p>
-        <h1 class="fade-in" style="transition-delay:60ms">
-          <span class="line">LRC Artist</span>
-          <span class="line"><span class="accent">&amp;</span> Pipeline TD.</span>
-        </h1>
-        <p class="subheading fade-in" style="transition-delay:120ms">
-          8+ years in animation production. Building tools that make pipelines disappear.
-        </p>
-        <div class="cta-row fade-in" style="transition-delay:180ms">
-          <a href="#work" class="btn-primary">VIEW WORK &#8594;</a>
-          <a href="#toolbox" class="btn-outline">EXPLORE STACK</a>
-        </div>
-        <div class="stats-row fade-in" style="transition-delay:240ms">
-          <div class="stat">
-            <span class="stat-val">8+</span>
-            <span class="stat-label">YRS EXP</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">3</span>
-            <span class="stat-label">STUDIOS</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">~60</span>
-            <span class="stat-label">NODE RENDER FARM</span>
-          </div>
-          <div class="stat">
-            <span class="stat-val">4</span>
-            <span class="stat-label">PRODUCTIONS</span>
+      <!-- ── Terminal Hero ─────────────────────────────────────── -->
+      <section id="hero" class="terminal-hero">
+        <div class="terminal">
+          <div class="terminal-line prompt">$ <span class="cmd">whoami</span></div>
+          <div class="terminal-line out">Dianah Rosli — Pipeline TD · LRC Dev</div>
+
+          <div class="terminal-line prompt" style="margin-top: 8px;">$ <span class="cmd">cat biography.txt</span></div>
+          <div class="terminal-line out">8+ years in animation production.</div>
+          <div class="terminal-line out">Building tools that make pipelines disappear.</div>
+
+          <div class="terminal-line prompt" style="margin-top: 8px;">$ <span class="cmd">stats --summary</span></div>
+          <div class="terminal-line out">├─ 8+ Years Experience</div>
+          <div class="terminal-line out">├─ 3 Studios: Animonsta, Warnakala, Digital Durian</div>
+          <div class="terminal-line out">├─ ~60 Node Render Farm Managed</div>
+          <div class="terminal-line out">└─ 4 Major Productions</div>
+
+          <div class="terminal-line prompt" style="margin-top: 8px;">$ <span class="cmd">ls portfolio/</span></div>
+          <div class="terminal-cta" id="terminal-cta">
+            <a href="#work" class="btn-primary">VIEW WORK &#8594;</a>
+            <a href="#toolbox" class="btn-outline">EXPLORE STACK</a>
           </div>
         </div>
       </section>
@@ -1402,6 +1464,68 @@
     fadeEls.forEach(function(el) {
       if (!el.closest('#hero')) { fadeObserver.observe(el); }
     });
+
+    // ── Terminal hero typing animation ───────────────────────────
+    function typeTerminalHero() {
+      var lines = document.querySelectorAll('.terminal-line');
+      var ctaBox = document.getElementById('terminal-cta');
+      var charDelay = 50;
+      var lineDelay = 300;
+      var totalDelay = 0;
+
+      function typeCharacter(element, text, callback) {
+        var index = 0;
+        var originalText = element.textContent;
+        element.textContent = '';
+
+        function type() {
+          if (index < text.length) {
+            element.textContent += text[index];
+            index++;
+            setTimeout(type, charDelay);
+          } else {
+            element.textContent = originalText;
+            element.classList.add('visible');
+            if (callback) { setTimeout(callback, lineDelay); }
+          }
+        }
+        type();
+      }
+
+      function processLines(lineIndex) {
+        if (lineIndex >= lines.length) {
+          // All lines done, show CTA
+          ctaBox.classList.add('visible');
+          return;
+        }
+
+        var line = lines[lineIndex];
+        var text = line.textContent.trim();
+
+        if (text.length === 0) {
+          // Empty line, skip
+          line.classList.add('visible');
+          processLines(lineIndex + 1);
+        } else {
+          // Type this line
+          typeCharacter(line, text, function() {
+            processLines(lineIndex + 1);
+          });
+        }
+      }
+
+      // Start typing animation when DOM is ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+          processLines(0);
+        });
+      } else {
+        processLines(0);
+      }
+    }
+
+    // Kick off terminal hero animation
+    typeTerminalHero();
   </script>
 
 </body>
