@@ -15,7 +15,8 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
 
   <style>
     /* ── Reset ─────────────────────────────────────────────── */
@@ -23,16 +24,27 @@
 
     /* ── Tokens ─────────────────────────────────────────────── */
     :root {
-      --bg:      #111111;
-      --surface: #1a1a1a;
-      --border:  #2a2a2a;
-      --accent:  #a3e635;
-      --text:    #f0f0f0;
-      --muted:   #6b7280;
-      --font-body: 'DM Sans', sans-serif;
-      --font-head: 'Syne', sans-serif;
+      --bg:             #131313;
+      --surface:        #131313;
+      --surface-low:    #1c1b1b;
+      --surface-high:   #2a2a2a;
+      --surface-highest: #353535;
+      --surface-lowest: #0e0e0e;
+      --primary:        #97d870;
+      --primary-ctr:    #72b04e;
+      --on-primary:     #143800;
+      --on-surface:     #e5e2e1;
+      --on-surface-var: #c1c9b7;
+      --outline:        #8b9383;
+      --outline-var:    #42493b;
+      --font-head: 'Space Grotesk', sans-serif;
+      --font-body: 'Inter', sans-serif;
       --font-mono: 'JetBrains Mono', monospace;
-      --sidebar-w: 220px;
+      --sidebar-w: 256px;
+    }
+
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
 
     /* ── Base ───────────────────────────────────────────────── */
@@ -40,7 +52,7 @@
 
     body {
       background: var(--bg);
-      color: var(--text);
+      color: var(--on-surface);
       font-family: var(--font-body);
       font-size: 15px;
       line-height: 1.6;
@@ -48,6 +60,11 @@
     }
 
     a { color: inherit; text-decoration: none; }
+
+    ::selection {
+      background: rgba(151, 216, 112, 0.3);
+      color: var(--primary);
+    }
 
     /* ── Scrollbar ──────────────────────────────────────────── */
     ::-webkit-scrollbar { width: 6px; height: 6px; }
@@ -69,26 +86,26 @@
       height: 100vh;
       overflow-y: auto;
       background: var(--bg);
-      border-right: 1px solid var(--border);
+      border-right: 1px solid rgba(255,255,255,0.05);
       display: flex;
       flex-direction: column;
-      padding: 32px 20px 24px;
+      padding: 128px 24px 24px;
       flex-shrink: 0;
     }
 
     .sidebar-profile {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 10px;
+      align-items: center;
+      gap: 12px;
       margin-bottom: 32px;
+      padding: 0 8px;
     }
 
     .avatar-wrap {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      border: 1px solid rgba(66, 73, 59, 0.3);
       overflow: hidden;
       flex-shrink: 0;
     }
@@ -102,30 +119,30 @@
     .avatar-initials {
       width: 100%;
       height: 100%;
-      background: #222;
+      background: var(--surface-high);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-head);
-      font-size: 20px;
+      font-size: 14px;
       font-weight: 700;
-      color: var(--accent);
-      letter-spacing: 0.05em;
+      color: var(--primary);
     }
 
     .sidebar-name {
       font-family: var(--font-head);
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--primary);
       line-height: 1.3;
     }
 
     .sidebar-role {
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 10px;
-      color: var(--muted);
-      letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
     /* Nav */
@@ -139,55 +156,51 @@
     .nav-link {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 9px 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
-      border-radius: 4px;
-      border-left: 2px solid transparent;
-      transition: color 150ms ease, border-color 150ms ease, background 150ms ease;
+      gap: 12px;
+      padding: 10px 16px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      border-radius: 6px;
+      transition: all 150ms ease;
       cursor: pointer;
+      letter-spacing: 0.02em;
     }
 
     .nav-link:hover {
-      color: var(--text);
-      background: rgba(255,255,255,0.03);
+      color: var(--on-surface);
+      background: var(--surface-high);
     }
 
     .nav-link.active {
-      color: var(--accent);
-      border-left-color: var(--accent);
-      background: rgba(163, 230, 53, 0.05);
+      color: var(--primary);
+      background: var(--surface-high);
+      transform: translateX(4px);
     }
 
-    .nav-link .nav-num {
-      font-size: 10px;
-      color: #3a3a3a;
-    }
-
-    .nav-link.active .nav-num {
-      color: rgba(163,230,53,0.4);
+    .nav-link .material-symbols-outlined {
+      font-size: 18px;
     }
 
     /* CV button */
     .btn-cv {
-      margin-top: 24px;
+      margin-top: auto;
       display: block;
       text-align: center;
-      padding: 9px 16px;
-      font-family: var(--font-mono);
+      padding: 12px 16px;
+      font-family: var(--font-head);
       font-size: 11px;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-      border: 1px solid var(--accent);
-      border-radius: 4px;
-      transition: background 150ms ease, color 150ms ease;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      border: 1px solid rgba(114, 176, 78, 0.3);
+      border-radius: 6px;
+      transition: background 200ms ease;
     }
 
     .btn-cv:hover {
-      background: var(--accent);
-      color: #111;
+      background: rgba(114, 176, 78, 0.1);
     }
 
     /* Hamburger (mobile only) */
@@ -197,8 +210,8 @@
       top: 16px;
       left: 16px;
       z-index: 200;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--surface-high);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 6px;
       width: 40px;
       height: 40px;
@@ -214,7 +227,7 @@
       display: block;
       width: 18px;
       height: 1.5px;
-      background: var(--text);
+      background: var(--on-surface);
       transition: transform 200ms ease, opacity 200ms ease;
     }
 
@@ -236,19 +249,91 @@
       overflow-x: hidden;
     }
 
-    /* ── Section scaffold ────────────────────────────────────── */
-    section {
-      padding: 80px 60px;
-      border-bottom: 1px solid var(--border);
+    /* ── Top navbar ──────────────────────────────────────────── */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 72px;
+      padding: 0 32px;
+      background: rgba(19, 19, 19, 0.6);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
 
-    section:last-child { border-bottom: none; }
+    .topbar-logo {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--on-surface);
+      letter-spacing: -0.03em;
+      flex-shrink: 0;
+    }
+
+    .topbar-nav {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+
+    .topbar-link {
+      font-family: var(--font-head);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+      padding: 4px 0;
+      border-bottom: 1px solid transparent;
+      transition: color 200ms ease, border-color 200ms ease;
+    }
+
+    .topbar-link:hover {
+      color: var(--primary);
+    }
+
+    .topbar-link.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    .topbar-cta {
+      font-family: var(--font-head);
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--on-surface);
+      background: rgba(53, 53, 53, 0.5);
+      border: 1px solid rgba(66, 73, 59, 0.2);
+      padding: 8px 24px;
+      flex-shrink: 0;
+      transition: background 200ms ease, opacity 200ms ease;
+    }
+
+    .topbar-cta:hover {
+      background: rgba(53, 53, 53, 0.8);
+    }
+
+    /* ── Section scaffold ────────────────────────────────────── */
+    section {
+      padding: 96px 32px;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
 
     .section-label {
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 11px;
       letter-spacing: 0.15em;
-      color: var(--muted);
+      color: var(--on-surface-var);
       text-transform: uppercase;
       margin-bottom: 24px;
     }
@@ -257,7 +342,7 @@
     .fade-in {
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity 300ms ease-out, transform 300ms ease-out;
+      transition: opacity 400ms ease-out, transform 400ms ease-out;
     }
 
     .fade-in.visible {
@@ -265,21 +350,7 @@
       transform: translateY(0);
     }
 
-    /* ── Shared: card ────────────────────────────────────────── */
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      transition: border-color 200ms ease, transform 200ms ease;
-    }
-
-    .card:hover {
-      border-color: rgba(163, 230, 53, 0.4);
-      transform: translateY(-2px);
-    }
-
-    /* ── Shared: tech tags ───────────────────────────────────── */
+    /* ── Shared: tags ───────────────────────────────────────── */
     .tags {
       display: flex;
       flex-wrap: wrap;
@@ -288,75 +359,327 @@
     }
 
     .tag {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      background: #222;
-      border: 1px solid #333;
-      padding: 2px 8px;
-      border-radius: 3px;
-      color: var(--muted);
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      background: var(--surface-high);
+      padding: 4px 10px;
+      border-radius: 2px;
+      color: var(--on-surface-var);
     }
 
-    /* ── Shared: terminal block ──────────────────────────────── */
-    .terminal {
-      background: #0d0d0d;
-      border-left: 2px solid var(--accent);
-      padding: 12px 16px;
+    .tag--cmd::before {
+      content: '$ ';
+      color: var(--primary);
       font-family: var(--font-mono);
-      font-size: 12px;
-      line-height: 1.7;
-      border-radius: 0 4px 4px 0;
-      margin-top: 16px;
-      overflow-x: auto;
-      white-space: pre;
     }
 
-    .terminal .cmd { color: var(--accent); }
-    .terminal .out { color: var(--muted); }
+    /* ── Buttons ───────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-ctr));
+      color: var(--on-primary);
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 6px;
+      transition: transform 200ms ease, opacity 200ms ease;
+    }
 
-    /* ── Terminal hero ────────────────────────────────────────── */
-    .terminal-hero {
-      min-height: 100vh;
+    .btn-primary:hover {
+      transform: scale(1.02);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--on-surface);
+      font-family: var(--font-head);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border: 1px solid rgba(139, 147, 131, 0.2);
+      border-radius: 6px;
+      transition: background 200ms ease, border-color 200ms ease;
+    }
+
+    .btn-outline:hover {
+      background: var(--surface-highest);
+      border-color: rgba(139, 147, 131, 0.4);
+    }
+
+    /* ── HERO ────────────────────────────────────────────────── */
+    #hero {
+      min-height: calc(100vh - 72px);
       display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 80px 60px;
+      padding: 48px 32px 96px;
+      position: relative;
+      overflow: hidden;
     }
 
-    .terminal-hero .terminal {
+    .hero-glow {
+      position: absolute;
+      top: 25%;
+      right: -80px;
+      width: 600px;
+      height: 600px;
+      background: rgba(151, 216, 112, 0.05);
+      filter: blur(120px);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-divider {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       width: 100%;
-      max-width: 700px;
-      height: auto;
-      background: #0d0d0d;
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      font-family: var(--font-mono);
-      font-size: 13px;
-      line-height: 1.8;
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(66, 73, 59, 0.2), transparent);
     }
 
-    .terminal-line {
-      opacity: 0;
-      min-height: 1.8em;
-      word-break: break-word;
-      white-space: pre-wrap;
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
     }
 
-    .terminal-line.visible {
-      opacity: 1;
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
     }
 
-    .terminal-line.cmd { color: var(--accent); }
-    .terminal-line.out { color: var(--muted); }
-    .terminal-line.prompt { color: #666; }
+    .hero-eyebrow-line {
+      height: 1px;
+      width: 48px;
+      background: var(--primary);
+    }
+
+    .hero-eyebrow-text {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--on-surface-var);
+    }
+
+    .hero-title {
+      font-family: var(--font-head);
+      font-size: clamp(48px, 8vw, 120px);
+      font-weight: 700;
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      color: var(--on-surface);
+      margin-bottom: 32px;
+    }
+
+    .hero-title .accent {
+      color: var(--primary);
+      font-style: italic;
+    }
+
+    .hero-title .bar {
+      display: inline-block;
+      height: 0.1em;
+      width: 0.8em;
+      background: var(--surface-high);
+      border-radius: 99px;
+      vertical-align: middle;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      margin-top: 64px;
+      align-items: start;
+    }
+
+    .hero-text p {
+      font-family: var(--font-body);
+      font-size: 18px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* ── Terminal card (hero) ─────────────────────────────────── */
+    .terminal-card {
+      position: relative;
+    }
+
+    .terminal-glow {
+      position: absolute;
+      inset: -4px;
+      background: linear-gradient(135deg, rgba(151, 216, 112, 0.2), transparent);
+      filter: blur(40px);
+      opacity: 0.5;
+      border-radius: 16px;
+      transition: opacity 600ms ease;
+      pointer-events: none;
+    }
+
+    .terminal-card:hover .terminal-glow {
+      opacity: 0.75;
+    }
+
+    .terminal-frame {
+      position: relative;
+      background: rgba(14, 14, 14, 0.8);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .terminal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: rgba(255,255,255,0.05);
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dots span {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .terminal-dots span:nth-child(1) {
+      background: rgba(255, 180, 171, 0.2);
+      border: 1px solid rgba(255, 180, 171, 0.4);
+    }
+    .terminal-dots span:nth-child(2) {
+      background: rgba(47, 79, 29, 1);
+      border: 1px solid rgba(172, 210, 146, 0.4);
+    }
+    .terminal-dots span:nth-child(3) {
+      background: rgba(151, 216, 112, 0.2);
+      border: 1px solid rgba(151, 216, 112, 0.4);
+    }
+
+    .terminal-title {
+      font-family: var(--font-head);
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(193, 201, 183, 0.5);
+    }
+
+    .terminal-body {
+      padding: 28px;
+      font-family: var(--font-head);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .terminal-block {
+      margin-bottom: 20px;
+    }
+
+    .terminal-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .terminal-cmd {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .terminal-cmd .dollar {
+      opacity: 0.5;
+    }
+
+    .terminal-cmd .cmd-text {
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .terminal-output {
+      padding-left: 24px;
+      border-left: 1px solid rgba(255,255,255,0.05);
+      color: var(--on-surface-var);
+    }
+
+    .terminal-output p {
+      margin-bottom: 4px;
+    }
+
+    .terminal-output p:last-child {
+      margin-bottom: 0;
+    }
+
+    .terminal-stat {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+      color: var(--on-surface);
+    }
+
+    .terminal-stat:last-child {
+      margin-bottom: 0;
+    }
+
+    .terminal-stat-marker {
+      color: var(--primary);
+    }
+
+    .terminal-cursor-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--primary);
+      margin-top: 20px;
+    }
+
+    .terminal-cursor-line .dollar {
+      opacity: 0.5;
+    }
 
     .terminal-cursor {
       display: inline-block;
       width: 8px;
-      height: 1em;
-      background: var(--accent);
-      margin-left: 2px;
+      height: 18px;
+      background: var(--primary);
       animation: cursor-blink 1s infinite;
     }
 
@@ -365,293 +688,484 @@
       50%, 100% { opacity: 0; }
     }
 
-    .terminal-cta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 24px;
+    .terminal-line {
       opacity: 0;
-      transition: opacity 500ms ease-out;
     }
 
-    .terminal-cta.visible {
+    .terminal-line.visible {
       opacity: 1;
     }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* HERO                                                        */
-    /* ─────────────────────────────────────────────────────────── */
-    #hero {
-      padding-top: 100px;
-      padding-bottom: 80px;
-      min-height: 100vh;
+    /* ── WORK — Bento Grid ────────────────────────────────────── */
+    #work {
+      padding-top: 0;
+    }
+
+    .work-header {
+      margin-bottom: 48px;
+    }
+
+    .work-header-code {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(151, 216, 112, 0.4);
+      letter-spacing: 0.3em;
+      margin-bottom: 12px;
+    }
+
+    .work-header h2 {
+      font-family: var(--font-head);
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--on-surface);
+      margin-bottom: 16px;
+    }
+
+    .work-header h2 .accent {
+      color: var(--primary);
+    }
+
+    .work-header p {
+      font-size: 16px;
+      color: var(--on-surface-var);
+      max-width: 640px;
+      line-height: 1.7;
+      opacity: 0.8;
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 24px;
+    }
+
+    .bento-card {
+      background: var(--surface-low);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      overflow: hidden;
+      transition: border-color 400ms ease;
+    }
+
+    .bento-card:hover {
+      border-color: rgba(151, 216, 112, 0.2);
+    }
+
+    /* Featured production card */
+    .bento-featured {
+      grid-column: span 8;
+      position: relative;
+      min-height: 380px;
+      display: flex;
+      align-items: flex-end;
+      background: linear-gradient(to top, var(--bg), var(--surface-high));
+    }
+
+    .bento-featured-content {
+      padding: 32px;
+      width: 66%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bento-featured-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .bento-featured-label .prefix {
+      font-family: var(--font-mono);
+      margin-right: 6px;
+    }
+
+    .bento-featured h3 {
+      font-family: var(--font-head);
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .bento-featured p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .bento-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      transition: color 200ms ease;
+    }
+
+    .bento-link:hover {
+      color: var(--on-surface);
+    }
+
+    .bento-link .material-symbols-outlined {
+      font-size: 14px;
+    }
+
+    /* Tool card (sidebar style) */
+    .bento-tool {
+      grid-column: span 4;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background: var(--surface-high);
+      border-left: 2px solid rgba(151, 216, 112, 0.3);
+    }
+
+    .bento-tool-label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--on-surface-var);
+      margin-bottom: 20px;
+    }
+
+    .bento-tool-label .prefix {
+      font-family: var(--font-mono);
+      color: var(--primary);
+      margin-right: 6px;
+    }
+
+    .bento-tool h3 {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .bento-tool p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    /* Production small card */
+    .bento-production {
+      grid-column: span 4;
+      background: var(--surface-low);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bento-production-img {
+      height: 200px;
+      background: var(--surface-high);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bento-production-img .material-symbols-outlined {
+      font-size: 48px;
+      color: rgba(255,255,255,0.1);
+    }
+
+    .bento-production-body {
+      padding: 24px;
+    }
+
+    .bento-production-body .label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--on-surface-var);
+      margin-bottom: 8px;
+    }
+
+    .bento-production-body .label .prefix {
+      font-family: var(--font-mono);
+      margin-right: 6px;
+    }
+
+    .bento-production-body h3 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 6px;
+    }
+
+    .bento-production-body p {
+      font-size: 13px;
+      color: var(--on-surface-var);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* Split tool card */
+    .bento-split {
+      grid-column: span 8;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--surface-low);
+      padding: 2px;
+    }
+
+    .bento-split-text {
+      padding: 28px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    #hero h1 {
+    .bento-split-text .label {
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 12px;
+    }
+
+    .bento-split-text h3 {
       font-family: var(--font-head);
-      font-size: clamp(42px, 5.5vw, 72px);
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      color: var(--text);
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .bento-split-text p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
       margin-bottom: 20px;
     }
 
-    #hero h1 .line { display: block; }
-    #hero h1 .accent { color: var(--accent); }
-
-    #hero .subheading {
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: 36px;
-    }
-
-    .cta-row {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 48px;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 11px 22px;
-      background: var(--accent);
-      color: #111;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      border-radius: 4px;
-      transition: background 150ms ease, transform 150ms ease;
-    }
-
-    .btn-primary:hover {
-      background: #b5f045;
-      transform: translateY(-1px);
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 11px 22px;
-      background: transparent;
-      color: var(--text);
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      transition: border-color 150ms ease, color 150ms ease, transform 150ms ease;
-    }
-
-    .btn-outline:hover {
-      border-color: rgba(163,230,53,0.5);
-      color: var(--accent);
-      transform: translateY(-1px);
-    }
-
-    .stats-row {
-      display: flex;
-      flex-wrap: wrap;
-    }
-
-    .stat {
-      padding: 20px 28px;
-      border: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .stat:first-child { border-radius: 6px 0 0 6px; }
-    .stat:last-child  { border-radius: 0 6px 6px 0; }
-    .stat + .stat     { border-left: none; }
-
-    .stat-val {
-      font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1;
-    }
-
-    .stat-label {
+    .bento-split-code-label {
       font-family: var(--font-mono);
       font-size: 10px;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* ─────────────────────────────────────────────────────────── */
-    /* WORK                                                        */
-    /* ─────────────────────────────────────────────────────────── */
-    .subsection-label {
-      font-family: var(--font-mono);
-      font-size: 11px;
+      color: rgba(151, 216, 112, 0.6);
       letter-spacing: 0.15em;
-      color: var(--muted);
       text-transform: uppercase;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
     }
 
-    /* Production credits */
-    .credits-scroll {
+    .bento-split-terminal {
+      background: var(--surface-lowest);
       display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      padding-bottom: 12px;
-      margin-bottom: 56px;
-      scrollbar-width: thin;
-      scrollbar-color: #3a3a3a var(--bg);
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-height: 280px;
     }
 
-    .credit-card {
-      min-width: 240px;
-      max-width: 260px;
-      flex-shrink: 0;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 22px;
+    .bento-split-terminal::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.1;
+      background: radial-gradient(circle at center, var(--primary), transparent);
+    }
+
+    .bento-split-terminal code {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(151, 216, 112, 0.6);
+      line-height: 1.8;
+      padding: 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.05);
+      color: var(--on-surface);
+      padding: 8px 16px;
+      border-radius: 3px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: background 200ms ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .btn-ghost .material-symbols-outlined {
+      font-size: 14px;
+    }
+
+    .btn-text {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--on-surface-var);
+      padding: 8px 16px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 500;
+      transition: color 200ms ease;
+    }
+
+    .btn-text:hover {
+      color: var(--on-surface);
+    }
+
+    /* ── Work Lists (Production Reel + Open Source) ─────────── */
+    .work-lists {
+      margin-top: 96px;
+    }
+
+    .work-lists-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .work-list-section {
+      min-width: 0;
+    }
+
+    .work-list-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .work-list-header .material-symbols-outlined {
+      font-size: 20px;
+      color: var(--primary);
+    }
+
+    .work-list-header h3 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+
+    .work-list-header .count {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(151, 216, 112, 0.4);
+      letter-spacing: 0.1em;
+    }
+
+    .work-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      transition: border-color 200ms ease, transform 200ms ease;
     }
 
-    .credit-card:hover {
-      border-color: rgba(163, 230, 53, 0.4);
-      transform: translateY(-2px);
+    .work-list-row {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 16px;
+      padding: 14px 12px;
+      align-items: center;
+      transition: background 200ms ease;
+      border-radius: 6px;
     }
 
-    .credit-title {
+    .work-list-row:hover {
+      background: var(--surface-high);
+    }
+
+    .work-list-row + .work-list-row {
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .work-list-idx {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(151, 216, 112, 0.3);
+      min-width: 28px;
+    }
+
+    .work-list-info {
+      min-width: 0;
+    }
+
+    .work-list-name {
       font-family: var(--font-head);
       font-size: 14px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.3;
+      font-weight: 600;
+      color: var(--on-surface);
+      transition: color 200ms ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .credit-studio-year {
-      font-family: var(--font-mono);
+    .work-list-row:hover .work-list-name {
+      color: var(--primary);
+    }
+
+    .work-list-meta {
+      font-family: var(--font-body);
       font-size: 11px;
-      color: var(--muted);
+      color: var(--on-surface-var);
+      opacity: 0.6;
       margin-top: 2px;
     }
 
-    .credit-role {
-      display: inline-block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      background: #222;
-      border: 1px solid #333;
-      padding: 3px 8px;
-      border-radius: 3px;
-      color: var(--muted);
-      align-self: flex-start;
-    }
-
-    .btn-watch {
-      margin-top: auto;
-      display: inline-flex;
+    .work-list-action {
+      display: flex;
       align-items: center;
-      gap: 6px;
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: 3px;
-      transition: color 150ms ease, border-color 150ms ease;
-      align-self: flex-start;
-    }
-
-    .btn-watch:hover {
-      color: var(--text);
-      border-color: #4a4a4a;
-    }
-
-    /* Dev tools grid */
-    .tools-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-    }
-
-    .tool-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      transition: border-color 200ms ease, transform 200ms ease;
-    }
-
-    .tool-card:hover {
-      border-color: rgba(163, 230, 53, 0.4);
-      transform: translateY(-2px);
-    }
-
-    .tool-cat {
-      font-family: var(--font-mono);
+      gap: 4px;
+      font-family: var(--font-body);
       font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--muted);
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      color: var(--on-surface-var);
+      opacity: 0;
+      transition: opacity 200ms ease, color 200ms ease;
+      white-space: nowrap;
     }
 
-    .tool-title {
-      font-family: var(--font-head);
-      font-size: 16px;
-      font-weight: 700;
-      color: var(--text);
-      line-height: 1.3;
+    .work-list-row:hover .work-list-action {
+      opacity: 1;
     }
 
-    .tool-desc {
-      font-size: 13px;
-      color: var(--muted);
-      line-height: 1.6;
+    .work-list-action .material-symbols-outlined {
+      font-size: 14px;
     }
 
-    .tool-footer {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 4px;
-    }
-
-    .btn-github {
+    .work-list-empty {
+      padding: 20px 12px;
       font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 5px 10px;
-      border-radius: 3px;
-      transition: color 150ms ease, border-color 150ms ease;
+      font-size: 12px;
+      color: rgba(255,255,255,0.2);
+      font-style: italic;
     }
 
-    .btn-github:hover {
-      color: var(--text);
-      border-color: #4a4a4a;
-    }
-
-    /* ─────────────────────────────────────────────────────────── */
-    /* EXPERIENCE                                                  */
-    /* ─────────────────────────────────────────────────────────── */
+    /* ── EXPERIENCE ─────────────────────────────────────────── */
     .timeline {
       display: flex;
       flex-direction: column;
@@ -666,7 +1180,7 @@
       top: 8px;
       bottom: 8px;
       width: 1px;
-      background: var(--border);
+      background: rgba(255,255,255,0.05);
     }
 
     .timeline-entry {
@@ -684,29 +1198,29 @@
       width: 9px;
       height: 9px;
       border-radius: 50%;
-      background: var(--border);
+      background: var(--surface-high);
       border: 2px solid var(--bg);
       transition: background 200ms ease;
     }
 
     .timeline-entry:hover::before {
-      background: var(--accent);
+      background: var(--primary);
     }
 
     .entry-date {
       font-family: var(--font-mono);
       font-size: 11px;
-      color: var(--muted);
+      color: var(--on-surface-var);
       margin-bottom: 6px;
       letter-spacing: 0.05em;
     }
 
     .entry-company {
       display: inline-block;
-      font-family: var(--font-mono);
+      font-family: var(--font-head);
       font-size: 12px;
-      color: var(--accent);
-      font-weight: 500;
+      color: var(--primary);
+      font-weight: 600;
       margin-bottom: 4px;
       transition: opacity 150ms ease;
     }
@@ -715,101 +1229,436 @@
 
     .entry-role {
       font-family: var(--font-head);
-      font-size: 18px;
+      font-size: 20px;
       font-weight: 700;
-      color: var(--text);
+      color: var(--on-surface);
       line-height: 1.3;
       margin-bottom: 10px;
     }
 
     .entry-desc {
       font-size: 14px;
-      color: var(--muted);
+      color: var(--on-surface-var);
       line-height: 1.7;
       max-width: 600px;
       margin-bottom: 4px;
     }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* TOOLBOX                                                     */
-    /* ─────────────────────────────────────────────────────────── */
-    .toolbox-grid {
+    /* ── TOOLBOX — Bento Grid ────────────────────────────────── */
+    .toolbox-header {
+      position: relative;
+      margin-bottom: 48px;
+    }
+
+    .toolbox-header-badge {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      background: rgba(151, 216, 112, 0.1);
+      padding: 4px 12px;
+      border-radius: 3px;
+      margin-bottom: 16px;
+    }
+
+    .toolbox-header h2 {
+      font-family: var(--font-head);
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .toolbox-header h2 .dim {
+      color: var(--outline);
+    }
+
+    .toolbox-header p {
+      font-size: 18px;
+      color: var(--on-surface-var);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .toolbox-line-numbers {
+      position: absolute;
+      left: -48px;
+      top: 0;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: rgba(151, 216, 112, 0.2);
+      line-height: 1.8;
+      user-select: none;
+    }
+
+    .toolbox-bento {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
     }
 
     .toolbox-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 24px;
-      transition: border-color 200ms ease, transform 200ms ease;
+      background: var(--surface-low);
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      padding: 28px;
+      transition: border-color 400ms ease;
+      overflow: hidden;
+      position: relative;
     }
 
     .toolbox-card:hover {
-      border-color: rgba(163, 230, 53, 0.4);
-      transform: translateY(-2px);
+      border-color: rgba(151, 216, 112, 0.2);
     }
 
-    .toolbox-cat {
+    /* Pipeline & Automation — large */
+    .toolbox-pipeline {
+      grid-column: span 8;
+    }
+
+    .toolbox-pipeline .glow {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 256px;
+      height: 256px;
+      background: rgba(151, 216, 112, 0.05);
+      border-radius: 50%;
+      margin-right: -80px;
+      margin-top: -80px;
+      filter: blur(60px);
+      pointer-events: none;
+      transition: background 400ms ease;
+    }
+
+    .toolbox-pipeline:hover .glow {
+      background: rgba(151, 216, 112, 0.1);
+    }
+
+    .toolbox-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .toolbox-card-header .material-symbols-outlined {
+      color: var(--primary);
+    }
+
+    .toolbox-card-header .bracket {
       font-family: var(--font-mono);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      color: var(--muted);
+      font-size: 12px;
+      color: rgba(151, 216, 112, 0.4);
+    }
+
+    .toolbox-card-header h3 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
+    }
+
+    .toolbox-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .toolbox-col h4 {
+      font-family: var(--font-head);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
       margin-bottom: 8px;
     }
 
-    .toolbox-title {
+    .toolbox-col p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+
+    .toolbox-col .tags {
+      margin-top: 0;
+    }
+
+    .toolbox-meta {
+      position: absolute;
+      bottom: 12px;
+      right: 16px;
+      font-family: var(--font-mono);
+      font-size: 8px;
+      color: rgba(255,255,255,0.1);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      user-select: none;
+    }
+
+    /* Infrastructure — small vertical */
+    .toolbox-infra {
+      grid-column: span 4;
+      background: var(--surface-high);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .toolbox-infra .icon {
+      font-size: 32px;
+      color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .toolbox-infra h3 {
       font-family: var(--font-head);
-      font-size: 15px;
+      font-size: 18px;
       font-weight: 700;
-      color: var(--text);
-      margin-bottom: 16px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .toolbox-infra h3 .sys-badge {
+      display: inline-block;
+      margin-left: 10px;
+      font-family: var(--font-mono);
+      font-size: 9px;
+      padding: 2px 8px;
+      border: 1px solid rgba(151, 216, 112, 0.3);
+      border-radius: 99px;
+      color: var(--primary);
+      vertical-align: middle;
+      animation: pulse-badge 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .toolbox-infra p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+      margin-bottom: 20px;
     }
 
     .toolbox-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 12px;
     }
 
     .toolbox-list li {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--muted);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 500;
     }
 
-    .toolbox-list li::before {
-      content: '\2014';
-      color: #3a3a3a;
+    .toolbox-list li .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--primary);
       flex-shrink: 0;
     }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* CONTACT                                                     */
-    /* ─────────────────────────────────────────────────────────── */
+    /* Dev env card — glassmorphic */
+    .toolbox-devenv {
+      grid-column: span 5;
+      background: rgba(42, 42, 42, 0.6);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .toolbox-devenv-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .toolbox-devenv-header h3 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .toolbox-devenv-header h3 .prefix {
+      color: var(--primary);
+      opacity: 0.5;
+      font-family: var(--font-mono);
+    }
+
+    .toolbox-devenv-header .material-symbols-outlined {
+      color: var(--on-surface-var);
+    }
+
+    .toolbox-shell-block {
+      background: var(--surface-low);
+      border-left: 2px solid var(--primary);
+      border-radius: 0 4px 4px 0;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+    }
+
+    .toolbox-shell-block .label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+
+    .toolbox-shell-block code {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: rgba(255,255,255,0.8);
+    }
+
+    .toolbox-devenv p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+    }
+
+    /* Visuals card — wide */
+    .toolbox-visuals {
+      grid-column: span 7;
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .toolbox-visuals-text {
+      flex: 1;
+    }
+
+    .toolbox-visuals-text h3 {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .toolbox-visuals-text h3 .ref {
+      display: block;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: rgba(151, 216, 112, 0.4);
+      letter-spacing: 0.12em;
+      margin-top: 4px;
+    }
+
+    .toolbox-visuals-text p {
+      font-size: 14px;
+      color: var(--on-surface-var);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .toolbox-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .toolbox-stat-box {
+      text-align: center;
+      padding: 12px;
+      background: var(--surface-high);
+      border-radius: 4px;
+    }
+
+    .toolbox-stat-box .val {
+      font-family: var(--font-head);
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .toolbox-stat-box .lbl {
+      font-size: 9px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--on-surface-var);
+      opacity: 0.5;
+    }
+
+    .toolbox-visuals-img {
+      flex: 1;
+      height: 200px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--surface-high);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toolbox-visuals-img .material-symbols-outlined {
+      font-size: 56px;
+      color: rgba(255,255,255,0.06);
+    }
+
+    /* ── Quote ────────────────────────────────────────────────── */
+    .quote-section {
+      margin-top: 96px;
+      padding-left: 32px;
+      border-left: 1px solid rgba(151, 216, 112, 0.2);
+      max-width: 600px;
+    }
+
+    .quote-section blockquote {
+      font-family: var(--font-head);
+      font-size: 22px;
+      font-style: italic;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+      margin-bottom: 16px;
+    }
+
+    .quote-section cite {
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary);
+      font-style: normal;
+    }
+
+    /* ── CONTACT ──────────────────────────────────────────────── */
     #contact {
       text-align: center;
     }
 
     #contact h2 {
       font-family: var(--font-head);
-      font-size: clamp(26px, 3.5vw, 40px);
-      font-weight: 800;
-      color: var(--text);
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      color: var(--on-surface);
       letter-spacing: -0.02em;
       margin-bottom: 12px;
     }
 
     #contact .contact-sub {
       font-size: 15px;
-      color: var(--muted);
+      color: var(--on-surface-var);
       margin-bottom: 40px;
     }
 
@@ -825,18 +1674,18 @@
       align-items: center;
       gap: 8px;
       padding: 12px 20px;
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--surface-low);
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 6px;
-      font-family: var(--font-mono);
+      font-family: var(--font-body);
       font-size: 12px;
-      color: var(--muted);
+      color: var(--on-surface-var);
       transition: border-color 200ms ease, color 200ms ease, transform 200ms ease;
     }
 
     .contact-link:hover {
-      border-color: rgba(163,230,53,0.4);
-      color: var(--text);
+      border-color: rgba(151, 216, 112, 0.3);
+      color: var(--on-surface);
       transform: translateY(-2px);
     }
 
@@ -846,104 +1695,73 @@
       flex-shrink: 0;
     }
 
+    /* ── Footer ──────────────────────────────────────────────── */
     .site-footer {
-      margin-top: 60px;
-      padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: #3d3d3d;
-      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 48px 32px;
     }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* TOP NAVBAR                                                  */
-    /* ─────────────────────────────────────────────────────────── */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      height: 52px;
-      padding: 0 60px;
-      background: rgba(17, 17, 17, 0.85);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .topbar-logo {
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text);
-      letter-spacing: -0.01em;
-      flex-shrink: 0;
-    }
-
-    .topbar-nav {
-      display: flex;
       align-items: center;
-      gap: 2px;
+      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .topbar-link {
-      font-family: var(--font-mono);
+    .footer-copy {
+      font-family: var(--font-body);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      padding: 6px 12px;
-      border-radius: 3px;
-      transition: color 150ms ease, background 150ms ease;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
     }
 
-    .topbar-link:hover {
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
+    .footer-links {
+      display: flex;
+      gap: 32px;
     }
 
-    .topbar-link.active {
-      color: var(--accent);
-    }
-
-    .topbar-cta {
-      font-family: var(--font-mono);
+    .footer-link {
+      font-family: var(--font-body);
       font-size: 11px;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 6px 14px;
-      border-radius: 3px;
-      flex-shrink: 0;
-      transition: border-color 150ms ease, color 150ms ease;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.4);
+      transition: color 400ms ease;
     }
 
-    .topbar-cta:hover {
-      border-color: rgba(163,230,53,0.5);
-      color: var(--accent);
+    .footer-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+      text-decoration-color: var(--primary);
+      text-underline-offset: 4px;
     }
 
-    /* ─────────────────────────────────────────────────────────── */
-    /* RESPONSIVE                                                  */
-    /* ─────────────────────────────────────────────────────────── */
-    @media (max-width: 900px) {
-      section { padding: 60px 40px; }
-      .tools-grid { grid-template-columns: 1fr; }
-      .toolbox-grid { grid-template-columns: 1fr; }
+    /* ── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .bento-featured { grid-column: span 12; }
+      .bento-tool { grid-column: span 12; }
+      .bento-production { grid-column: span 6; }
+      .bento-split {
+        grid-column: span 12;
+        grid-template-columns: 1fr;
+      }
+      .toolbox-pipeline { grid-column: span 12; }
+      .toolbox-infra { grid-column: span 12; }
+      .toolbox-devenv { grid-column: span 6; }
+      .toolbox-visuals { grid-column: span 6; }
+      .toolbox-line-numbers { display: none; }
     }
 
     @media (max-width: 768px) {
       .topbar { display: none; }
-
-      .terminal-hero {
-        padding: 60px 24px;
-      }
-
-      .terminal-hero .terminal {
-        font-size: 12px;
-      }
 
       .layout {
         grid-template-columns: 1fr;
@@ -958,7 +1776,7 @@
         z-index: 100;
         transform: translateX(-100%);
         transition: transform 250ms ease;
-        border-right: 1px solid var(--border);
+        padding-top: 80px;
       }
 
       .sidebar.open {
@@ -969,26 +1787,97 @@
       .overlay.visible { display: block; }
       .hamburger { display: flex; }
 
-      section { padding: 60px 24px; }
-      #hero { padding-top: 80px; }
+      section { padding: 60px 20px; }
 
-      .stat {
-        flex: 1 1 calc(50% - 1px);
-        min-width: 120px;
+      #hero { padding: 40px 20px 60px; }
+
+      .hero-title {
+        font-size: clamp(36px, 10vw, 60px);
       }
 
-      .stat:first-child { border-radius: 6px 0 0 0; }
-      .stat:nth-child(2) { border-radius: 0 6px 0 0; }
-      .stat:nth-child(3) { border-top: none; border-left: none; border-radius: 0 0 0 6px; }
-      .stat:last-child   { border-top: none; border-left: 1px solid var(--border); border-radius: 0 0 6px 0; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        margin-top: 40px;
+        gap: 32px;
+      }
 
-      .tools-grid { grid-template-columns: 1fr; }
-      .toolbox-grid { grid-template-columns: 1fr; }
+      .hero-text p {
+        font-size: 16px;
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .bento-featured,
+      .bento-tool,
+      .bento-production,
+      .bento-split {
+        grid-column: span 1;
+      }
+
+      .bento-split {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-featured {
+        min-height: 280px;
+      }
+
+      .bento-featured-content {
+        width: 100%;
+      }
+
+      .toolbox-bento {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .toolbox-pipeline,
+      .toolbox-infra,
+      .toolbox-devenv,
+      .toolbox-visuals {
+        grid-column: span 1;
+      }
+
+      .toolbox-cols {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .toolbox-visuals {
+        flex-direction: column;
+      }
+
+      .work-lists-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .footer-links {
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
     }
 
     @media (max-width: 480px) {
-      section { padding: 50px 20px; }
-      .credit-card { min-width: 200px; }
+      section { padding: 48px 16px; }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .btn-primary, .btn-outline {
+        width: 100%;
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -1017,27 +1906,27 @@
           />
         </div>
         <div>
-          <div class="sidebar-name">Dianah Rosli</div>
-          <div class="sidebar-role">Pipeline TD · LRC Dev</div>
+          <div class="sidebar-name">D. Rosli</div>
+          <div class="sidebar-role">LRC Artist & Dev</div>
         </div>
       </div>
 
       <nav class="sidebar-nav" aria-label="Main navigation">
         <a class="nav-link active" data-section="work" href="#work">
-          <span class="nav-num">01</span> Work
+          <span class="material-symbols-outlined">grid_view</span> Projects
         </a>
         <a class="nav-link" data-section="experience" href="#experience">
-          <span class="nav-num">02</span> Experience
+          <span class="material-symbols-outlined">work_history</span> History
         </a>
         <a class="nav-link" data-section="toolbox" href="#toolbox">
-          <span class="nav-num">03</span> Toolbox
+          <span class="material-symbols-outlined">terminal</span> Stack
         </a>
         <a class="nav-link" data-section="contact" href="#contact">
-          <span class="nav-num">04</span> Contact
+          <span class="material-symbols-outlined">person</span> Studio
         </a>
       </nav>
 
-      <a href="#" class="btn-cv">&#8595; DOWNLOAD CV</a>
+      <a href="#" class="btn-cv">Download CV</a>
     </aside>
 
     <!-- ── Main content ──────────────────────────────────────── -->
@@ -1050,154 +1939,230 @@
           <a class="topbar-link active" data-section="work" href="#work">Work</a>
           <a class="topbar-link" data-section="experience" href="#experience">Experience</a>
           <a class="topbar-link" data-section="toolbox" href="#toolbox">Toolbox</a>
-          <a class="topbar-link" data-section="contact" href="#contact">Contact</a>
+          <a class="topbar-link" data-section="contact" href="#contact">About</a>
         </nav>
-        <a href="#contact" class="topbar-cta">CONTACT &#8594;</a>
+        <a href="#contact" class="topbar-cta">Contact</a>
       </header>
 
-      <!-- ── Terminal Hero ─────────────────────────────────────── -->
-      <section id="hero" class="terminal-hero">
-        <div class="terminal">
-          <div class="terminal-line prompt">$ <span class="cmd">whoami</span></div>
-          <div class="terminal-line out">Dianah Rosli — Pipeline TD · LRC Dev</div>
+      <!-- ── Hero ─────────────────────────────────────────────── -->
+      <section id="hero">
+        <div class="hero-glow"></div>
+        <div class="hero-divider"></div>
 
-          <div class="terminal-line prompt" style="margin-top: 8px;">$ <span class="cmd">cat biography.txt</span></div>
-          <div class="terminal-line out">8+ years in animation production.</div>
-          <div class="terminal-line out">Building tools that make pipelines disappear.</div>
+        <div class="hero-inner">
+          <div class="hero-eyebrow fade-in">
+            <span class="hero-eyebrow-line"></span>
+            <span class="hero-eyebrow-text">2025 Portfolio</span>
+          </div>
 
-          <div class="terminal-line prompt" style="margin-top: 8px;">$ <span class="cmd">stats --summary</span></div>
-          <div class="terminal-line out">├─ 8+ Years Experience</div>
-          <div class="terminal-line out">├─ 3 Studios: Animonsta, Warnakala, Digital Durian</div>
-          <div class="terminal-line out">├─ ~60 Node Render Farm Managed</div>
-          <div class="terminal-line out">└─ 4 Major Productions</div>
+          <h1 class="hero-title fade-in" style="transition-delay:100ms">
+            LRC <span class="accent">Artist</span><br>
+            <span class="bar"></span> Programmer
+          </h1>
 
-          <div class="terminal-line prompt" style="margin-top: 8px;">$ <span class="cmd">ls portfolio/</span></div>
-          <div class="terminal-cta" id="terminal-cta">
-            <a href="#work" class="btn-primary">VIEW WORK &#8594;</a>
-            <a href="#toolbox" class="btn-outline">EXPLORE STACK</a>
+          <div class="hero-grid">
+            <div class="hero-text fade-in" style="transition-delay:200ms">
+              <p>Engineering the intersection of algorithmic precision and visual storytelling. Specializing in Lighting, Rendering, and Creative Development for immersive digital environments.</p>
+              <div class="hero-cta">
+                <a href="#work" class="btn-primary">View Work <span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></a>
+                <a href="#toolbox" class="btn-outline">Explore Tech Stack</a>
+              </div>
+            </div>
+
+            <div class="terminal-card fade-in" style="transition-delay:300ms">
+              <div class="terminal-glow"></div>
+              <div class="terminal-frame">
+                <div class="terminal-header">
+                  <div class="terminal-dots">
+                    <span></span><span></span><span></span>
+                  </div>
+                  <div class="terminal-title">verdant-studio &mdash; zsh</div>
+                  <div style="width:48px"></div>
+                </div>
+                <div class="terminal-body">
+                  <div class="terminal-block terminal-line">
+                    <div class="terminal-cmd">
+                      <span class="dollar">$</span>
+                      <span class="cmd-text">whoami</span>
+                    </div>
+                    <div class="terminal-output">
+                      <p style="color:var(--on-surface)">Dianah Rosli &mdash; Pipeline TD &middot; LRC Dev</p>
+                    </div>
+                  </div>
+
+                  <div class="terminal-block terminal-line">
+                    <div class="terminal-cmd">
+                      <span class="dollar">$</span>
+                      <span class="cmd-text">cat biography.txt</span>
+                    </div>
+                    <div class="terminal-output">
+                      <p>8+ years in animation production.</p>
+                      <p>Building tools that make pipelines disappear.</p>
+                    </div>
+                  </div>
+
+                  <div class="terminal-block terminal-line">
+                    <div class="terminal-cmd">
+                      <span class="dollar">$</span>
+                      <span class="cmd-text">stats --summary</span>
+                    </div>
+                    <div class="terminal-output" style="margin-top:8px">
+                      <div class="terminal-stat">
+                        <span class="terminal-stat-marker">&#8866;</span>
+                        <span>8+ Years Experience</span>
+                      </div>
+                      <div class="terminal-stat">
+                        <span class="terminal-stat-marker">&#8866;</span>
+                        <span>3 Studios: Animonsta, Warnakala, Digital Durian</span>
+                      </div>
+                      <div class="terminal-stat">
+                        <span class="terminal-stat-marker">&#8866;</span>
+                        <span>~60 Node Render Farm Managed</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="terminal-cursor-line terminal-line">
+                    <span class="dollar">$</span>
+                    <span class="terminal-cursor"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- ── Work ─────────────────────────────────────────────── -->
-      <section id="work">
-        <p class="section-label">SELECTED WORK</p>
-
-        <!-- Production credits -->
-        <p class="subsection-label fade-in">PRODUCTION CREDITS</p>
-        <div class="credits-scroll fade-in" style="transition-delay:60ms">
-
-          <div class="credit-card">
-            <div>
-              <div class="credit-title">Papa Zola The Movie</div>
-              <div class="credit-studio-year">Animonsta Studios &middot; 2025</div>
-            </div>
-            <span class="credit-role">LIGHTING &middot; RENDERING</span>
-            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
+      <section id="work" style="background: var(--surface-low);">
+        <div class="section-inner">
+          <div class="work-header fade-in">
+            <div class="work-header-code">[01] INIT_SYSTEM_SHOWCASE</div>
+            <h2>Technical Direction <span class="accent">&amp;</span> Creative Development.</h2>
+            <p>A selection of feature film contributions and custom pipeline tooling developed for high-end animation workflows. Focused on bridging the gap between artistic vision and technical execution.</p>
           </div>
 
-          <div class="credit-card">
-            <div>
-              <div class="credit-title">BoBoiBoy Galaxy Gentar</div>
-              <div class="credit-studio-year">Animonsta Studios</div>
+          <div class="bento-grid">
+
+            <!-- Featured: Papa Zola -->
+            <div class="bento-card bento-featured fade-in">
+              <div class="bento-featured-content">
+                <div class="bento-featured-label"><span class="prefix">&gt;_</span> Feature Film / Lighting</div>
+                <h3>Papa Zola The Movie</h3>
+                <p>Lead Lighting &amp; Rendering pipeline integration. Ensuring visual consistency across complex action sequences while maintaining render efficiency.</p>
+                <a href="#" class="bento-link" target="_blank" rel="noopener noreferrer">
+                  <span class="material-symbols-outlined">play_circle</span> Watch Trailer
+                </a>
+              </div>
             </div>
-            <span class="credit-role">LIGHTING &middot; RENDERING</span>
-            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
+
+            <!-- Tool: Blender Pipeline -->
+            <div class="bento-card bento-tool fade-in" style="transition-delay:60ms">
+              <div>
+                <div class="bento-tool-label"><span class="prefix">$</span> Python Tooling</div>
+                <h3>Blender Pipeline Tools</h3>
+                <p>Custom Blender add-on for automated USD export and metadata validation. Optimized for multi-artist studio environments.</p>
+                <div class="tags">
+                  <span class="tag tag--cmd">Python</span>
+                  <span class="tag tag--cmd">USD</span>
+                  <span class="tag tag--cmd">Blender API</span>
+                </div>
+              </div>
+              <a href="#" class="bento-link" style="margin-top:24px" target="_blank" rel="noopener noreferrer">
+                <span class="material-symbols-outlined">terminal</span> View on GitHub <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+
+            <!-- Production: BoBoiBoy -->
+            <div class="bento-card bento-production fade-in" style="transition-delay:120ms">
+              <div class="bento-production-img">
+                <span class="material-symbols-outlined">movie</span>
+              </div>
+              <div class="bento-production-body">
+                <div class="label"><span class="prefix">[02]</span> Series / Compositing</div>
+                <h3>BoBoiBoy Galaxy Gentar</h3>
+                <p>Advanced compositing for high-energy elemental FX and environment integration.</p>
+                <a href="#" class="bento-link" target="_blank" rel="noopener noreferrer">
+                  Details <span class="material-symbols-outlined">open_in_new</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Tool: File Organizer -->
+            <div class="bento-card bento-split fade-in" style="transition-delay:180ms">
+              <div class="bento-split-text">
+                <div class="label">System Utility</div>
+                <h3>File Organizer</h3>
+                <p>A robust CLI utility designed to handle terabytes of production assets. Implements strict naming conventions and automated checksum verification.</p>
+                <div class="bento-split-code-label">// system.run_utility()</div>
+                <div style="display:flex;gap:12px;flex-wrap:wrap">
+                  <a href="#" class="btn-ghost" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined">code</span> Repository</a>
+                  <a href="#" class="btn-text">Documentation</a>
+                </div>
+              </div>
+              <div class="bento-split-terminal">
+                <code>
+                  [SCANNING] /prod/assets/chars/<br>
+                  [MATCH]&nbsp;&nbsp;&nbsp;chr_hero_v001.abc<br>
+                  [MOVE]&nbsp;&nbsp;&nbsp;&rarr; /archive/ep01/seq05/<br>
+                  [VERIFY]&nbsp;md5: d41d8cd98f...<br>
+                  [STATUS]&nbsp;SUCCESS
+                </code>
+              </div>
+            </div>
+
           </div>
 
-          <div class="credit-card">
-            <div>
-              <div class="credit-title">Didi &amp; Friends The Movie</div>
-              <div class="credit-studio-year">Warnakala Studio &middot; 2023</div>
-            </div>
-            <span class="credit-role">LIGHTING &middot; RENDERING</span>
-            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
-          </div>
+          <!-- Work Lists: Production Reel + Open Source -->
+          <div class="work-lists fade-in">
+            <div class="work-lists-grid">
 
-          <div class="credit-card">
-            <div>
-              <div class="credit-title">Didi &amp; Friends Kembara Muzikal</div>
-              <div class="credit-studio-year">Digital Durian</div>
-            </div>
-            <span class="credit-role">LIGHTING &middot; RENDERING</span>
-            <a href="#" class="btn-watch" target="_blank" rel="noopener">&#9654; WATCH</a>
-          </div>
+              <!-- Production Reel -->
+              <div class="work-list-section">
+                <div class="work-list-header">
+                  <span class="material-symbols-outlined">play_circle</span>
+                  <h3>Production Reel</h3>
+                  <span class="count"><!-- TODO: update count --></span>
+                </div>
+                <div class="work-list">
 
-        </div>
+                  <a href="https://www.youtube.com/watch?v=grmXRKLR9gE" class="work-list-row" target="_blank" rel="noopener noreferrer">
+                    <span class="work-list-idx">[001]</span>
+                    <div class="work-list-info">
+                      <div class="work-list-name">Placeholder Title</div>
+                      <div class="work-list-meta">Studio &middot; 2024 &middot; LRC</div>
+                    </div>
+                    <span class="work-list-action"><span class="material-symbols-outlined">play_arrow</span> Watch</span>
+                  </a>
 
-        <!-- Dev tools -->
-        <p class="subsection-label fade-in">DEV TOOLS</p>
-        <div class="tools-grid">
+                  <!-- TODO: Add more production credits from YouTube -->
 
-          <div class="tool-card fade-in" style="transition-delay:60ms">
-            <span class="tool-cat">PYTHON TOOL</span>
-            <h3 class="tool-title">Blender Pipeline Tools</h3>
-            <p class="tool-desc">Automates render submission and output validation for Blender scenes.</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Blender API</span>
-            </div>
-            <pre class="terminal"><span class="cmd">$ blender_pipeline --submit scene.blend</span>
-<span class="out">  &#8594; Parsing scene: scene.blend</span>
-<span class="out">  &#8594; Validating output paths... OK</span>
-<span class="out">  &#8594; Submitting 240 frames to Afanasy</span>
-<span class="out">  &#8594; Job ID: af_job_00412 queued &#10003;</span></pre>
-            <div class="tool-footer">
-              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
-            </div>
-          </div>
+                </div>
+              </div>
 
-          <div class="tool-card fade-in" style="transition-delay:120ms">
-            <span class="tool-cat">PYTHON TOOL</span>
-            <h3 class="tool-title">File Organizer</h3>
-            <p class="tool-desc">Sorts and categorizes files by type, date, and project prefix.</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">PyQt5</span>
-            </div>
-            <pre class="terminal"><span class="cmd">$ file_organizer --watch /renders/output</span>
-<span class="out">  &#8594; Watching: /renders/output</span>
-<span class="out">  &#8594; [exr]  shot_010_beauty.0001.exr &#8594; /exr/</span>
-<span class="out">  &#8594; [png]  shot_010_preview.png    &#8594; /preview/</span>
-<span class="out">  &#8594; 14 files organized &#10003;</span></pre>
-            <div class="tool-footer">
-              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
-            </div>
-          </div>
+              <!-- Open Source -->
+              <div class="work-list-section">
+                <div class="work-list-header">
+                  <span class="material-symbols-outlined">code</span>
+                  <h3>Open Source</h3>
+                  <span class="count"><!-- TODO: update count --></span>
+                </div>
+                <div class="work-list">
 
-          <div class="tool-card fade-in" style="transition-delay:180ms">
-            <span class="tool-cat">PYTHON TOOL</span>
-            <h3 class="tool-title">File Renamer</h3>
-            <p class="tool-desc">Batch-renames files using configurable naming conventions.</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">PyQt5</span>
-            </div>
-            <pre class="terminal"><span class="cmd">$ file_renamer --pattern "{shot}_{frame:04d}"</span>
-<span class="out">  &#8594; Pattern: {shot}_{frame:04d}.exr</span>
-<span class="out">  &#8594; render_001.exr &#8594; shot_010_0001.exr</span>
-<span class="out">  &#8594; render_002.exr &#8594; shot_010_0002.exr</span>
-<span class="out">  &#8594; 48 files renamed &#10003;</span></pre>
-            <div class="tool-footer">
-              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
-            </div>
-          </div>
+                  <a href="https://github.com/ddlite92/insomnia" class="work-list-row" target="_blank" rel="noopener noreferrer">
+                    <span class="work-list-idx">[001]</span>
+                    <div class="work-list-info">
+                      <div class="work-list-name">insomnia</div>
+                      <div class="work-list-meta">GitHub &middot; Python</div>
+                    </div>
+                    <span class="work-list-action"><span class="material-symbols-outlined">arrow_outward</span> Repo</span>
+                  </a>
 
-          <div class="tool-card fade-in" style="transition-delay:240ms">
-            <span class="tool-cat">PYTHON TOOL</span>
-            <h3 class="tool-title">Maya Scene Processor</h3>
-            <p class="tool-desc">Processes Maya scenes: cleanup, export, and validation pipeline.</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">PyQt5</span>
-            </div>
-            <pre class="terminal"><span class="cmd">$ maya_proc --validate --export scene.ma</span>
-<span class="out">  &#8594; Loading: scene.ma</span>
-<span class="out">  &#8594; Checking references... OK</span>
-<span class="out">  &#8594; Unused nodes removed: 37</span>
-<span class="out">  &#8594; Export complete &#8594; /export/scene_clean.ma &#10003;</span></pre>
-            <div class="tool-footer">
-              <a href="#" class="btn-github" target="_blank" rel="noopener">[&#8599; GITHUB]</a>
+                  <!-- TODO: Add more GitHub repos -->
+
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -1206,120 +2171,168 @@
 
       <!-- ── Experience ────────────────────────────────────────── -->
       <section id="experience">
-        <p class="section-label">CAREER ARC</p>
-        <div class="timeline">
+        <div class="section-inner">
+          <p class="section-label">Career Arc</p>
+          <div class="timeline">
 
-          <div class="timeline-entry fade-in">
-            <p class="entry-date">2023 &#8211; PRESENT</p>
-            <a href="#" class="entry-company" target="_blank" rel="noopener">Animonsta Studios</a>
-            <h3 class="entry-role">LRC Artist / Pipeline Dev</h3>
-            <p class="entry-desc">Upgraded render workflows for Mechamato S3 and BoBoiBoy Galaxy S2. Managing ~60-node Afanasy render farm. Python tooling for automation and Kitsu project management integration.</p>
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">Blender</span>
-              <span class="tag">Afanasy/CGRU</span>
-              <span class="tag">Kitsu</span>
-              <span class="tag">Linux</span>
-              <span class="tag">AWS</span>
+            <div class="timeline-entry fade-in">
+              <p class="entry-date">2023 &ndash; PRESENT</p>
+              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Animonsta Studios</a>
+              <h3 class="entry-role">LRC Artist / Pipeline Dev</h3>
+              <p class="entry-desc">Upgraded render workflows for Mechamato S3 and BoBoiBoy Galaxy S2. Managing ~60-node Afanasy render farm. Python tooling for automation and Kitsu project management integration.</p>
+              <div class="tags">
+                <span class="tag">Python</span>
+                <span class="tag">Blender</span>
+                <span class="tag">Afanasy/CGRU</span>
+                <span class="tag">Kitsu</span>
+                <span class="tag">Linux</span>
+                <span class="tag">AWS</span>
+              </div>
             </div>
-          </div>
 
-          <div class="timeline-entry fade-in" style="transition-delay:60ms">
-            <p class="entry-date">2021 &#8211; 2023</p>
-            <a href="#" class="entry-company" target="_blank" rel="noopener">Warnakala Studio</a>
-            <h3 class="entry-role">3D Render Artist</h3>
-            <p class="entry-desc">Day-to-day render farm coordination across multiple teams. Coordinated Didi &amp; Friends The Movie with TD, compositor and lighting artists.</p>
-            <div class="tags">
-              <span class="tag">Render Management</span>
-              <span class="tag">Blender</span>
-              <span class="tag">DaVinci Resolve</span>
-              <span class="tag">Python</span>
-              <span class="tag">Linux</span>
+            <div class="timeline-entry fade-in" style="transition-delay:60ms">
+              <p class="entry-date">2021 &ndash; 2023</p>
+              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Warnakala Studio</a>
+              <h3 class="entry-role">3D Render Artist</h3>
+              <p class="entry-desc">Day-to-day render farm coordination across multiple teams. Coordinated Didi &amp; Friends The Movie with TD, compositor and lighting artists.</p>
+              <div class="tags">
+                <span class="tag">Render Mgmt</span>
+                <span class="tag">Blender</span>
+                <span class="tag">DaVinci Resolve</span>
+                <span class="tag">Python</span>
+                <span class="tag">Linux</span>
+              </div>
             </div>
-          </div>
 
-          <div class="timeline-entry fade-in" style="transition-delay:120ms">
-            <p class="entry-date">2016 &#8211; 2021</p>
-            <a href="#" class="entry-company" target="_blank" rel="noopener">Digital Durian</a>
-            <h3 class="entry-role">3D Render Artist</h3>
-            <p class="entry-desc">Collaborated with compositor and modeler teams. Render management for Didi &amp; Friends songs and Konsert Hora Horey Wayang.</p>
-            <div class="tags">
-              <span class="tag">Render Management</span>
-              <span class="tag">Python</span>
-              <span class="tag">Blender</span>
+            <div class="timeline-entry fade-in" style="transition-delay:120ms">
+              <p class="entry-date">2016 &ndash; 2021</p>
+              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Digital Durian</a>
+              <h3 class="entry-role">3D Render Artist</h3>
+              <p class="entry-desc">Collaborated with compositor and modeler teams. Render management for Didi &amp; Friends songs and Konsert Hora Horey Wayang.</p>
+              <div class="tags">
+                <span class="tag">Render Mgmt</span>
+                <span class="tag">Python</span>
+                <span class="tag">Blender</span>
+              </div>
             </div>
-          </div>
 
-          <div class="timeline-entry fade-in" style="transition-delay:180ms">
-            <p class="entry-date">2015 &#8211; 2016</p>
-            <a href="#" class="entry-company" target="_blank" rel="noopener">Digital Durian</a>
-            <h3 class="entry-role">Animator</h3>
-            <p class="entry-desc">Junior Animator on Didi and Friends Season 1 and 2.</p>
-            <div class="tags">
-              <span class="tag">Blender</span>
-              <span class="tag">Animation</span>
+            <div class="timeline-entry fade-in" style="transition-delay:180ms">
+              <p class="entry-date">2015 &ndash; 2016</p>
+              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Digital Durian</a>
+              <h3 class="entry-role">Animator</h3>
+              <p class="entry-desc">Junior Animator on Didi and Friends Season 1 and 2.</p>
+              <div class="tags">
+                <span class="tag">Blender</span>
+                <span class="tag">Animation</span>
+              </div>
             </div>
-          </div>
 
+          </div>
         </div>
       </section>
 
       <!-- ── Toolbox ────────────────────────────────────────────── -->
       <section id="toolbox">
-        <p class="section-label">TECH STACK</p>
-        <div class="toolbox-grid">
+        <div class="section-inner">
 
-          <div class="toolbox-card fade-in">
-            <p class="toolbox-cat">PIPELINE &amp; AUTOMATION</p>
-            <h3 class="toolbox-title">Pipeline &amp; Automation</h3>
-            <ul class="toolbox-list">
-              <li>Python</li>
-              <li>Afanasy/CGRU</li>
-              <li>Kitsu</li>
-              <li>RQ/Redis</li>
-              <li>Flask</li>
-              <li>n8n</li>
-            </ul>
+          <div class="toolbox-header fade-in">
+            <div class="toolbox-line-numbers" aria-hidden="true">01<br>02<br>03<br>04<br>05<br>06</div>
+            <div class="toolbox-header-badge">Technical Direction</div>
+            <h2>Technical<br><span class="dim">Toolbox.</span></h2>
+            <p>Bridging the gap between high-end visual fidelity and robust engineering. A curated stack designed for automation, scalability, and creative freedom.</p>
           </div>
 
-          <div class="toolbox-card fade-in" style="transition-delay:60ms">
-            <p class="toolbox-cat">3D &amp; RENDERING</p>
-            <h3 class="toolbox-title">3D &amp; Rendering</h3>
-            <ul class="toolbox-list">
-              <li>Blender (+ Python API)</li>
-              <li>Maya</li>
-              <li>Cycles</li>
-              <li>OIDN/OptiX denoiser</li>
-              <li>Blender bpy</li>
-            </ul>
+          <div class="toolbox-bento">
+
+            <!-- Pipeline & Automation -->
+            <div class="toolbox-card toolbox-pipeline fade-in">
+              <div class="glow"></div>
+              <div style="position:relative;z-index:1">
+                <div class="toolbox-card-header">
+                  <span class="material-symbols-outlined">settings_input_component</span>
+                  <span class="bracket">[</span>
+                  <h3>Pipeline &amp; Automation</h3>
+                  <span class="bracket">]</span>
+                </div>
+                <div class="toolbox-cols">
+                  <div class="toolbox-col">
+                    <h4>Python Core</h4>
+                    <p>Complex script development for VFX pipelines, custom rigging modules, and automated asset delivery.</p>
+                    <div class="tags">
+                      <span class="tag">AsyncIO</span>
+                      <span class="tag">PyQt5</span>
+                      <span class="tag">NumPy</span>
+                    </div>
+                  </div>
+                  <div class="toolbox-col">
+                    <h4>Blender API</h4>
+                    <p>Custom operator development and bpy-based procedural generation tools for non-destructive workflows.</p>
+                    <div class="tags">
+                      <span class="tag">bpy</span>
+                      <span class="tag">Geometry Nodes</span>
+                      <span class="tag">Cycles</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="toolbox-meta">Ln 42, Col 12</div>
+            </div>
+
+            <!-- Infrastructure -->
+            <div class="toolbox-card toolbox-infra fade-in" style="transition-delay:60ms">
+              <div>
+                <span class="material-symbols-outlined icon">cloud</span>
+                <h3>Infrastructure <span class="sys-badge">SYS:READY</span></h3>
+                <p>Deploying distributed rendering clusters and high-availability creative services.</p>
+              </div>
+              <ul class="toolbox-list">
+                <li><span class="dot"></span> AWS EC2 &amp; S3</li>
+                <li><span class="dot"></span> Docker &amp; Coolify</li>
+                <li><span class="dot"></span> Linux Administration</li>
+                <li><span class="dot"></span> CI/CD Pipelines</li>
+              </ul>
+            </div>
+
+            <!-- Runtime & Env -->
+            <div class="toolbox-card toolbox-devenv fade-in" style="transition-delay:120ms">
+              <div class="toolbox-devenv-header">
+                <h3><span class="prefix">$ </span>Runtime &amp; Env</h3>
+                <span class="material-symbols-outlined">terminal</span>
+              </div>
+              <div class="toolbox-shell-block">
+                <div class="label">Shell Mastery</div>
+                <code>$ curl -sL technical.toolbox | sh</code>
+              </div>
+              <p>Git-flow architecture and containerized dev environments for seamless collaboration across remote creative teams.</p>
+            </div>
+
+            <!-- Interactive & Visuals -->
+            <div class="toolbox-card toolbox-visuals fade-in" style="transition-delay:180ms">
+              <div class="toolbox-visuals-text">
+                <h3>Interactive &amp; Visuals <span class="ref">REF: 0x82FA93</span></h3>
+                <p>Real-time engines and shader programming. Where the mathematical precision meets visual storytelling.</p>
+                <div class="toolbox-stats">
+                  <div class="toolbox-stat-box">
+                    <div class="val">4K</div>
+                    <div class="lbl">Texture Master</div>
+                  </div>
+                  <div class="toolbox-stat-box">
+                    <div class="val">GLSL</div>
+                    <div class="lbl">Shader Dev</div>
+                  </div>
+                </div>
+              </div>
+              <div class="toolbox-visuals-img">
+                <span class="material-symbols-outlined">hub</span>
+              </div>
+            </div>
+
           </div>
 
-          <div class="toolbox-card fade-in" style="transition-delay:120ms">
-            <p class="toolbox-cat">INFRASTRUCTURE</p>
-            <h3 class="toolbox-title">Infrastructure</h3>
-            <ul class="toolbox-list">
-              <li>Linux (Arch/Ubuntu)</li>
-              <li>Docker</li>
-              <li>Coolify</li>
-              <li>Traefik</li>
-              <li>Garage S3</li>
-              <li>GCP</li>
-              <li>Syncthing</li>
-              <li>Cloudflare Zero Trust</li>
-            </ul>
-          </div>
-
-          <div class="toolbox-card fade-in" style="transition-delay:180ms">
-            <p class="toolbox-cat">DEV &amp; WORKFLOW</p>
-            <h3 class="toolbox-title">Dev &amp; Workflow</h3>
-            <ul class="toolbox-list">
-              <li>Git</li>
-              <li>GitHub Actions</li>
-              <li>PyQt5/Qt Designer</li>
-              <li>VS Code</li>
-              <li>Hyprland</li>
-              <li>rclone</li>
-            </ul>
+          <!-- Quote -->
+          <div class="quote-section fade-in">
+            <blockquote>&ldquo;The most powerful tools are the ones that disappear when the artist starts to work.&rdquo;</blockquote>
+            <cite>&mdash; Dianah&rsquo;s Philosophy</cite>
           </div>
 
         </div>
@@ -1327,43 +2340,53 @@
 
       <!-- ── Contact ────────────────────────────────────────────── -->
       <section id="contact">
-        <p class="section-label">GET IN TOUCH</p>
-        <h2 class="fade-in">Let's build something that works.</h2>
-        <p class="contact-sub fade-in" style="transition-delay:60ms">
-          Open to pipeline TD, tools developer, or technical artist roles.
-        </p>
-        <div class="contact-links fade-in" style="transition-delay:120ms">
+        <div class="section-inner">
+          <p class="section-label">Get In Touch</p>
+          <h2 class="fade-in">Let's build something that works.</h2>
+          <p class="contact-sub fade-in" style="transition-delay:60ms">
+            Open to pipeline TD, tools developer, or technical artist roles.
+          </p>
+          <div class="contact-links fade-in" style="transition-delay:120ms">
 
-          <a href="https://github.com/ddlite92" class="contact-link" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-            </svg>
-            github.com/ddlite92
-          </a>
+            <a href="https://github.com/ddlite92" class="contact-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+              github.com/ddlite92
+            </a>
 
-          <a href="#" class="contact-link" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-              <rect x="2" y="9" width="4" height="12"/>
-              <circle cx="4" cy="4" r="2"/>
-            </svg>
-            LinkedIn
-          </a>
+            <a href="#" class="contact-link" target="_blank" rel="noopener noreferrer">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+              LinkedIn
+            </a>
 
-          <a href="mailto:dianah.rosli@monsta.com" class="contact-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-              <polyline points="22,6 12,13 2,6"/>
-            </svg>
-            dianah.rosli@monsta.com
-          </a>
+            <a href="mailto:dianah.rosli@monsta.com" class="contact-link">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+              dianah.rosli@monsta.com
+            </a>
 
+          </div>
         </div>
-
-        <footer class="site-footer">
-          &copy; 2025 Dianah Rosli &mdash; Built with HTML, CSS &amp; JavaScript
-        </footer>
       </section>
+
+      <!-- ── Footer ─────────────────────────────────────────────── -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p class="footer-copy">&copy; 2025 Dianah Rosli &mdash; Technical Direction &amp; Creative Development</p>
+          <div class="footer-links">
+            <a href="https://github.com/ddlite92" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="#" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:dianah.rosli@monsta.com" class="footer-link">Email</a>
+          </div>
+        </div>
+      </footer>
 
     </main>
   </div>
@@ -1468,63 +2491,42 @@
     // ── Terminal hero typing animation ───────────────────────────
     function typeTerminalHero() {
       var lines = document.querySelectorAll('.terminal-line');
-      var ctaBox = document.getElementById('terminal-cta');
-      var charDelay = 50;
-      var lineDelay = 300;
-      var totalDelay = 0;
+      var charDelay = 35;
+      var lineDelay = 250;
 
-      function typeCharacter(element, text, callback) {
-        var index = 0;
-        var originalText = element.textContent;
-        element.textContent = '';
-
-        function type() {
-          if (index < text.length) {
-            element.textContent += text[index];
-            index++;
-            setTimeout(type, charDelay);
-          } else {
-            element.textContent = originalText;
-            element.classList.add('visible');
-            if (callback) { setTimeout(callback, lineDelay); }
-          }
-        }
-        type();
+      function getTextContent(element) {
+        var texts = [];
+        element.querySelectorAll('.cmd-text, .terminal-output p, .terminal-stat span:last-child').forEach(function(el) {
+          texts.push(el.textContent);
+        });
+        return texts.join(' ');
       }
 
       function processLines(lineIndex) {
         if (lineIndex >= lines.length) {
-          // All lines done, show CTA
-          ctaBox.classList.add('visible');
           return;
         }
 
         var line = lines[lineIndex];
-        var text = line.textContent.trim();
+        line.classList.add('visible');
 
-        if (text.length === 0) {
-          // Empty line, skip
-          line.classList.add('visible');
+        var text = getTextContent(line);
+        var totalTime = Math.min(text.length * charDelay, 800);
+
+        setTimeout(function() {
           processLines(lineIndex + 1);
-        } else {
-          // Type this line
-          typeCharacter(line, text, function() {
-            processLines(lineIndex + 1);
-          });
-        }
+        }, totalTime + lineDelay);
       }
 
-      // Start typing animation when DOM is ready
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function() {
-          processLines(0);
+          setTimeout(function() { processLines(0); }, 600);
         });
       } else {
-        processLines(0);
+        setTimeout(function() { processLines(0); }, 600);
       }
     }
 
-    // Kick off terminal hero animation
     typeTerminalHero();
   </script>
 
