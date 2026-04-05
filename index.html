@@ -1,2534 +1,3424 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Dianah Rosli — LRC Artist & Pipeline TD. 8+ years in animation production. Python tooling, render farm management, and pipeline automation." />
-  <meta property="og:title" content="Dianah Rosli — Pipeline TD & LRC Artist" />
-  <meta property="og:description" content="8+ years in animation production. Building tools that make pipelines disappear." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://didi.is-a.dev" />
-  <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Dianah Rosli — Pipeline TD & LRC Artist" />
-  <meta name="twitter:description" content="8+ years in animation production. Building tools that make pipelines disappear." />
-  <title>Dianah Rosli — Pipeline TD & LRC Artist</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ── Reset ─────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    /* ── Tokens ─────────────────────────────────────────────── */
-    :root {
-      --bg:             #131313;
-      --surface:        #131313;
-      --surface-low:    #1c1b1b;
-      --surface-high:   #2a2a2a;
-      --surface-highest: #353535;
-      --surface-lowest: #0e0e0e;
-      --primary:        #97d870;
-      --primary-ctr:    #72b04e;
-      --on-primary:     #143800;
-      --on-surface:     #e5e2e1;
-      --on-surface-var: #c1c9b7;
-      --outline:        #8b9383;
-      --outline-var:    #42493b;
-      --font-head: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
-      --font-mono: 'JetBrains Mono', monospace;
-      --sidebar-w: 256px;
-    }
-
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-    }
-
-    /* ── Base ───────────────────────────────────────────────── */
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--on-surface);
-      font-family: var(--font-body);
-      font-size: 15px;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    ::selection {
-      background: rgba(151, 216, 112, 0.3);
-      color: var(--primary);
-    }
-
-    /* ── Scrollbar ──────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 6px; height: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: #3a3a3a; border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover { background: #4a4a4a; }
-
-    /* ── Layout ─────────────────────────────────────────────── */
-    .layout {
-      display: grid;
-      grid-template-columns: var(--sidebar-w) 1fr;
-      min-height: 100vh;
-    }
-
-    /* ── Sidebar ─────────────────────────────────────────────── */
-    .sidebar {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      overflow-y: auto;
-      background: var(--bg);
-      border-right: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      flex-direction: column;
-      padding: 128px 24px 24px;
-      flex-shrink: 0;
-    }
-
-    .sidebar-profile {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 32px;
-      padding: 0 8px;
-    }
-
-    .avatar-wrap {
-      width: 40px;
-      height: 40px;
-      border-radius: 8px;
-      border: 1px solid rgba(66, 73, 59, 0.3);
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .avatar-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .avatar-initials {
-      width: 100%;
-      height: 100%;
-      background: var(--surface-high);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .sidebar-name {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      line-height: 1.3;
-    }
-
-    .sidebar-role {
-      font-family: var(--font-body);
-      font-size: 10px;
-      color: rgba(255,255,255,0.4);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-    }
-
-    /* Nav */
-    .sidebar-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-      flex: 1;
-    }
-
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 10px 16px;
-      font-family: var(--font-body);
-      font-size: 14px;
-      color: rgba(255,255,255,0.5);
-      border-radius: 6px;
-      transition: all 150ms ease;
-      cursor: pointer;
-      letter-spacing: 0.02em;
-    }
-
-    .nav-link:hover {
-      color: var(--on-surface);
-      background: var(--surface-high);
-    }
-
-    .nav-link.active {
-      color: var(--primary);
-      background: var(--surface-high);
-      transform: translateX(4px);
-    }
-
-    .nav-link .material-symbols-outlined {
-      font-size: 18px;
-    }
-
-    /* CV button */
-    .btn-cv {
-      margin-top: auto;
-      display: block;
-      text-align: center;
-      padding: 12px 16px;
-      font-family: var(--font-head);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-      border: 1px solid rgba(114, 176, 78, 0.3);
-      border-radius: 6px;
-      transition: background 200ms ease;
-    }
-
-    .btn-cv:hover {
-      background: rgba(114, 176, 78, 0.1);
-    }
-
-    /* Hamburger (mobile only) */
-    .hamburger {
-      display: none;
-      position: fixed;
-      top: 16px;
-      left: 16px;
-      z-index: 200;
-      background: var(--surface-high);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 6px;
-      width: 40px;
-      height: 40px;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-      padding: 0;
-    }
-
-    .hamburger span {
-      display: block;
-      width: 18px;
-      height: 1.5px;
-      background: var(--on-surface);
-      transition: transform 200ms ease, opacity 200ms ease;
-    }
-
-    .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-
-    .overlay {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      z-index: 99;
-    }
-
-    /* ── Main content ────────────────────────────────────────── */
-    .content {
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    /* ── Top navbar ──────────────────────────────────────────── */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 72px;
-      padding: 0 32px;
-      background: rgba(19, 19, 19, 0.6);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .topbar-logo {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--on-surface);
-      letter-spacing: -0.03em;
-      flex-shrink: 0;
-    }
-
-    .topbar-nav {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-
-    .topbar-link {
-      font-family: var(--font-head);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.7);
-      padding: 4px 0;
-      border-bottom: 1px solid transparent;
-      transition: color 200ms ease, border-color 200ms ease;
-    }
-
-    .topbar-link:hover {
-      color: var(--primary);
-    }
-
-    .topbar-link.active {
-      color: var(--primary);
-      border-bottom-color: var(--primary);
-    }
-
-    .topbar-cta {
-      font-family: var(--font-head);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--on-surface);
-      background: rgba(53, 53, 53, 0.5);
-      border: 1px solid rgba(66, 73, 59, 0.2);
-      padding: 8px 24px;
-      flex-shrink: 0;
-      transition: background 200ms ease, opacity 200ms ease;
-    }
-
-    .topbar-cta:hover {
-      background: rgba(53, 53, 53, 0.8);
-    }
-
-    /* ── Section scaffold ────────────────────────────────────── */
-    section {
-      padding: 96px 32px;
-    }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      color: var(--on-surface-var);
-      text-transform: uppercase;
-      margin-bottom: 24px;
-    }
-
-    /* ── Fade-in animation ───────────────────────────────────── */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 400ms ease-out, transform 400ms ease-out;
-    }
-
-    .fade-in.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Shared: tags ───────────────────────────────────────── */
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 12px;
-    }
-
-    .tag {
-      font-family: var(--font-body);
-      font-size: 10px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      background: var(--surface-high);
-      padding: 4px 10px;
-      border-radius: 2px;
-      color: var(--on-surface-var);
-    }
-
-    .tag--cmd::before {
-      content: '$ ';
-      color: var(--primary);
-      font-family: var(--font-mono);
-    }
-
-    /* ── Buttons ───────────────────────────────────────────── */
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      background: linear-gradient(135deg, var(--primary), var(--primary-ctr));
-      color: var(--on-primary);
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border-radius: 6px;
-      transition: transform 200ms ease, opacity 200ms ease;
-    }
-
-    .btn-primary:hover {
-      transform: scale(1.02);
-    }
-
-    .btn-primary:active {
-      transform: scale(0.98);
-    }
-
-    .btn-outline {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 14px 32px;
-      background: transparent;
-      color: var(--on-surface);
-      font-family: var(--font-head);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      border: 1px solid rgba(139, 147, 131, 0.2);
-      border-radius: 6px;
-      transition: background 200ms ease, border-color 200ms ease;
-    }
-
-    .btn-outline:hover {
-      background: var(--surface-highest);
-      border-color: rgba(139, 147, 131, 0.4);
-    }
-
-    /* ── HERO ────────────────────────────────────────────────── */
-    #hero {
-      min-height: calc(100vh - 72px);
-      display: flex;
-      align-items: center;
-      padding: 48px 32px 96px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-glow {
-      position: absolute;
-      top: 25%;
-      right: -80px;
-      width: 600px;
-      height: 600px;
-      background: rgba(151, 216, 112, 0.05);
-      filter: blur(120px);
-      border-radius: 50%;
-      pointer-events: none;
-    }
-
-    .hero-divider {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(to right, transparent, rgba(66, 73, 59, 0.2), transparent);
-    }
-
-    .hero-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      width: 100%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 24px;
-    }
-
-    .hero-eyebrow-line {
-      height: 1px;
-      width: 48px;
-      background: var(--primary);
-    }
-
-    .hero-eyebrow-text {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--on-surface-var);
-    }
-
-    .hero-title {
-      font-family: var(--font-head);
-      font-size: clamp(48px, 8vw, 120px);
-      font-weight: 700;
-      line-height: 0.9;
-      letter-spacing: -0.04em;
-      color: var(--on-surface);
-      margin-bottom: 32px;
-    }
-
-    .hero-title .accent {
-      color: var(--primary);
-      font-style: italic;
-    }
-
-    .hero-title .bar {
-      display: inline-block;
-      height: 0.1em;
-      width: 0.8em;
-      background: var(--surface-high);
-      border-radius: 99px;
-      vertical-align: middle;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-      margin-top: 64px;
-      align-items: start;
-    }
-
-    .hero-text p {
-      font-family: var(--font-body);
-      font-size: 18px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 40px;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    /* ── Terminal card (hero) ─────────────────────────────────── */
-    .terminal-card {
-      position: relative;
-    }
-
-    .terminal-glow {
-      position: absolute;
-      inset: -4px;
-      background: linear-gradient(135deg, rgba(151, 216, 112, 0.2), transparent);
-      filter: blur(40px);
-      opacity: 0.5;
-      border-radius: 16px;
-      transition: opacity 600ms ease;
-      pointer-events: none;
-    }
-
-    .terminal-card:hover .terminal-glow {
-      opacity: 0.75;
-    }
-
-    .terminal-frame {
-      position: relative;
-      background: rgba(14, 14, 14, 0.8);
-      backdrop-filter: blur(40px);
-      -webkit-backdrop-filter: blur(40px);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-    }
-
-    .terminal-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 20px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      background: rgba(255,255,255,0.05);
-    }
-
-    .terminal-dots {
-      display: flex;
-      gap: 6px;
-    }
-
-    .terminal-dots span {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .terminal-dots span:nth-child(1) {
-      background: rgba(255, 180, 171, 0.2);
-      border: 1px solid rgba(255, 180, 171, 0.4);
-    }
-    .terminal-dots span:nth-child(2) {
-      background: rgba(47, 79, 29, 1);
-      border: 1px solid rgba(172, 210, 146, 0.4);
-    }
-    .terminal-dots span:nth-child(3) {
-      background: rgba(151, 216, 112, 0.2);
-      border: 1px solid rgba(151, 216, 112, 0.4);
-    }
-
-    .terminal-title {
-      font-family: var(--font-head);
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: rgba(193, 201, 183, 0.5);
-    }
-
-    .terminal-body {
-      padding: 28px;
-      font-family: var(--font-head);
-      font-size: 14px;
-      line-height: 1.7;
-    }
-
-    .terminal-block {
-      margin-bottom: 20px;
-    }
-
-    .terminal-block:last-child {
-      margin-bottom: 0;
-    }
-
-    .terminal-cmd {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .terminal-cmd .dollar {
-      opacity: 0.5;
-    }
-
-    .terminal-cmd .cmd-text {
-      font-weight: 700;
-      letter-spacing: 0.04em;
-    }
-
-    .terminal-output {
-      padding-left: 24px;
-      border-left: 1px solid rgba(255,255,255,0.05);
-      color: var(--on-surface-var);
-    }
-
-    .terminal-output p {
-      margin-bottom: 4px;
-    }
-
-    .terminal-output p:last-child {
-      margin-bottom: 0;
-    }
-
-    .terminal-stat {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 8px;
-      color: var(--on-surface);
-    }
-
-    .terminal-stat:last-child {
-      margin-bottom: 0;
-    }
-
-    .terminal-stat-marker {
-      color: var(--primary);
-    }
-
-    .terminal-cursor-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--primary);
-      margin-top: 20px;
-    }
-
-    .terminal-cursor-line .dollar {
-      opacity: 0.5;
-    }
-
-    .terminal-cursor {
-      display: inline-block;
-      width: 8px;
-      height: 18px;
-      background: var(--primary);
-      animation: cursor-blink 1s infinite;
-    }
-
-    @keyframes cursor-blink {
-      0%, 49% { opacity: 1; }
-      50%, 100% { opacity: 0; }
-    }
-
-    .terminal-line {
-      opacity: 0;
-    }
-
-    .terminal-line.visible {
-      opacity: 1;
-    }
-
-    /* ── WORK — Bento Grid ────────────────────────────────────── */
-    #work {
-      padding-top: 0;
-    }
-
-    .work-header {
-      margin-bottom: 48px;
-    }
-
-    .work-header-code {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(151, 216, 112, 0.4);
-      letter-spacing: 0.3em;
-      margin-bottom: 12px;
-    }
-
-    .work-header h2 {
-      font-family: var(--font-head);
-      font-size: clamp(32px, 5vw, 56px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      color: var(--on-surface);
-      margin-bottom: 16px;
-    }
-
-    .work-header h2 .accent {
-      color: var(--primary);
-    }
-
-    .work-header p {
-      font-size: 16px;
-      color: var(--on-surface-var);
-      max-width: 640px;
-      line-height: 1.7;
-      opacity: 0.8;
-    }
-
-    .bento-grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 24px;
-    }
-
-    .bento-card {
-      background: var(--surface-low);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
-      overflow: hidden;
-      transition: border-color 400ms ease;
-    }
-
-    .bento-card:hover {
-      border-color: rgba(151, 216, 112, 0.2);
-    }
-
-    /* Featured production card */
-    .bento-featured {
-      grid-column: span 8;
-      position: relative;
-      min-height: 380px;
-      display: flex;
-      align-items: flex-end;
-      background: linear-gradient(to top, var(--bg), var(--surface-high));
-    }
-
-    .bento-featured-content {
-      padding: 32px;
-      width: 66%;
-      position: relative;
-      z-index: 1;
-    }
-
-    .bento-featured-label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .bento-featured-label .prefix {
-      font-family: var(--font-mono);
-      margin-right: 6px;
-    }
-
-    .bento-featured h3 {
-      font-family: var(--font-head);
-      font-size: 28px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 10px;
-    }
-
-    .bento-featured p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .bento-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-      transition: color 200ms ease;
-    }
-
-    .bento-link:hover {
-      color: var(--on-surface);
-    }
-
-    .bento-link .material-symbols-outlined {
-      font-size: 14px;
-    }
-
-    /* Tool card (sidebar style) */
-    .bento-tool {
-      grid-column: span 4;
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background: var(--surface-high);
-      border-left: 2px solid rgba(151, 216, 112, 0.3);
-    }
-
-    .bento-tool-label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--on-surface-var);
-      margin-bottom: 20px;
-    }
-
-    .bento-tool-label .prefix {
-      font-family: var(--font-mono);
-      color: var(--primary);
-      margin-right: 6px;
-    }
-
-    .bento-tool h3 {
-      font-family: var(--font-head);
-      font-size: 22px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 12px;
-    }
-
-    .bento-tool p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    /* Production small card */
-    .bento-production {
-      grid-column: span 4;
-      background: var(--surface-low);
-      display: flex;
-      flex-direction: column;
-    }
-
-    .bento-production-img {
-      height: 200px;
-      background: var(--surface-high);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .bento-production-img .material-symbols-outlined {
-      font-size: 48px;
-      color: rgba(255,255,255,0.1);
-    }
-
-    .bento-production-body {
-      padding: 24px;
-    }
-
-    .bento-production-body .label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--on-surface-var);
-      margin-bottom: 8px;
-    }
-
-    .bento-production-body .label .prefix {
-      font-family: var(--font-mono);
-      margin-right: 6px;
-    }
-
-    .bento-production-body h3 {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 6px;
-    }
-
-    .bento-production-body p {
-      font-size: 13px;
-      color: var(--on-surface-var);
-      line-height: 1.6;
-      margin-bottom: 16px;
-    }
-
-    /* Split tool card */
-    .bento-split {
-      grid-column: span 8;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: var(--surface-low);
-      padding: 2px;
-    }
-
-    .bento-split-text {
-      padding: 28px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .bento-split-text .label {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .bento-split-text h3 {
-      font-family: var(--font-head);
-      font-size: 26px;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 12px;
-    }
-
-    .bento-split-text p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .bento-split-code-label {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(151, 216, 112, 0.6);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .bento-split-terminal {
-      background: var(--surface-lowest);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      min-height: 280px;
-    }
-
-    .bento-split-terminal::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      opacity: 0.1;
-      background: radial-gradient(circle at center, var(--primary), transparent);
-    }
-
-    .bento-split-terminal code {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: rgba(151, 216, 112, 0.6);
-      line-height: 1.8;
-      padding: 24px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .btn-ghost {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(255,255,255,0.05);
-      color: var(--on-surface);
-      padding: 8px 16px;
-      border-radius: 3px;
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: background 200ms ease;
-    }
-
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.1);
-    }
-
-    .btn-ghost .material-symbols-outlined {
-      font-size: 14px;
-    }
-
-    .btn-text {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      color: var(--on-surface-var);
-      padding: 8px 16px;
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: color 200ms ease;
-    }
-
-    .btn-text:hover {
-      color: var(--on-surface);
-    }
-
-    /* ── Work Lists (Production Reel + Open Source) ─────────── */
-    .work-lists {
-      margin-top: 96px;
-    }
-
-    .work-lists-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 48px;
-    }
-
-    .work-list-section {
-      min-width: 0;
-    }
-
-    .work-list-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      padding-bottom: 16px;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-    }
-
-    .work-list-header .material-symbols-outlined {
-      font-size: 20px;
-      color: var(--primary);
-    }
-
-    .work-list-header h3 {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--on-surface);
-    }
-
-    .work-list-header .count {
-      margin-left: auto;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(151, 216, 112, 0.4);
-      letter-spacing: 0.1em;
-    }
-
-    .work-list {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .work-list-row {
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      gap: 16px;
-      padding: 14px 12px;
-      align-items: center;
-      transition: background 200ms ease;
-      border-radius: 6px;
-    }
-
-    .work-list-row:hover {
-      background: var(--surface-high);
-    }
-
-    .work-list-row + .work-list-row {
-      border-top: 1px solid rgba(255,255,255,0.03);
-    }
-
-    .work-list-idx {
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(151, 216, 112, 0.3);
-      min-width: 28px;
-    }
-
-    .work-list-info {
-      min-width: 0;
-    }
-
-    .work-list-name {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--on-surface);
-      transition: color 200ms ease;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .work-list-row:hover .work-list-name {
-      color: var(--primary);
-    }
-
-    .work-list-meta {
-      font-family: var(--font-body);
-      font-size: 11px;
-      color: var(--on-surface-var);
-      opacity: 0.6;
-      margin-top: 2px;
-    }
-
-    .work-list-action {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      font-family: var(--font-body);
-      font-size: 10px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--on-surface-var);
-      opacity: 0;
-      transition: opacity 200ms ease, color 200ms ease;
-      white-space: nowrap;
-    }
-
-    .work-list-row:hover .work-list-action {
-      opacity: 1;
-    }
-
-    .work-list-action .material-symbols-outlined {
-      font-size: 14px;
-    }
-
-    .work-list-empty {
-      padding: 20px 12px;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: rgba(255,255,255,0.2);
-      font-style: italic;
-    }
-
-    /* ── EXPERIENCE ─────────────────────────────────────────── */
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      padding-left: 24px;
-    }
-
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 8px;
-      bottom: 8px;
-      width: 1px;
-      background: rgba(255,255,255,0.05);
-    }
-
-    .timeline-entry {
-      position: relative;
-      padding: 0 0 40px 32px;
-    }
-
-    .timeline-entry:last-child { padding-bottom: 0; }
-
-    .timeline-entry::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 8px;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--surface-high);
-      border: 2px solid var(--bg);
-      transition: background 200ms ease;
-    }
-
-    .timeline-entry:hover::before {
-      background: var(--primary);
-    }
-
-    .entry-date {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      color: var(--on-surface-var);
-      margin-bottom: 6px;
-      letter-spacing: 0.05em;
-    }
-
-    .entry-company {
-      display: inline-block;
-      font-family: var(--font-head);
-      font-size: 12px;
-      color: var(--primary);
-      font-weight: 600;
-      margin-bottom: 4px;
-      transition: opacity 150ms ease;
-    }
-
-    .entry-company:hover { opacity: 0.8; }
-
-    .entry-role {
-      font-family: var(--font-head);
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--on-surface);
-      line-height: 1.3;
-      margin-bottom: 10px;
-    }
-
-    .entry-desc {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      max-width: 600px;
-      margin-bottom: 4px;
-    }
-
-    /* ── TOOLBOX — Bento Grid ────────────────────────────────── */
-    .toolbox-header {
-      position: relative;
-      margin-bottom: 48px;
-    }
-
-    .toolbox-header-badge {
-      display: inline-block;
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--primary);
-      background: rgba(151, 216, 112, 0.1);
-      padding: 4px 12px;
-      border-radius: 3px;
-      margin-bottom: 16px;
-    }
-
-    .toolbox-header h2 {
-      font-family: var(--font-head);
-      font-size: clamp(36px, 5vw, 60px);
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      line-height: 1;
-      margin-bottom: 16px;
-    }
-
-    .toolbox-header h2 .dim {
-      color: var(--outline);
-    }
-
-    .toolbox-header p {
-      font-size: 18px;
-      color: var(--on-surface-var);
-      max-width: 600px;
-      line-height: 1.7;
-    }
-
-    .toolbox-line-numbers {
-      position: absolute;
-      left: -48px;
-      top: 0;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: rgba(151, 216, 112, 0.2);
-      line-height: 1.8;
-      user-select: none;
-    }
-
-    .toolbox-bento {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      gap: 20px;
-    }
-
-    .toolbox-card {
-      background: var(--surface-low);
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.05);
-      padding: 28px;
-      transition: border-color 400ms ease;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .toolbox-card:hover {
-      border-color: rgba(151, 216, 112, 0.2);
-    }
-
-    /* Pipeline & Automation — large */
-    .toolbox-pipeline {
-      grid-column: span 8;
-    }
-
-    .toolbox-pipeline .glow {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 256px;
-      height: 256px;
-      background: rgba(151, 216, 112, 0.05);
-      border-radius: 50%;
-      margin-right: -80px;
-      margin-top: -80px;
-      filter: blur(60px);
-      pointer-events: none;
-      transition: background 400ms ease;
-    }
-
-    .toolbox-pipeline:hover .glow {
-      background: rgba(151, 216, 112, 0.1);
-    }
-
-    .toolbox-card-header {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-
-    .toolbox-card-header .material-symbols-outlined {
-      color: var(--primary);
-    }
-
-    .toolbox-card-header .bracket {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: rgba(151, 216, 112, 0.4);
-    }
-
-    .toolbox-card-header h3 {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .toolbox-cols {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-
-    .toolbox-col h4 {
-      font-family: var(--font-head);
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-
-    .toolbox-col p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 12px;
-    }
-
-    .toolbox-col .tags {
-      margin-top: 0;
-    }
-
-    .toolbox-meta {
-      position: absolute;
-      bottom: 12px;
-      right: 16px;
-      font-family: var(--font-mono);
-      font-size: 8px;
-      color: rgba(255,255,255,0.1);
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      user-select: none;
-    }
-
-    /* Infrastructure — small vertical */
-    .toolbox-infra {
-      grid-column: span 4;
-      background: var(--surface-high);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .toolbox-infra .icon {
-      font-size: 32px;
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-
-    .toolbox-infra h3 {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 12px;
-    }
-
-    .toolbox-infra h3 .sys-badge {
-      display: inline-block;
-      margin-left: 10px;
-      font-family: var(--font-mono);
-      font-size: 9px;
-      padding: 2px 8px;
-      border: 1px solid rgba(151, 216, 112, 0.3);
-      border-radius: 99px;
-      color: var(--primary);
-      vertical-align: middle;
-      animation: pulse-badge 2s ease-in-out infinite;
-    }
-
-    @keyframes pulse-badge {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-
-    .toolbox-infra p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .toolbox-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .toolbox-list li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 500;
-    }
-
-    .toolbox-list li .dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--primary);
-      flex-shrink: 0;
-    }
-
-    /* Dev env card — glassmorphic */
-    .toolbox-devenv {
-      grid-column: span 5;
-      background: rgba(42, 42, 42, 0.6);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,0.1);
-    }
-
-    .toolbox-devenv-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-    }
-
-    .toolbox-devenv-header h3 {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .toolbox-devenv-header h3 .prefix {
-      color: var(--primary);
-      opacity: 0.5;
-      font-family: var(--font-mono);
-    }
-
-    .toolbox-devenv-header .material-symbols-outlined {
-      color: var(--on-surface-var);
-    }
-
-    .toolbox-shell-block {
-      background: var(--surface-low);
-      border-left: 2px solid var(--primary);
-      border-radius: 0 4px 4px 0;
-      padding: 12px 16px;
-      margin-bottom: 20px;
-    }
-
-    .toolbox-shell-block .label {
-      font-size: 9px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 4px;
-    }
-
-    .toolbox-shell-block code {
-      font-family: var(--font-mono);
-      font-size: 13px;
-      color: rgba(255,255,255,0.8);
-    }
-
-    .toolbox-devenv p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-    }
-
-    /* Visuals card — wide */
-    .toolbox-visuals {
-      grid-column: span 7;
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .toolbox-visuals-text {
-      flex: 1;
-    }
-
-    .toolbox-visuals-text h3 {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-
-    .toolbox-visuals-text h3 .ref {
-      display: block;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: rgba(151, 216, 112, 0.4);
-      letter-spacing: 0.12em;
-      margin-top: 4px;
-    }
-
-    .toolbox-visuals-text p {
-      font-size: 14px;
-      color: var(--on-surface-var);
-      line-height: 1.7;
-      margin-bottom: 20px;
-    }
-
-    .toolbox-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-    }
-
-    .toolbox-stat-box {
-      text-align: center;
-      padding: 12px;
-      background: var(--surface-high);
-      border-radius: 4px;
-    }
-
-    .toolbox-stat-box .val {
-      font-family: var(--font-head);
-      font-size: 18px;
-      font-weight: 700;
-      color: var(--primary);
-    }
-
-    .toolbox-stat-box .lbl {
-      font-size: 9px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--on-surface-var);
-      opacity: 0.5;
-    }
-
-    .toolbox-visuals-img {
-      flex: 1;
-      height: 200px;
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--surface-high);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .toolbox-visuals-img .material-symbols-outlined {
-      font-size: 56px;
-      color: rgba(255,255,255,0.06);
-    }
-
-    /* ── Quote ────────────────────────────────────────────────── */
-    .quote-section {
-      margin-top: 96px;
-      padding-left: 32px;
-      border-left: 1px solid rgba(151, 216, 112, 0.2);
-      max-width: 600px;
-    }
-
-    .quote-section blockquote {
-      font-family: var(--font-head);
-      font-size: 22px;
-      font-style: italic;
-      color: rgba(255,255,255,0.6);
-      line-height: 1.4;
-      margin-bottom: 16px;
-    }
-
-    .quote-section cite {
-      font-family: var(--font-body);
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--primary);
-      font-style: normal;
-    }
-
-    /* ── CONTACT ──────────────────────────────────────────────── */
-    #contact {
-      text-align: center;
-    }
-
-    #contact h2 {
-      font-family: var(--font-head);
-      font-size: clamp(26px, 4vw, 40px);
-      font-weight: 700;
-      color: var(--on-surface);
-      letter-spacing: -0.02em;
-      margin-bottom: 12px;
-    }
-
-    #contact .contact-sub {
-      font-size: 15px;
-      color: var(--on-surface-var);
-      margin-bottom: 40px;
-    }
-
-    .contact-links {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .contact-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 12px 20px;
-      background: var(--surface-low);
-      border: 1px solid rgba(255,255,255,0.05);
-      border-radius: 6px;
-      font-family: var(--font-body);
-      font-size: 12px;
-      color: var(--on-surface-var);
-      transition: border-color 200ms ease, color 200ms ease, transform 200ms ease;
-    }
-
-    .contact-link:hover {
-      border-color: rgba(151, 216, 112, 0.3);
-      color: var(--on-surface);
-      transform: translateY(-2px);
-    }
-
-    .contact-link svg {
-      width: 15px;
-      height: 15px;
-      flex-shrink: 0;
-    }
-
-    /* ── Footer ──────────────────────────────────────────────── */
-    .site-footer {
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding: 48px 32px;
-    }
-
-    .footer-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-copy {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 32px;
-    }
-
-    .footer-link {
-      font-family: var(--font-body);
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-      transition: color 400ms ease;
-    }
-
-    .footer-link:hover {
-      color: var(--primary);
-      text-decoration: underline;
-      text-decoration-color: var(--primary);
-      text-underline-offset: 4px;
-    }
-
-    /* ── RESPONSIVE ─────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dianah Rosli — LRC Artist & Pipeline TD. 8+ years in animation production. Python tooling, render farm management, and pipeline automation."
+    />
+    <meta
+      property="og:title"
+      content="Dianah Rosli — Pipeline TD & LRC Artist"
+    />
+    <meta
+      property="og:description"
+      content="8+ years in animation production. Building tools that make pipelines disappear."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://didi.is-a.dev" />
+    <meta name="twitter:card" content="summary" />
+    <meta
+      name="twitter:title"
+      content="Dianah Rosli — Pipeline TD & LRC Artist"
+    />
+    <meta
+      name="twitter:description"
+      content="8+ years in animation production. Building tools that make pipelines disappear."
+    />
+    <title>Dianah Rosli — Pipeline TD & LRC Artist</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      /* ── Reset ─────────────────────────────────────────────── */
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
       }
-      .bento-featured { grid-column: span 12; }
-      .bento-tool { grid-column: span 12; }
-      .bento-production { grid-column: span 6; }
-      .bento-split {
-        grid-column: span 12;
-        grid-template-columns: 1fr;
+
+      /* ── Tokens ─────────────────────────────────────────────── */
+      :root {
+        --bg: #131313;
+        --surface: #131313;
+        --surface-low: #1c1b1b;
+        --surface-high: #2a2a2a;
+        --surface-highest: #353535;
+        --surface-lowest: #0e0e0e;
+        --primary: #97d870;
+        --primary-ctr: #72b04e;
+        --on-primary: #143800;
+        --on-surface: #e5e2e1;
+        --on-surface-var: #c1c9b7;
+        --outline: #8b9383;
+        --outline-var: #42493b;
+        --font-head: "Space Grotesk", sans-serif;
+        --font-body: "Inter", sans-serif;
+        --font-mono: "JetBrains Mono", monospace;
+        --sidebar-w: 256px;
       }
-      .toolbox-pipeline { grid-column: span 12; }
-      .toolbox-infra { grid-column: span 12; }
-      .toolbox-devenv { grid-column: span 6; }
-      .toolbox-visuals { grid-column: span 6; }
-      .toolbox-line-numbers { display: none; }
-    }
 
-    @media (max-width: 768px) {
-      .topbar { display: none; }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 400,
+          "GRAD" 0,
+          "opsz" 24;
+      }
 
+      /* ── Base ───────────────────────────────────────────────── */
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--on-surface);
+        font-family: var(--font-body);
+        font-size: 15px;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ::selection {
+        background: rgba(151, 216, 112, 0.3);
+        color: var(--primary);
+      }
+
+      /* ── Scrollbar ──────────────────────────────────────────── */
+      ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #3a3a3a;
+        border-radius: 3px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #4a4a4a;
+      }
+
+      /* ── Layout ─────────────────────────────────────────────── */
       .layout {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: var(--sidebar-w) 1fr;
+        min-height: 100vh;
       }
 
+      /* ── Sidebar ─────────────────────────────────────────────── */
       .sidebar {
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        width: 260px;
         height: 100vh;
-        z-index: 100;
-        transform: translateX(-100%);
-        transition: transform 250ms ease;
-        padding-top: 80px;
+        overflow-y: auto;
+        background: var(--bg);
+        border-right: 1px solid rgba(255, 255, 255, 0.05);
+        display: flex;
+        flex-direction: column;
+        padding: 128px 24px 24px;
+        flex-shrink: 0;
       }
 
-      .sidebar.open {
-        transform: translateX(0);
-        box-shadow: 4px 0 24px rgba(0,0,0,0.5);
+      .sidebar-profile {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 32px;
+        padding: 0 8px;
       }
 
-      .overlay.visible { display: block; }
-      .hamburger { display: flex; }
-
-      section { padding: 60px 20px; }
-
-      #hero { padding: 40px 20px 60px; }
-
-      .hero-title {
-        font-size: clamp(36px, 10vw, 60px);
+      .avatar-wrap {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        border: 1px solid rgba(66, 73, 59, 0.3);
+        overflow: hidden;
+        flex-shrink: 0;
       }
 
-      .hero-grid {
-        grid-template-columns: 1fr;
-        margin-top: 40px;
+      .avatar-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .avatar-initials {
+        width: 100%;
+        height: 100%;
+        background: var(--surface-high);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-head);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .sidebar-name {
+        font-family: var(--font-head);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+        line-height: 1.3;
+      }
+
+      .sidebar-role {
+        font-family: var(--font-body);
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      /* Nav */
+      .sidebar-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        flex: 1;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        font-family: var(--font-body);
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        border-radius: 6px;
+        transition: all 150ms ease;
+        cursor: pointer;
+        letter-spacing: 0.02em;
+      }
+
+      .nav-link:hover {
+        color: var(--on-surface);
+        background: var(--surface-high);
+      }
+
+      .nav-link.active {
+        color: var(--primary);
+        background: var(--surface-high);
+        transform: translateX(4px);
+      }
+
+      .nav-link .material-symbols-outlined {
+        font-size: 18px;
+      }
+
+      /* CV button */
+      .btn-cv {
+        margin-top: auto;
+        display: block;
+        text-align: center;
+        padding: 12px 16px;
+        font-family: var(--font-head);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary);
+        border: 1px solid rgba(114, 176, 78, 0.3);
+        border-radius: 6px;
+        transition: background 200ms ease;
+      }
+
+      .btn-cv:hover {
+        background: rgba(114, 176, 78, 0.1);
+      }
+
+      /* Hamburger (mobile only) */
+      .hamburger {
+        display: none;
+        position: fixed;
+        top: 16px;
+        left: 16px;
+        z-index: 200;
+        background: var(--surface-high);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        width: 40px;
+        height: 40px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .hamburger span {
+        display: block;
+        width: 18px;
+        height: 1.5px;
+        background: var(--on-surface);
+        transition:
+          transform 200ms ease,
+          opacity 200ms ease;
+      }
+
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+
+      .overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 99;
+      }
+
+      /* ── Main content ────────────────────────────────────────── */
+      .content {
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ── Top navbar ──────────────────────────────────────────── */
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 72px;
+        padding: 0 32px;
+        background: rgba(19, 19, 19, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .topbar-logo {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--on-surface);
+        letter-spacing: -0.03em;
+        flex-shrink: 0;
+      }
+
+      .topbar-nav {
+        display: flex;
+        align-items: center;
         gap: 32px;
       }
 
+      .topbar-link {
+        font-family: var(--font-head);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.7);
+        padding: 4px 0;
+        border-bottom: 1px solid transparent;
+        transition:
+          color 200ms ease,
+          border-color 200ms ease;
+      }
+
+      .topbar-link:hover {
+        color: var(--primary);
+      }
+
+      .topbar-link.active {
+        color: var(--primary);
+        border-bottom-color: var(--primary);
+      }
+
+      .topbar-cta {
+        font-family: var(--font-head);
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--on-surface);
+        background: rgba(53, 53, 53, 0.5);
+        border: 1px solid rgba(66, 73, 59, 0.2);
+        padding: 8px 24px;
+        flex-shrink: 0;
+        transition:
+          background 200ms ease,
+          opacity 200ms ease;
+      }
+
+      .topbar-cta:hover {
+        background: rgba(53, 53, 53, 0.8);
+      }
+
+      /* ── Section scaffold ────────────────────────────────────── */
+      section {
+        padding: 96px 32px;
+      }
+
+      .section-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-label {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.15em;
+        color: var(--on-surface-var);
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+
+      /* ── Fade-in animation ───────────────────────────────────── */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+          opacity 400ms ease-out,
+          transform 400ms ease-out;
+      }
+
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── Shared: tags ───────────────────────────────────────── */
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 12px;
+      }
+
+      .tag {
+        font-family: var(--font-body);
+        font-size: 10px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        background: var(--surface-high);
+        padding: 4px 10px;
+        border-radius: 2px;
+        color: var(--on-surface-var);
+      }
+
+      .tag--cmd::before {
+        content: "$ ";
+        color: var(--primary);
+        font-family: var(--font-mono);
+      }
+
+      /* ── Buttons ───────────────────────────────────────────── */
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 32px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-ctr));
+        color: var(--on-primary);
+        font-family: var(--font-head);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border-radius: 6px;
+        transition:
+          transform 200ms ease,
+          opacity 200ms ease;
+      }
+
+      .btn-primary:hover {
+        transform: scale(1.02);
+      }
+
+      .btn-primary:active {
+        transform: scale(0.98);
+      }
+
+      .btn-outline {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 32px;
+        background: transparent;
+        color: var(--on-surface);
+        font-family: var(--font-head);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        border: 1px solid rgba(139, 147, 131, 0.2);
+        border-radius: 6px;
+        transition:
+          background 200ms ease,
+          border-color 200ms ease;
+      }
+
+      .btn-outline:hover {
+        background: var(--surface-highest);
+        border-color: rgba(139, 147, 131, 0.4);
+      }
+
+      /* ── HERO ────────────────────────────────────────────────── */
+      #hero {
+        min-height: calc(100vh - 72px);
+        display: flex;
+        align-items: center;
+        padding: 48px 32px 96px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-glow {
+        position: absolute;
+        top: 25%;
+        right: -80px;
+        width: 600px;
+        height: 600px;
+        background: rgba(151, 216, 112, 0.05);
+        filter: blur(120px);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+
+      .hero-divider {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(66, 73, 59, 0.2),
+          transparent
+        );
+      }
+
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-eyebrow {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+
+      .hero-eyebrow-line {
+        height: 1px;
+        width: 48px;
+        background: var(--primary);
+      }
+
+      .hero-eyebrow-text {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--on-surface-var);
+      }
+
+      .hero-title {
+        font-family: var(--font-head);
+        font-size: clamp(48px, 8vw, 120px);
+        font-weight: 700;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        color: var(--on-surface);
+        margin-bottom: 32px;
+      }
+
+      .hero-title .accent {
+        color: var(--primary);
+        font-style: italic;
+      }
+
+      .hero-title .bar {
+        display: inline-block;
+        height: 0.1em;
+        width: 0.8em;
+        background: var(--surface-high);
+        border-radius: 99px;
+        vertical-align: middle;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+        margin-top: 64px;
+        align-items: start;
+      }
+
       .hero-text p {
+        font-family: var(--font-body);
+        font-size: 18px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 40px;
+      }
+
+      .hero-cta {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      /* ── Terminal card (hero) ─────────────────────────────────── */
+      .terminal-card {
+        position: relative;
+      }
+
+      .terminal-glow {
+        position: absolute;
+        inset: -4px;
+        background: linear-gradient(
+          135deg,
+          rgba(151, 216, 112, 0.2),
+          transparent
+        );
+        filter: blur(40px);
+        opacity: 0.5;
+        border-radius: 16px;
+        transition: opacity 600ms ease;
+        pointer-events: none;
+      }
+
+      .terminal-card:hover .terminal-glow {
+        opacity: 0.75;
+      }
+
+      .terminal-frame {
+        position: relative;
+        background: rgba(14, 14, 14, 0.8);
+        backdrop-filter: blur(40px);
+        -webkit-backdrop-filter: blur(40px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+      }
+
+      .terminal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .terminal-dots {
+        display: flex;
+        gap: 6px;
+      }
+
+      .terminal-dots span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .terminal-dots span:nth-child(1) {
+        background: rgba(255, 180, 171, 0.2);
+        border: 1px solid rgba(255, 180, 171, 0.4);
+      }
+      .terminal-dots span:nth-child(2) {
+        background: rgba(47, 79, 29, 1);
+        border: 1px solid rgba(172, 210, 146, 0.4);
+      }
+      .terminal-dots span:nth-child(3) {
+        background: rgba(151, 216, 112, 0.2);
+        border: 1px solid rgba(151, 216, 112, 0.4);
+      }
+
+      .terminal-title {
+        font-family: var(--font-head);
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: rgba(193, 201, 183, 0.5);
+      }
+
+      .terminal-body {
+        padding: 28px;
+        font-family: var(--font-head);
+        font-size: 14px;
+        line-height: 1.7;
+      }
+
+      .terminal-block {
+        margin-bottom: 20px;
+      }
+
+      .terminal-block:last-child {
+        margin-bottom: 0;
+      }
+
+      .terminal-cmd {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+        margin-bottom: 6px;
+      }
+
+      .terminal-cmd .dollar {
+        opacity: 0.5;
+      }
+
+      .terminal-cmd .cmd-text {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+      }
+
+      .terminal-output {
+        padding-left: 24px;
+        border-left: 1px solid rgba(255, 255, 255, 0.05);
+        color: var(--on-surface-var);
+      }
+
+      .terminal-output p {
+        margin-bottom: 4px;
+      }
+
+      .terminal-output p:last-child {
+        margin-bottom: 0;
+      }
+
+      .terminal-stat {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 8px;
+        color: var(--on-surface);
+      }
+
+      .terminal-stat:last-child {
+        margin-bottom: 0;
+      }
+
+      .terminal-stat-marker {
+        color: var(--primary);
+      }
+
+      .terminal-cursor-line {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--primary);
+        margin-top: 20px;
+      }
+
+      .terminal-cursor-line .dollar {
+        opacity: 0.5;
+      }
+
+      .terminal-cursor {
+        display: inline-block;
+        width: 8px;
+        height: 18px;
+        background: var(--primary);
+        animation: cursor-blink 1s infinite;
+      }
+
+      @keyframes cursor-blink {
+        0%,
+        49% {
+          opacity: 1;
+        }
+        50%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .terminal-line {
+        opacity: 0;
+      }
+
+      .terminal-line.visible {
+        opacity: 1;
+      }
+
+      /* ── WORK — Bento Grid ────────────────────────────────────── */
+      #work {
+        padding-top: 0;
+      }
+
+      .work-header {
+        margin-bottom: 48px;
+      }
+
+      .work-header-code {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(151, 216, 112, 0.4);
+        letter-spacing: 0.3em;
+        margin-bottom: 12px;
+      }
+
+      .work-header h2 {
+        font-family: var(--font-head);
+        font-size: clamp(32px, 5vw, 56px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1.1;
+        color: var(--on-surface);
+        margin-bottom: 16px;
+      }
+
+      .work-header h2 .accent {
+        color: var(--primary);
+      }
+
+      .work-header p {
         font-size: 16px;
+        color: var(--on-surface-var);
+        max-width: 640px;
+        line-height: 1.7;
+        opacity: 0.8;
       }
 
       .bento-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .bento-featured,
-      .bento-tool,
-      .bento-production,
-      .bento-split {
-        grid-column: span 1;
-      }
-
-      .bento-split {
-        grid-template-columns: 1fr;
-      }
-
-      .bento-featured {
-        min-height: 280px;
-      }
-
-      .bento-featured-content {
-        width: 100%;
-      }
-
-      .toolbox-bento {
-        grid-template-columns: 1fr;
-        gap: 16px;
-      }
-
-      .toolbox-pipeline,
-      .toolbox-infra,
-      .toolbox-devenv,
-      .toolbox-visuals {
-        grid-column: span 1;
-      }
-
-      .toolbox-cols {
-        grid-template-columns: 1fr;
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
         gap: 24px;
       }
 
-      .toolbox-visuals {
+      .bento-card {
+        background: var(--surface-low);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        overflow: hidden;
+        transition: border-color 400ms ease;
+      }
+
+      .bento-card:hover {
+        border-color: rgba(151, 216, 112, 0.2);
+      }
+
+      /* Featured production card */
+      .bento-featured {
+        grid-column: span 8;
+        position: relative;
+        min-height: 380px;
+        display: flex;
+        align-items: flex-end;
+        background: linear-gradient(to top, var(--bg), var(--surface-high));
+      }
+
+      .bento-featured-content {
+        padding: 32px;
+        width: 66%;
+        position: relative;
+        z-index: 1;
+      }
+
+      .bento-featured-label {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+
+      .bento-featured-label .prefix {
+        font-family: var(--font-mono);
+        margin-right: 6px;
+      }
+
+      .bento-featured h3 {
+        font-family: var(--font-head);
+        font-size: 28px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 10px;
+      }
+
+      .bento-featured p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .bento-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary);
+        transition: color 200ms ease;
+      }
+
+      .bento-link:hover {
+        color: var(--on-surface);
+      }
+
+      .bento-link .material-symbols-outlined {
+        font-size: 14px;
+      }
+
+      /* Tool card (sidebar style) */
+      .bento-tool {
+        grid-column: span 4;
+        padding: 28px;
+        display: flex;
         flex-direction: column;
+        justify-content: space-between;
+        background: var(--surface-high);
+        border-left: 2px solid rgba(151, 216, 112, 0.3);
+      }
+
+      .bento-tool-label {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--on-surface-var);
+        margin-bottom: 20px;
+      }
+
+      .bento-tool-label .prefix {
+        font-family: var(--font-mono);
+        color: var(--primary);
+        margin-right: 6px;
+      }
+
+      .bento-tool h3 {
+        font-family: var(--font-head);
+        font-size: 22px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 12px;
+      }
+
+      .bento-tool p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      /* Production small card */
+      .bento-production {
+        grid-column: span 4;
+        background: var(--surface-low);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .bento-production-img {
+        height: 200px;
+        background: var(--surface-high);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .bento-production-img .material-symbols-outlined {
+        font-size: 48px;
+        color: rgba(255, 255, 255, 0.1);
+      }
+
+      .bento-production-body {
+        padding: 24px;
+      }
+
+      .bento-production-body .label {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--on-surface-var);
+        margin-bottom: 8px;
+      }
+
+      .bento-production-body .label .prefix {
+        font-family: var(--font-mono);
+        margin-right: 6px;
+      }
+
+      .bento-production-body h3 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 6px;
+      }
+
+      .bento-production-body p {
+        font-size: 13px;
+        color: var(--on-surface-var);
+        line-height: 1.6;
+        margin-bottom: 16px;
+      }
+
+      /* Split tool card */
+      .bento-split {
+        grid-column: span 8;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background: var(--surface-low);
+        padding: 2px;
+      }
+
+      .bento-split-text {
+        padding: 28px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+
+      .bento-split-text .label {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 12px;
+      }
+
+      .bento-split-text h3 {
+        font-family: var(--font-head);
+        font-size: 26px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 12px;
+      }
+
+      .bento-split-text p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .bento-split-code-label {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(151, 216, 112, 0.6);
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+
+      .bento-split-terminal {
+        background: var(--surface-lowest);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        min-height: 280px;
+      }
+
+      .bento-split-terminal::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0.1;
+        background: radial-gradient(
+          circle at center,
+          var(--primary),
+          transparent
+        );
+      }
+
+      .bento-split-terminal code {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: rgba(151, 216, 112, 0.6);
+        line-height: 1.8;
+        padding: 24px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--on-surface);
+        padding: 8px 16px;
+        border-radius: 3px;
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: background 200ms ease;
+      }
+
+      .btn-ghost:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      .btn-ghost .material-symbols-outlined {
+        font-size: 14px;
+      }
+
+      .btn-text {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        color: var(--on-surface-var);
+        padding: 8px 16px;
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 500;
+        transition: color 200ms ease;
+      }
+
+      .btn-text:hover {
+        color: var(--on-surface);
+      }
+
+      /* ── Work Lists (Production Reel + Open Source) ─────────── */
+      .work-lists {
+        margin-top: 96px;
       }
 
       .work-lists-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
       }
 
-      .footer-inner {
+      .work-list-section {
+        min-width: 0;
+      }
+
+      .work-list-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      }
+
+      .work-list-header .material-symbols-outlined {
+        font-size: 20px;
+        color: var(--primary);
+      }
+
+      .work-list-header h3 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--on-surface);
+      }
+
+      .work-list-header .count {
+        margin-left: auto;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(151, 216, 112, 0.4);
+        letter-spacing: 0.1em;
+      }
+
+      .work-list {
+        display: flex;
         flex-direction: column;
+      }
+
+      .work-list-row {
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        gap: 16px;
+        padding: 14px 12px;
+        align-items: center;
+        transition: background 200ms ease;
+        border-radius: 6px;
+      }
+
+      .work-list-row:hover {
+        background: var(--surface-high);
+      }
+
+      .work-list-row + .work-list-row {
+        border-top: 1px solid rgba(255, 255, 255, 0.03);
+      }
+
+      .work-list-idx {
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(151, 216, 112, 0.3);
+        min-width: 28px;
+      }
+
+      .work-list-info {
+        min-width: 0;
+      }
+
+      .work-list-name {
+        font-family: var(--font-head);
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--on-surface);
+        transition: color 200ms ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .work-list-row:hover .work-list-name {
+        color: var(--primary);
+      }
+
+      .work-list-meta {
+        font-family: var(--font-body);
+        font-size: 11px;
+        color: var(--on-surface-var);
+        opacity: 0.6;
+        margin-top: 2px;
+      }
+
+      .work-list-action {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        font-family: var(--font-body);
+        font-size: 10px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--on-surface-var);
+        opacity: 0;
+        transition:
+          opacity 200ms ease,
+          color 200ms ease;
+        white-space: nowrap;
+      }
+
+      .work-list-row:hover .work-list-action {
+        opacity: 1;
+      }
+
+      .work-list-action .material-symbols-outlined {
+        font-size: 14px;
+      }
+
+      .work-list-empty {
+        padding: 20px 12px;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.2);
+        font-style: italic;
+      }
+
+      /* ── EXPERIENCE ─────────────────────────────────────────── */
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding-left: 24px;
+      }
+
+      .timeline::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 8px;
+        bottom: 8px;
+        width: 1px;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .timeline-entry {
+        position: relative;
+        padding: 0 0 40px 32px;
+      }
+
+      .timeline-entry:last-child {
+        padding-bottom: 0;
+      }
+
+      .timeline-entry::before {
+        content: "";
+        position: absolute;
+        left: -4px;
+        top: 8px;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: var(--surface-high);
+        border: 2px solid var(--bg);
+        transition: background 200ms ease;
+      }
+
+      .timeline-entry:hover::before {
+        background: var(--primary);
+      }
+
+      .entry-date {
+        font-family: var(--font-mono);
+        font-size: 11px;
+        color: var(--on-surface-var);
+        margin-bottom: 6px;
+        letter-spacing: 0.05em;
+      }
+
+      .entry-company {
+        display: inline-block;
+        font-family: var(--font-head);
+        font-size: 12px;
+        color: var(--primary);
+        font-weight: 600;
+        margin-bottom: 4px;
+        transition: opacity 150ms ease;
+      }
+
+      .entry-company:hover {
+        opacity: 0.8;
+      }
+
+      .entry-role {
+        font-family: var(--font-head);
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--on-surface);
+        line-height: 1.3;
+        margin-bottom: 10px;
+      }
+
+      .entry-desc {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        max-width: 600px;
+        margin-bottom: 4px;
+      }
+
+      /* ── TOOLBOX — Bento Grid ────────────────────────────────── */
+      .toolbox-header {
+        position: relative;
+        margin-bottom: 48px;
+      }
+
+      .toolbox-header-badge {
+        display: inline-block;
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--primary);
+        background: rgba(151, 216, 112, 0.1);
+        padding: 4px 12px;
+        border-radius: 3px;
+        margin-bottom: 16px;
+      }
+
+      .toolbox-header h2 {
+        font-family: var(--font-head);
+        font-size: clamp(36px, 5vw, 60px);
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+
+      .toolbox-header h2 .dim {
+        color: var(--outline);
+      }
+
+      .toolbox-header p {
+        font-size: 18px;
+        color: var(--on-surface-var);
+        max-width: 600px;
+        line-height: 1.7;
+      }
+
+      .toolbox-line-numbers {
+        position: absolute;
+        left: -48px;
+        top: 0;
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: rgba(151, 216, 112, 0.2);
+        line-height: 1.8;
+        user-select: none;
+      }
+
+      .toolbox-bento {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 20px;
+      }
+
+      .toolbox-card {
+        background: var(--surface-low);
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 28px;
+        transition: border-color 400ms ease;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .toolbox-card:hover {
+        border-color: rgba(151, 216, 112, 0.2);
+      }
+
+      /* Pipeline & Automation — large */
+      .toolbox-pipeline {
+        grid-column: span 8;
+      }
+
+      .toolbox-pipeline .glow {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 256px;
+        height: 256px;
+        background: rgba(151, 216, 112, 0.05);
+        border-radius: 50%;
+        margin-right: -80px;
+        margin-top: -80px;
+        filter: blur(60px);
+        pointer-events: none;
+        transition: background 400ms ease;
+      }
+
+      .toolbox-pipeline:hover .glow {
+        background: rgba(151, 216, 112, 0.1);
+      }
+
+      .toolbox-card-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .toolbox-card-header .material-symbols-outlined {
+        color: var(--primary);
+      }
+
+      .toolbox-card-header .bracket {
+        font-family: var(--font-mono);
+        font-size: 12px;
+        color: rgba(151, 216, 112, 0.4);
+      }
+
+      .toolbox-card-header h3 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .toolbox-cols {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+      }
+
+      .toolbox-col h4 {
+        font-family: var(--font-head);
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--primary);
+        margin-bottom: 8px;
+      }
+
+      .toolbox-col p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+
+      .toolbox-col .tags {
+        margin-top: 0;
+      }
+
+      .toolbox-meta {
+        position: absolute;
+        bottom: 12px;
+        right: 16px;
+        font-family: var(--font-mono);
+        font-size: 8px;
+        color: rgba(255, 255, 255, 0.1);
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        user-select: none;
+      }
+
+      /* Infrastructure — small vertical */
+      .toolbox-infra {
+        grid-column: span 4;
+        background: var(--surface-high);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+
+      .toolbox-infra .icon {
+        font-size: 32px;
+        color: var(--primary);
+        margin-bottom: 20px;
+      }
+
+      .toolbox-infra h3 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+      }
+
+      .toolbox-infra h3 .sys-badge {
+        display: inline-block;
+        margin-left: 10px;
+        font-family: var(--font-mono);
+        font-size: 9px;
+        padding: 2px 8px;
+        border: 1px solid rgba(151, 216, 112, 0.3);
+        border-radius: 99px;
+        color: var(--primary);
+        vertical-align: middle;
+        animation: pulse-badge 2s ease-in-out infinite;
+      }
+
+      @keyframes pulse-badge {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+
+      .toolbox-infra p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .toolbox-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .toolbox-list li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .toolbox-list li .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--primary);
+        flex-shrink: 0;
+      }
+
+      /* Dev env card — glassmorphic */
+      .toolbox-devenv {
+        grid-column: span 5;
+        background: rgba(42, 42, 42, 0.6);
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .toolbox-devenv-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .toolbox-devenv-header h3 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .toolbox-devenv-header h3 .prefix {
+        color: var(--primary);
+        opacity: 0.5;
+        font-family: var(--font-mono);
+      }
+
+      .toolbox-devenv-header .material-symbols-outlined {
+        color: var(--on-surface-var);
+      }
+
+      .toolbox-shell-block {
+        background: var(--surface-low);
+        border-left: 2px solid var(--primary);
+        border-radius: 0 4px 4px 0;
+        padding: 12px 16px;
+        margin-bottom: 20px;
+      }
+
+      .toolbox-shell-block .label {
+        font-size: 9px;
+        font-weight: 700;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 4px;
+      }
+
+      .toolbox-shell-block code {
+        font-family: var(--font-mono);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.8);
+      }
+
+      .toolbox-devenv p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+      }
+
+      /* Visuals card — wide */
+      .toolbox-visuals {
+        grid-column: span 7;
+        display: flex;
+        gap: 28px;
+        align-items: center;
+      }
+
+      .toolbox-visuals-text {
+        flex: 1;
+      }
+
+      .toolbox-visuals-text h3 {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        margin-bottom: 4px;
+      }
+
+      .toolbox-visuals-text h3 .ref {
+        display: block;
+        font-family: var(--font-mono);
+        font-size: 10px;
+        color: rgba(151, 216, 112, 0.4);
+        letter-spacing: 0.12em;
+        margin-top: 4px;
+      }
+
+      .toolbox-visuals-text p {
+        font-size: 14px;
+        color: var(--on-surface-var);
+        line-height: 1.7;
+        margin-bottom: 20px;
+      }
+
+      .toolbox-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .toolbox-stat-box {
+        text-align: center;
+        padding: 12px;
+        background: var(--surface-high);
+        border-radius: 4px;
+      }
+
+      .toolbox-stat-box .val {
+        font-family: var(--font-head);
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .toolbox-stat-box .lbl {
+        font-size: 9px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--on-surface-var);
+        opacity: 0.5;
+      }
+
+      .toolbox-visuals-img {
+        flex: 1;
+        height: 200px;
+        border-radius: 8px;
+        overflow: hidden;
+        background: var(--surface-high);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .toolbox-visuals-img .material-symbols-outlined {
+        font-size: 56px;
+        color: rgba(255, 255, 255, 0.06);
+      }
+
+      /* ── Quote ────────────────────────────────────────────────── */
+      .quote-section {
+        margin-top: 96px;
+        padding-left: 32px;
+        border-left: 1px solid rgba(151, 216, 112, 0.2);
+        max-width: 600px;
+      }
+
+      .quote-section blockquote {
+        font-family: var(--font-head);
+        font-size: 22px;
+        font-style: italic;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.4;
+        margin-bottom: 16px;
+      }
+
+      .quote-section cite {
+        font-family: var(--font-body);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary);
+        font-style: normal;
+      }
+
+      /* ── CONTACT ──────────────────────────────────────────────── */
+      #contact {
         text-align: center;
       }
 
-      .footer-links {
+      #contact h2 {
+        font-family: var(--font-head);
+        font-size: clamp(26px, 4vw, 40px);
+        font-weight: 700;
+        color: var(--on-surface);
+        letter-spacing: -0.02em;
+        margin-bottom: 12px;
+      }
+
+      #contact .contact-sub {
+        font-size: 15px;
+        color: var(--on-surface-var);
+        margin-bottom: 40px;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
         gap: 16px;
         flex-wrap: wrap;
-        justify-content: center;
-      }
-    }
-
-    @media (max-width: 480px) {
-      section { padding: 48px 16px; }
-
-      .hero-cta {
-        flex-direction: column;
       }
 
-      .btn-primary, .btn-outline {
-        width: 100%;
-        justify-content: center;
+      .contact-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 20px;
+        background: var(--surface-low);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+        font-family: var(--font-body);
+        font-size: 12px;
+        color: var(--on-surface-var);
+        transition:
+          border-color 200ms ease,
+          color 200ms ease,
+          transform 200ms ease;
       }
-    }
-  </style>
-</head>
-<body>
 
-  <!-- Mobile hamburger -->
-  <button class="hamburger" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+      .contact-link:hover {
+        border-color: rgba(151, 216, 112, 0.3);
+        color: var(--on-surface);
+        transform: translateY(-2px);
+      }
 
-  <!-- Overlay for mobile -->
-  <div class="overlay" id="overlay" aria-hidden="true"></div>
+      .contact-link svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+      }
 
-  <div class="layout">
+      /* ── Footer ──────────────────────────────────────────────── */
+      .site-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 48px 32px;
+      }
 
-    <!-- ── Sidebar ──────────────────────────────────────────── -->
-    <aside class="sidebar" id="sidebar">
-      <div class="sidebar-profile">
-        <div class="avatar-wrap">
-          <img
-            src="images/emok.jpg"
-            alt="Dianah Rosli"
-            id="avatar-img"
-          />
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .footer-copy {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 32px;
+      }
+
+      .footer-link {
+        font-family: var(--font-body);
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.4);
+        transition: color 400ms ease;
+      }
+
+      .footer-link:hover {
+        color: var(--primary);
+        text-decoration: underline;
+        text-decoration-color: var(--primary);
+        text-underline-offset: 4px;
+      }
+
+      /* ── RESPONSIVE ─────────────────────────────────────────── */
+      @media (max-width: 1024px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .bento-featured {
+          grid-column: span 12;
+        }
+        .bento-tool {
+          grid-column: span 12;
+        }
+        .bento-production {
+          grid-column: span 6;
+        }
+        .bento-split {
+          grid-column: span 12;
+          grid-template-columns: 1fr;
+        }
+        .toolbox-pipeline {
+          grid-column: span 12;
+        }
+        .toolbox-infra {
+          grid-column: span 12;
+        }
+        .toolbox-devenv {
+          grid-column: span 6;
+        }
+        .toolbox-visuals {
+          grid-column: span 6;
+        }
+        .toolbox-line-numbers {
+          display: none;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .topbar {
+          display: none;
+        }
+
+        .layout {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 260px;
+          height: 100vh;
+          z-index: 100;
+          transform: translateX(-100%);
+          transition: transform 250ms ease;
+          padding-top: 80px;
+        }
+
+        .sidebar.open {
+          transform: translateX(0);
+          box-shadow: 4px 0 24px rgba(0, 0, 0, 0.5);
+        }
+
+        .overlay.visible {
+          display: block;
+        }
+        .hamburger {
+          display: flex;
+        }
+
+        section {
+          padding: 60px 20px;
+        }
+
+        #hero {
+          padding: 40px 20px 60px;
+        }
+
+        .hero-title {
+          font-size: clamp(36px, 10vw, 60px);
+        }
+
+        .hero-grid {
+          grid-template-columns: 1fr;
+          margin-top: 40px;
+          gap: 32px;
+        }
+
+        .hero-text p {
+          font-size: 16px;
+        }
+
+        .bento-grid {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .bento-featured,
+        .bento-tool,
+        .bento-production,
+        .bento-split {
+          grid-column: span 1;
+        }
+
+        .bento-split {
+          grid-template-columns: 1fr;
+        }
+
+        .bento-featured {
+          min-height: 280px;
+        }
+
+        .bento-featured-content {
+          width: 100%;
+        }
+
+        .toolbox-bento {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+
+        .toolbox-pipeline,
+        .toolbox-infra,
+        .toolbox-devenv,
+        .toolbox-visuals {
+          grid-column: span 1;
+        }
+
+        .toolbox-cols {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+
+        .toolbox-visuals {
+          flex-direction: column;
+        }
+
+        .work-lists-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+
+        .footer-inner {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .footer-links {
+          gap: 16px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        section {
+          padding: 48px 16px;
+        }
+
+        .hero-cta {
+          flex-direction: column;
+        }
+
+        .btn-primary,
+        .btn-outline {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Mobile hamburger -->
+    <button
+      class="hamburger"
+      id="nav-toggle"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+    >
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <!-- Overlay for mobile -->
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <div class="layout">
+      <!-- ── Sidebar ──────────────────────────────────────────── -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-profile">
+          <div class="avatar-wrap">
+            <img src="images/emok.jpg" alt="Dianah Rosli" id="avatar-img" />
+          </div>
+          <div>
+            <div class="sidebar-name">D. Rosli</div>
+            <div class="sidebar-role">LRC Artist & Dev</div>
+          </div>
         </div>
-        <div>
-          <div class="sidebar-name">D. Rosli</div>
-          <div class="sidebar-role">LRC Artist & Dev</div>
-        </div>
-      </div>
 
-      <nav class="sidebar-nav" aria-label="Main navigation">
-        <a class="nav-link active" data-section="work" href="#work">
-          <span class="material-symbols-outlined">grid_view</span> Projects
-        </a>
-        <a class="nav-link" data-section="experience" href="#experience">
-          <span class="material-symbols-outlined">work_history</span> History
-        </a>
-        <a class="nav-link" data-section="toolbox" href="#toolbox">
-          <span class="material-symbols-outlined">terminal</span> Stack
-        </a>
-        <a class="nav-link" data-section="contact" href="#contact">
-          <span class="material-symbols-outlined">person</span> Studio
-        </a>
-      </nav>
-
-      <a href="#" class="btn-cv">Download CV</a>
-    </aside>
-
-    <!-- ── Main content ──────────────────────────────────────── -->
-    <main class="content" id="main-content">
-
-      <!-- ── Top navbar ────────────────────────────────────────── -->
-      <header class="topbar">
-        <a href="#hero" class="topbar-logo">Dianah Rosli</a>
-        <nav class="topbar-nav" aria-label="Top navigation">
-          <a class="topbar-link active" data-section="work" href="#work">Work</a>
-          <a class="topbar-link" data-section="experience" href="#experience">Experience</a>
-          <a class="topbar-link" data-section="toolbox" href="#toolbox">Toolbox</a>
-          <a class="topbar-link" data-section="contact" href="#contact">About</a>
+        <nav class="sidebar-nav" aria-label="Main navigation">
+          <a class="nav-link active" data-section="work" href="#work">
+            <span class="material-symbols-outlined">grid_view</span> Projects
+          </a>
+          <a class="nav-link" data-section="experience" href="#experience">
+            <span class="material-symbols-outlined">work_history</span> History
+          </a>
+          <a class="nav-link" data-section="toolbox" href="#toolbox">
+            <span class="material-symbols-outlined">terminal</span> Stack
+          </a>
+          <a class="nav-link" data-section="contact" href="#contact">
+            <span class="material-symbols-outlined">person</span> Studio
+          </a>
         </nav>
-        <a href="#contact" class="topbar-cta">Contact</a>
-      </header>
 
-      <!-- ── Hero ─────────────────────────────────────────────── -->
-      <section id="hero">
-        <div class="hero-glow"></div>
-        <div class="hero-divider"></div>
+        <a href="#" class="btn-cv">Download CV</a>
+      </aside>
 
-        <div class="hero-inner">
-          <div class="hero-eyebrow fade-in">
-            <span class="hero-eyebrow-line"></span>
-            <span class="hero-eyebrow-text">2025 Portfolio</span>
-          </div>
+      <!-- ── Main content ──────────────────────────────────────── -->
+      <main class="content" id="main-content">
+        <!-- ── Top navbar ────────────────────────────────────────── -->
+        <header class="topbar">
+          <a href="#hero" class="topbar-logo">Dianah Rosli</a>
+          <nav class="topbar-nav" aria-label="Top navigation">
+            <a class="topbar-link active" data-section="work" href="#work"
+              >Work</a
+            >
+            <a class="topbar-link" data-section="experience" href="#experience"
+              >Experience</a
+            >
+            <a class="topbar-link" data-section="toolbox" href="#toolbox"
+              >Toolbox</a
+            >
+            <a class="topbar-link" data-section="contact" href="#contact"
+              >About</a
+            >
+          </nav>
+          <a href="#contact" class="topbar-cta">Contact</a>
+        </header>
 
-          <h1 class="hero-title fade-in" style="transition-delay:100ms">
-            LRC <span class="accent">Artist</span><br>
-            <span class="bar"></span> Programmer
-          </h1>
+        <!-- ── Hero ─────────────────────────────────────────────── -->
+        <section id="hero">
+          <div class="hero-glow"></div>
+          <div class="hero-divider"></div>
 
-          <div class="hero-grid">
-            <div class="hero-text fade-in" style="transition-delay:200ms">
-              <p>Engineering the intersection of algorithmic precision and visual storytelling. Specializing in Lighting, Rendering, and Creative Development for immersive digital environments.</p>
-              <div class="hero-cta">
-                <a href="#work" class="btn-primary">View Work <span class="material-symbols-outlined" style="font-size:16px">arrow_forward</span></a>
-                <a href="#toolbox" class="btn-outline">Explore Tech Stack</a>
-              </div>
+          <div class="hero-inner">
+            <div class="hero-eyebrow fade-in">
+              <span class="hero-eyebrow-line"></span>
+              <span class="hero-eyebrow-text">2025 Portfolio</span>
             </div>
 
-            <div class="terminal-card fade-in" style="transition-delay:300ms">
-              <div class="terminal-glow"></div>
-              <div class="terminal-frame">
-                <div class="terminal-header">
-                  <div class="terminal-dots">
-                    <span></span><span></span><span></span>
-                  </div>
-                  <div class="terminal-title">verdant-studio &mdash; zsh</div>
-                  <div style="width:48px"></div>
+            <h1 class="hero-title fade-in" style="transition-delay: 100ms">
+              LRC <span class="accent">Artist</span><br />
+              <span class="bar"></span> Programmer
+            </h1>
+
+            <div class="hero-grid">
+              <div class="hero-text fade-in" style="transition-delay: 200ms">
+                <p>
+                  Engineering the intersection of algorithmic precision and
+                  visual storytelling. Specializing in Lighting, Rendering, and
+                  Creative Development for immersive digital environments.
+                </p>
+                <div class="hero-cta">
+                  <a href="#work" class="btn-primary"
+                    >View Work
+                    <span
+                      class="material-symbols-outlined"
+                      style="font-size: 16px"
+                      >arrow_forward</span
+                    ></a
+                  >
+                  <a href="#toolbox" class="btn-outline">Explore Tech Stack</a>
                 </div>
-                <div class="terminal-body">
-                  <div class="terminal-block terminal-line">
-                    <div class="terminal-cmd">
-                      <span class="dollar">$</span>
-                      <span class="cmd-text">whoami</span>
-                    </div>
-                    <div class="terminal-output">
-                      <p style="color:var(--on-surface)">Dianah Rosli &mdash; Pipeline TD &middot; LRC Dev</p>
-                    </div>
-                  </div>
+              </div>
 
-                  <div class="terminal-block terminal-line">
-                    <div class="terminal-cmd">
-                      <span class="dollar">$</span>
-                      <span class="cmd-text">cat biography.txt</span>
+              <div
+                class="terminal-card fade-in"
+                style="transition-delay: 300ms"
+              >
+                <div class="terminal-glow"></div>
+                <div class="terminal-frame">
+                  <div class="terminal-header">
+                    <div class="terminal-dots">
+                      <span></span><span></span><span></span>
                     </div>
-                    <div class="terminal-output">
-                      <p>8+ years in animation production.</p>
-                      <p>Building tools that make pipelines disappear.</p>
-                    </div>
+                    <div class="terminal-title">verdant-studio &mdash; zsh</div>
+                    <div style="width: 48px"></div>
                   </div>
-
-                  <div class="terminal-block terminal-line">
-                    <div class="terminal-cmd">
-                      <span class="dollar">$</span>
-                      <span class="cmd-text">stats --summary</span>
-                    </div>
-                    <div class="terminal-output" style="margin-top:8px">
-                      <div class="terminal-stat">
-                        <span class="terminal-stat-marker">&#8866;</span>
-                        <span>8+ Years Experience</span>
+                  <div class="terminal-body">
+                    <div class="terminal-block terminal-line">
+                      <div class="terminal-cmd">
+                        <span class="dollar">$</span>
+                        <span class="cmd-text">whoami</span>
                       </div>
-                      <div class="terminal-stat">
-                        <span class="terminal-stat-marker">&#8866;</span>
-                        <span>3 Studios: Animonsta, Warnakala, Digital Durian</span>
-                      </div>
-                      <div class="terminal-stat">
-                        <span class="terminal-stat-marker">&#8866;</span>
-                        <span>~60 Node Render Farm Managed</span>
+                      <div class="terminal-output">
+                        <p style="color: var(--on-surface)">
+                          Dianah Rosli &mdash; Technical Assistant &middot; LRC
+                          Dev
+                        </p>
                       </div>
                     </div>
-                  </div>
 
-                  <div class="terminal-cursor-line terminal-line">
-                    <span class="dollar">$</span>
-                    <span class="terminal-cursor"></span>
+                    <div class="terminal-block terminal-line">
+                      <div class="terminal-cmd">
+                        <span class="dollar">$</span>
+                        <span class="cmd-text">cat biography.txt</span>
+                      </div>
+                      <div class="terminal-output">
+                        <p>8+ years in animation production.</p>
+                        <p>Building tools that make pipelines disappear.</p>
+                      </div>
+                    </div>
+
+                    <div class="terminal-block terminal-line">
+                      <div class="terminal-cmd">
+                        <span class="dollar">$</span>
+                        <span class="cmd-text">stats --summary</span>
+                      </div>
+                      <div class="terminal-output" style="margin-top: 8px">
+                        <div class="terminal-stat">
+                          <span class="terminal-stat-marker">&#8866;</span>
+                          <span>8+ Years Experience</span>
+                        </div>
+                        <div class="terminal-stat">
+                          <span class="terminal-stat-marker">&#8866;</span>
+                          <span
+                            >3 Studios: Animonsta, Warnakala, Digital
+                            Durian</span
+                          >
+                        </div>
+                        <div class="terminal-stat">
+                          <span class="terminal-stat-marker">&#8866;</span>
+                          <span>~60 Node Render Farm Managed</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="terminal-cursor-line terminal-line">
+                      <span class="dollar">$</span>
+                      <span class="terminal-cursor"></span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!-- ── Work ─────────────────────────────────────────────── -->
-      <section id="work" style="background: var(--surface-low);">
-        <div class="section-inner">
-          <div class="work-header fade-in">
-            <div class="work-header-code">[01] INIT_SYSTEM_SHOWCASE</div>
-            <h2>Technical Direction <span class="accent">&amp;</span> Creative Development.</h2>
-            <p>A selection of feature film contributions and custom pipeline tooling developed for high-end animation workflows. Focused on bridging the gap between artistic vision and technical execution.</p>
-          </div>
+        <!-- ── Work ─────────────────────────────────────────────── -->
+        <section id="work" style="background: var(--surface-low)">
+          <div class="section-inner">
+            <div class="work-header fade-in">
+              <div class="work-header-code">[01] INIT_SYSTEM_SHOWCASE</div>
+              <h2>
+                Technical Direction <span class="accent">&amp;</span> Creative
+                Development.
+              </h2>
+              <p>
+                A selection of feature film contributions and custom pipeline
+                tooling developed for high-end animation workflows. Focused on
+                bridging the gap between artistic vision and technical
+                execution.
+              </p>
+            </div>
 
-          <div class="bento-grid">
+            <div class="bento-grid">
+              <!-- Featured: Papa Zola -->
+              <div class="bento-card bento-featured fade-in">
+                <div class="bento-featured-content">
+                  <div class="bento-featured-label">
+                    <span class="prefix">&gt;_</span> Feature Film / Lighting
+                  </div>
+                  <h3>Papa Zola The Movie</h3>
+                  <p>
+                    Lighting Artist &amp; FX. Ensuring visual quality and
+                    lighting consistency across complex action sequences.
+                  </p>
+                  <a
+                    href="https://www.youtube.com/watch?v=sCwWwQxkAsA&t=3s"
+                    class="bento-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span class="material-symbols-outlined">play_circle</span>
+                    Watch Trailer
+                  </a>
+                </div>
+              </div>
 
-            <!-- Featured: Papa Zola -->
-            <div class="bento-card bento-featured fade-in">
-              <div class="bento-featured-content">
-                <div class="bento-featured-label"><span class="prefix">&gt;_</span> Feature Film / Lighting</div>
-                <h3>Papa Zola The Movie</h3>
-                <p>Lead Lighting &amp; Rendering pipeline integration. Ensuring visual consistency across complex action sequences while maintaining render efficiency.</p>
-                <a href="#" class="bento-link" target="_blank" rel="noopener noreferrer">
-                  <span class="material-symbols-outlined">play_circle</span> Watch Trailer
+              <!-- Tool: Blender Pipeline -->
+              <div
+                class="bento-card bento-tool fade-in"
+                style="transition-delay: 60ms"
+              >
+                <div>
+                  <div class="bento-tool-label">
+                    <span class="prefix">$</span> Python Tooling
+                  </div>
+                  <h3>Blender Pipeline Tools</h3>
+                  <p>
+                    Custom Blender add-on for optimization, checking and
+                    metadata validation.
+                  </p>
+                  <div class="tags">
+                    <span class="tag tag--cmd">Python</span>
+                    <span class="tag tag--cmd">Blender API</span>
+                  </div>
+                </div>
+                <a
+                  href="https://github.com/ddlite92/lrc_blender_panel"
+                  class="bento-link"
+                  style="margin-top: 24px"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span class="material-symbols-outlined">terminal</span> View
+                  on GitHub
+                  <span class="material-symbols-outlined">arrow_forward</span>
                 </a>
               </div>
-            </div>
 
-            <!-- Tool: Blender Pipeline -->
-            <div class="bento-card bento-tool fade-in" style="transition-delay:60ms">
-              <div>
-                <div class="bento-tool-label"><span class="prefix">$</span> Python Tooling</div>
-                <h3>Blender Pipeline Tools</h3>
-                <p>Custom Blender add-on for automated USD export and metadata validation. Optimized for multi-artist studio environments.</p>
-                <div class="tags">
-                  <span class="tag tag--cmd">Python</span>
-                  <span class="tag tag--cmd">USD</span>
-                  <span class="tag tag--cmd">Blender API</span>
+              <!-- Production: BoBoiBoy -->
+              <div
+                class="bento-card bento-production fade-in"
+                style="transition-delay: 120ms"
+              >
+                <div class="bento-production-img">
+                  <span class="material-symbols-outlined">movie</span>
+                </div>
+                <div class="bento-production-body">
+                  <div class="label">
+                    <span class="prefix">[02]</span> Series / Compositing
+                  </div>
+                  <h3>BoBoiBoy Galaxy Gentar</h3>
+                  <p>
+                    Advanced compositing for high-energy elemental FX and
+                    environment integration.
+                  </p>
+                  <a
+                    href="https://www.youtube.com/watch?v=GbDLd74tFjI"
+                    class="bento-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <span class="material-symbols-outlined">play_circle</span>
+                    Watch Marathon
+                  </a>
                 </div>
               </div>
-              <a href="#" class="bento-link" style="margin-top:24px" target="_blank" rel="noopener noreferrer">
-                <span class="material-symbols-outlined">terminal</span> View on GitHub <span class="material-symbols-outlined">arrow_forward</span>
+
+              <!-- Tool: File Organizer -->
+              <div
+                class="bento-card bento-split fade-in"
+                style="transition-delay: 180ms"
+              >
+                <div class="bento-split-text">
+                  <div class="label">System Utility</div>
+                  <h3>File Organizer</h3>
+                  <p>
+                    A robust CLI utility designed to handle terabytes of
+                    production assets. Implements strict naming conventions and
+                    automated checksum verification.
+                  </p>
+                  <div class="bento-split-code-label">
+                    // system.run_utility()
+                  </div>
+                  <div style="display: flex; gap: 12px; flex-wrap: wrap">
+                    <a
+                      href="https://github.com/ddlite92/files_organizer"
+                      class="btn-ghost"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      ><span class="material-symbols-outlined">code</span>
+                      Repository</a
+                    >
+                    <a
+                      href="https://github.com/ddlite92/files_organizer/blob/main/README.md"
+                      class="btn-text"
+                      >Documentation</a
+                    >
+                  </div>
+                </div>
+                <div class="bento-split-terminal">
+                  <code>
+                    [SCANNING] /prod/assets/chars/<br />
+                    [MATCH]&nbsp;&nbsp;&nbsp;chr_hero_v001.abc<br />
+                    [MOVE]&nbsp;&nbsp;&nbsp;&rarr; /archive/ep01/seq05/<br />
+                    [VERIFY]&nbsp;md5: d41d8cd98f...<br />
+                    [STATUS]&nbsp;SUCCESS
+                  </code>
+                </div>
+              </div>
+            </div>
+
+            <!-- Work Lists: Production Reel + Open Source -->
+            <div class="work-lists fade-in">
+              <div class="work-lists-grid">
+                <!-- Production Reel -->
+                <div class="work-list-section">
+                  <div class="work-list-header">
+                    <span class="material-symbols-outlined">play_circle</span>
+                    <h3>Production Reel</h3>
+                    <span class="count">10</span>
+                  </div>
+                  <div class="work-list">
+                    <!-- Monsta Studios -->
+
+                    <a
+                      href="https://www.youtube.com/watch?v=sCwWwQxkAsA&t=3s"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[001]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">Papazola The Movie</div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=GbDLd74tFjI"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[002]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">BoBoiBoy Galaxy Gentar</div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=KKsc4TZ_F_s&list=PL_Br331M3f_4_b5U7Rz0n-sz-L98b7FnX"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[003]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">BoBoiBoy Galaxy Baraju</div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=KZ0h8gWV7mI&list=PL_Br331M3f_6pBmlT8-vx9HAK0KWnu9Sb"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[004]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          BoBoiBoy Galaxy Windara
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <!-- Didi and Friends -->
+
+                    <a
+                      href="https://www.youtube.com/watch?v=nz3yr17Uhe8&list=PL5B7QzKgckD3LmZo-_BuwACQroYcbpg9Y&index=6"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[005]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          Didi & Friends The Movie
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=SG_du6oKdIQ&list=PL5B7QzKgckD3sxub-6sBuTDXBXm2GJskO"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[006]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          Didi & Friends Kembara Muzikal
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=VUILOzFHrBw&list=PL5B7QzKgckD3-FO6DBN-PgpTNQpJ-oFp-"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[007]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          Didi & Friends Rescue Squad
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=4n_RnryffcM&list=PL5B7QzKgckD0CSJ-jwyeFnccmd-9Nongg"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[008]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          Didi & Friends Lagu Musim 5
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=tMS2um3bAxM&list=PL5B7QzKgckD3w-bsRWDYOZD5YlFRd7Zsj"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[009]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          Didi & Friends Lagu Musim 4
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://www.youtube.com/watch?v=jRjcda5S9bE&list=PL5B7QzKgckD2yK_13vPeLBg7Dr_J6oAnY"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[010]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          Didi & Friends Konsert Hora Horey
+                        </div>
+                        <div class="work-list-meta">
+                          Studio &middot; 2024 &middot; LRC
+                        </div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >play_arrow</span
+                        >
+                        Watch</span
+                      >
+                    </a>
+                  </div>
+                </div>
+
+                <!-- Open Source -->
+                <div class="work-list-section">
+                  <div class="work-list-header">
+                    <span class="material-symbols-outlined">code</span>
+                    <div>
+                      <h3>Open Source</h3>
+                      <p class="subtitle">
+                        Most repos that I used and contributed to
+                      </p>
+                    </div>
+                    <span class="count">16</span>
+                  </div>
+                  <div class="work-list">
+                    <a
+                      href="https://github.com/ddlite92/contribute-to-open-source"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[001]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          contribute-to-open-source
+                        </div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/code-contributions"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[002]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">code-contributions</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/first-contributions"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[003]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">first-contributions</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/lrc-blender-panel"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[004]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">lrc-blender-panel</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/cgru_farm"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[005]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">cgru_farm</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/AppFlowy"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[006]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">AppFlowy</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/insomnia"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[007]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">insomnia</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/it-cert-automation-practice"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[008]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">
+                          it-cert-automation-practice
+                        </div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/libopenshot"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[009]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">libopenshot</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/Godot"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[010]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">Godot</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/coolify"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[011]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">coolify</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/BlendLuxCore"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[012]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">BlendLuxCore</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/OpenShadingLanguage"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[013]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">OpenShadingLanguage</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/OpenCue"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[014]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">OpenCue</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/n8n"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[015]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">n8n</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+
+                    <a
+                      href="https://github.com/ddlite92/garage"
+                      class="work-list-row"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <span class="work-list-idx">[016]</span>
+                      <div class="work-list-info">
+                        <div class="work-list-name">garage</div>
+                        <div class="work-list-meta">GitHub &middot; Python</div>
+                      </div>
+                      <span class="work-list-action"
+                        ><span class="material-symbols-outlined"
+                          >arrow_outward</span
+                        >
+                        Repo</span
+                      >
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Experience ────────────────────────────────────────── -->
+        <section id="experience">
+          <div class="section-inner">
+            <p class="section-label">Career Arc</p>
+            <div class="timeline">
+              <div class="timeline-entry fade-in">
+                <p class="entry-date">2023 &ndash; PRESENT</p>
+                <a
+                  href="#"
+                  class="entry-company"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Animonsta Studios</a
+                >
+                <h3 class="entry-role">LRC Artist / Pipeline Technical Assistant</h3>
+                <p class="entry-desc">
+                  Upgraded render workflows for Mechamato S3 and BoBoiBoy Galaxy
+                  S2. Managing ~60-node Afanasy render farm. Python tooling for
+                  automation and Kitsu project management integration.
+                </p>
+                <div class="tags">
+                  <span class="tag">Python</span>
+                  <span class="tag">Blender</span>
+                  <span class="tag">Afanasy/CGRU</span>
+                  <span class="tag">Kitsu</span>
+                  <span class="tag">Linux</span>
+                  <span class="tag">AWS</span>
+                </div>
+              </div>
+
+              <div
+                class="timeline-entry fade-in"
+                style="transition-delay: 60ms"
+              >
+                <p class="entry-date">2021 &ndash; 2023</p>
+                <a
+                  href="#"
+                  class="entry-company"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Warnakala Studio</a
+                >
+                <h3 class="entry-role">3D Render Artist</h3>
+                <p class="entry-desc">
+                  Day-to-day render farm coordination across multiple teams.
+                  Coordinated Didi &amp; Friends The Movie with TD, compositor
+                  and lighting artists.
+                </p>
+                <div class="tags">
+                  <span class="tag">Render Mgmt</span>
+                  <span class="tag">Blender</span>
+                  <span class="tag">DaVinci Resolve</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">Linux</span>
+                </div>
+              </div>
+
+              <div
+                class="timeline-entry fade-in"
+                style="transition-delay: 120ms"
+              >
+                <p class="entry-date">2016 &ndash; 2021</p>
+                <a
+                  href="#"
+                  class="entry-company"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Digital Durian</a
+                >
+                <h3 class="entry-role">3D Render Artist</h3>
+                <p class="entry-desc">
+                  Collaborated with compositor and modeler teams. Render
+                  management for Didi &amp; Friends songs and Konsert Hora Horey
+                  Wayang.
+                </p>
+                <div class="tags">
+                  <span class="tag">Render Mgmt</span>
+                  <span class="tag">Python</span>
+                  <span class="tag">Blender</span>
+                </div>
+              </div>
+
+              <div
+                class="timeline-entry fade-in"
+                style="transition-delay: 180ms"
+              >
+                <p class="entry-date">2015 &ndash; 2016</p>
+                <a
+                  href="#"
+                  class="entry-company"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >Digital Durian</a
+                >
+                <h3 class="entry-role">Animator</h3>
+                <p class="entry-desc">
+                  Junior Animator on Didi and Friends Season 1 and 2.
+                </p>
+                <div class="tags">
+                  <span class="tag">Blender</span>
+                  <span class="tag">Animation</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Toolbox ────────────────────────────────────────────── -->
+        <section id="toolbox">
+          <div class="section-inner">
+            <div class="toolbox-header fade-in">
+              <div class="toolbox-line-numbers" aria-hidden="true">
+                01<br />02<br />03<br />04<br />05<br />06
+              </div>
+              <div class="toolbox-header-badge">Technical Direction</div>
+              <h2>Technical<br /><span class="dim">Toolbox.</span></h2>
+              <p>
+                Bridging the gap between high-end visual fidelity and robust
+                engineering. A curated stack designed for automation,
+                scalability, and creative freedom.
+              </p>
+            </div>
+
+            <div class="toolbox-bento">
+              <!-- Pipeline & Automation -->
+              <div class="toolbox-card toolbox-pipeline fade-in">
+                <div class="glow"></div>
+                <div style="position: relative; z-index: 1">
+                  <div class="toolbox-card-header">
+                    <span class="material-symbols-outlined"
+                      >settings_input_component</span
+                    >
+                    <span class="bracket">[</span>
+                    <h3>Pipeline &amp; Automation</h3>
+                    <span class="bracket">]</span>
+                  </div>
+                  <div class="toolbox-cols">
+                    <div class="toolbox-col">
+                      <h4>Python Core</h4>
+                      <p>
+                        Complex script development for LRC pipelines, custom
+                        render modules, and automated scenes optimization.
+                      </p>
+                      <div class="tags">
+                        <span class="tag">AsyncIO</span>
+                        <span class="tag">PyQt5</span>
+                        <span class="tag">React</span>
+                      </div>
+                    </div>
+                    <div class="toolbox-col">
+                      <h4>Blender API</h4>
+                      <p>
+                        Custom operator development and bpy-based procedural
+                        generation tools for non-destructive workflows.
+                      </p>
+                      <div class="tags">
+                        <span class="tag">bpy</span>
+                        <span class="tag">Geometry Nodes</span>
+                        <span class="tag">Cycles</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="toolbox-meta">Ln 42, Col 12</div>
+              </div>
+
+              <!-- Infrastructure -->
+              <div
+                class="toolbox-card toolbox-infra fade-in"
+                style="transition-delay: 60ms"
+              >
+                <div>
+                  <span class="material-symbols-outlined icon">cloud</span>
+                  <h3>
+                    Infrastructure <span class="sys-badge">SYS:READY</span>
+                  </h3>
+                  <p>
+                    Deploying distributed rendering clusters and
+                    high-availability creative services.
+                  </p>
+                </div>
+                <ul class="toolbox-list">
+                  <li><span class="dot"></span> AWS EC2 &amp; S3</li>
+                  <li><span class="dot"></span> Docker &amp; Coolify</li>
+                  <li><span class="dot"></span> Linux Administration</li>
+                  <li><span class="dot"></span> CI/CD Pipelines</li>
+                </ul>
+              </div>
+
+              <!-- Runtime & Env -->
+              <div
+                class="toolbox-card toolbox-devenv fade-in"
+                style="transition-delay: 120ms"
+              >
+                <div class="toolbox-devenv-header">
+                  <h3><span class="prefix">$ </span>Runtime &amp; Env</h3>
+                  <span class="material-symbols-outlined">terminal</span>
+                </div>
+                <div class="toolbox-shell-block">
+                  <div class="label">Shell Mastery</div>
+                  <code>$ curl -sL technical.toolbox | sh</code>
+                </div>
+                <p>
+                  Git-flow architecture and containerized dev environments for
+                  seamless collaboration across remote creative teams.
+                </p>
+              </div>
+
+              <!-- Interactive & Visuals -->
+              <div
+                class="toolbox-card toolbox-visuals fade-in"
+                style="transition-delay: 180ms"
+              >
+                <div class="toolbox-visuals-text">
+                  <h3>
+                    Interactive &amp; Visuals
+                    <span class="ref">REF: 0x82FA93</span>
+                  </h3>
+                  <p>
+                    Real-time engines and shader programming. Where the
+                    mathematical precision meets visual storytelling.
+                  </p>
+                  <div class="toolbox-stats">
+                    <div class="toolbox-stat-box">
+                      <div class="val">4K</div>
+                      <div class="lbl">Texture Master</div>
+                    </div>
+                    <div class="toolbox-stat-box">
+                      <div class="val">GLSL</div>
+                      <div class="lbl">Shader Dev</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="toolbox-visuals-img">
+                  <span class="material-symbols-outlined">hub</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quote -->
+            <div class="quote-section fade-in">
+              <blockquote>
+                &ldquo;The most powerful tools are the ones that disappear when
+                the artist starts to work.&rdquo;
+              </blockquote>
+              <cite>&mdash; Dianah&rsquo;s Philosophy</cite>
+            </div>
+          </div>
+        </section>
+
+        <!-- ── Contact ────────────────────────────────────────────── -->
+        <section id="contact">
+          <div class="section-inner">
+            <p class="section-label">Get In Touch</p>
+            <h2 class="fade-in">Let's build something that works.</h2>
+            <p class="contact-sub fade-in" style="transition-delay: 60ms">
+              Open to pipeline TD, tools developer, or technical artist roles.
+            </p>
+            <div class="contact-links fade-in" style="transition-delay: 120ms">
+              <a
+                href="https://github.com/ddlite92"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                  />
+                </svg>
+                github.com/ddlite92
+              </a>
+
+              <a
+                href="#"
+                class="contact-link"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                  />
+                  <rect x="2" y="9" width="4" height="12" />
+                  <circle cx="4" cy="4" r="2" />
+                </svg>
+                LinkedIn
+              </a>
+
+              <a href="mailto:junki2497@yahoo.com" class="contact-link">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  />
+                  <polyline points="22,6 12,13 2,6" />
+                </svg>
+                junki2497@yahoo.com
               </a>
             </div>
-
-            <!-- Production: BoBoiBoy -->
-            <div class="bento-card bento-production fade-in" style="transition-delay:120ms">
-              <div class="bento-production-img">
-                <span class="material-symbols-outlined">movie</span>
-              </div>
-              <div class="bento-production-body">
-                <div class="label"><span class="prefix">[02]</span> Series / Compositing</div>
-                <h3>BoBoiBoy Galaxy Gentar</h3>
-                <p>Advanced compositing for high-energy elemental FX and environment integration.</p>
-                <a href="#" class="bento-link" target="_blank" rel="noopener noreferrer">
-                  Details <span class="material-symbols-outlined">open_in_new</span>
-                </a>
-              </div>
-            </div>
-
-            <!-- Tool: File Organizer -->
-            <div class="bento-card bento-split fade-in" style="transition-delay:180ms">
-              <div class="bento-split-text">
-                <div class="label">System Utility</div>
-                <h3>File Organizer</h3>
-                <p>A robust CLI utility designed to handle terabytes of production assets. Implements strict naming conventions and automated checksum verification.</p>
-                <div class="bento-split-code-label">// system.run_utility()</div>
-                <div style="display:flex;gap:12px;flex-wrap:wrap">
-                  <a href="#" class="btn-ghost" target="_blank" rel="noopener noreferrer"><span class="material-symbols-outlined">code</span> Repository</a>
-                  <a href="#" class="btn-text">Documentation</a>
-                </div>
-              </div>
-              <div class="bento-split-terminal">
-                <code>
-                  [SCANNING] /prod/assets/chars/<br>
-                  [MATCH]&nbsp;&nbsp;&nbsp;chr_hero_v001.abc<br>
-                  [MOVE]&nbsp;&nbsp;&nbsp;&rarr; /archive/ep01/seq05/<br>
-                  [VERIFY]&nbsp;md5: d41d8cd98f...<br>
-                  [STATUS]&nbsp;SUCCESS
-                </code>
-              </div>
-            </div>
-
           </div>
+        </section>
 
-          <!-- Work Lists: Production Reel + Open Source -->
-          <div class="work-lists fade-in">
-            <div class="work-lists-grid">
-
-              <!-- Production Reel -->
-              <div class="work-list-section">
-                <div class="work-list-header">
-                  <span class="material-symbols-outlined">play_circle</span>
-                  <h3>Production Reel</h3>
-                  <span class="count"><!-- TODO: update count --></span>
-                </div>
-                <div class="work-list">
-
-                  <a href="https://www.youtube.com/watch?v=grmXRKLR9gE" class="work-list-row" target="_blank" rel="noopener noreferrer">
-                    <span class="work-list-idx">[001]</span>
-                    <div class="work-list-info">
-                      <div class="work-list-name">Placeholder Title</div>
-                      <div class="work-list-meta">Studio &middot; 2024 &middot; LRC</div>
-                    </div>
-                    <span class="work-list-action"><span class="material-symbols-outlined">play_arrow</span> Watch</span>
-                  </a>
-
-                  <!-- TODO: Add more production credits from YouTube -->
-
-                </div>
-              </div>
-
-              <!-- Open Source -->
-              <div class="work-list-section">
-                <div class="work-list-header">
-                  <span class="material-symbols-outlined">code</span>
-                  <h3>Open Source</h3>
-                  <span class="count"><!-- TODO: update count --></span>
-                </div>
-                <div class="work-list">
-
-                  <a href="https://github.com/ddlite92/insomnia" class="work-list-row" target="_blank" rel="noopener noreferrer">
-                    <span class="work-list-idx">[001]</span>
-                    <div class="work-list-info">
-                      <div class="work-list-name">insomnia</div>
-                      <div class="work-list-meta">GitHub &middot; Python</div>
-                    </div>
-                    <span class="work-list-action"><span class="material-symbols-outlined">arrow_outward</span> Repo</span>
-                  </a>
-
-                  <!-- TODO: Add more GitHub repos -->
-
-                </div>
-              </div>
-
+        <!-- ── Footer ─────────────────────────────────────────────── -->
+        <footer class="site-footer">
+          <div class="footer-inner">
+            <p class="footer-copy">
+              &copy; 2025 Dianah Rosli &mdash; Technical Direction &amp;
+              Creative Development
+            </p>
+            <div class="footer-links">
+              <a
+                href="https://github.com/ddlite92"
+                class="footer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >GitHub</a
+              >
+              <a
+                href="#"
+                class="footer-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                >LinkedIn</a
+              >
+              <a href="mailto:dianah.rosli@monsta.com" class="footer-link"
+                >Email</a
+              >
             </div>
           </div>
+        </footer>
+      </main>
+    </div>
 
-        </div>
-      </section>
-
-      <!-- ── Experience ────────────────────────────────────────── -->
-      <section id="experience">
-        <div class="section-inner">
-          <p class="section-label">Career Arc</p>
-          <div class="timeline">
-
-            <div class="timeline-entry fade-in">
-              <p class="entry-date">2023 &ndash; PRESENT</p>
-              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Animonsta Studios</a>
-              <h3 class="entry-role">LRC Artist / Pipeline Dev</h3>
-              <p class="entry-desc">Upgraded render workflows for Mechamato S3 and BoBoiBoy Galaxy S2. Managing ~60-node Afanasy render farm. Python tooling for automation and Kitsu project management integration.</p>
-              <div class="tags">
-                <span class="tag">Python</span>
-                <span class="tag">Blender</span>
-                <span class="tag">Afanasy/CGRU</span>
-                <span class="tag">Kitsu</span>
-                <span class="tag">Linux</span>
-                <span class="tag">AWS</span>
-              </div>
-            </div>
-
-            <div class="timeline-entry fade-in" style="transition-delay:60ms">
-              <p class="entry-date">2021 &ndash; 2023</p>
-              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Warnakala Studio</a>
-              <h3 class="entry-role">3D Render Artist</h3>
-              <p class="entry-desc">Day-to-day render farm coordination across multiple teams. Coordinated Didi &amp; Friends The Movie with TD, compositor and lighting artists.</p>
-              <div class="tags">
-                <span class="tag">Render Mgmt</span>
-                <span class="tag">Blender</span>
-                <span class="tag">DaVinci Resolve</span>
-                <span class="tag">Python</span>
-                <span class="tag">Linux</span>
-              </div>
-            </div>
-
-            <div class="timeline-entry fade-in" style="transition-delay:120ms">
-              <p class="entry-date">2016 &ndash; 2021</p>
-              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Digital Durian</a>
-              <h3 class="entry-role">3D Render Artist</h3>
-              <p class="entry-desc">Collaborated with compositor and modeler teams. Render management for Didi &amp; Friends songs and Konsert Hora Horey Wayang.</p>
-              <div class="tags">
-                <span class="tag">Render Mgmt</span>
-                <span class="tag">Python</span>
-                <span class="tag">Blender</span>
-              </div>
-            </div>
-
-            <div class="timeline-entry fade-in" style="transition-delay:180ms">
-              <p class="entry-date">2015 &ndash; 2016</p>
-              <a href="#" class="entry-company" target="_blank" rel="noopener noreferrer">Digital Durian</a>
-              <h3 class="entry-role">Animator</h3>
-              <p class="entry-desc">Junior Animator on Didi and Friends Season 1 and 2.</p>
-              <div class="tags">
-                <span class="tag">Blender</span>
-                <span class="tag">Animation</span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ── Toolbox ────────────────────────────────────────────── -->
-      <section id="toolbox">
-        <div class="section-inner">
-
-          <div class="toolbox-header fade-in">
-            <div class="toolbox-line-numbers" aria-hidden="true">01<br>02<br>03<br>04<br>05<br>06</div>
-            <div class="toolbox-header-badge">Technical Direction</div>
-            <h2>Technical<br><span class="dim">Toolbox.</span></h2>
-            <p>Bridging the gap between high-end visual fidelity and robust engineering. A curated stack designed for automation, scalability, and creative freedom.</p>
-          </div>
-
-          <div class="toolbox-bento">
-
-            <!-- Pipeline & Automation -->
-            <div class="toolbox-card toolbox-pipeline fade-in">
-              <div class="glow"></div>
-              <div style="position:relative;z-index:1">
-                <div class="toolbox-card-header">
-                  <span class="material-symbols-outlined">settings_input_component</span>
-                  <span class="bracket">[</span>
-                  <h3>Pipeline &amp; Automation</h3>
-                  <span class="bracket">]</span>
-                </div>
-                <div class="toolbox-cols">
-                  <div class="toolbox-col">
-                    <h4>Python Core</h4>
-                    <p>Complex script development for VFX pipelines, custom rigging modules, and automated asset delivery.</p>
-                    <div class="tags">
-                      <span class="tag">AsyncIO</span>
-                      <span class="tag">PyQt5</span>
-                      <span class="tag">NumPy</span>
-                    </div>
-                  </div>
-                  <div class="toolbox-col">
-                    <h4>Blender API</h4>
-                    <p>Custom operator development and bpy-based procedural generation tools for non-destructive workflows.</p>
-                    <div class="tags">
-                      <span class="tag">bpy</span>
-                      <span class="tag">Geometry Nodes</span>
-                      <span class="tag">Cycles</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="toolbox-meta">Ln 42, Col 12</div>
-            </div>
-
-            <!-- Infrastructure -->
-            <div class="toolbox-card toolbox-infra fade-in" style="transition-delay:60ms">
-              <div>
-                <span class="material-symbols-outlined icon">cloud</span>
-                <h3>Infrastructure <span class="sys-badge">SYS:READY</span></h3>
-                <p>Deploying distributed rendering clusters and high-availability creative services.</p>
-              </div>
-              <ul class="toolbox-list">
-                <li><span class="dot"></span> AWS EC2 &amp; S3</li>
-                <li><span class="dot"></span> Docker &amp; Coolify</li>
-                <li><span class="dot"></span> Linux Administration</li>
-                <li><span class="dot"></span> CI/CD Pipelines</li>
-              </ul>
-            </div>
-
-            <!-- Runtime & Env -->
-            <div class="toolbox-card toolbox-devenv fade-in" style="transition-delay:120ms">
-              <div class="toolbox-devenv-header">
-                <h3><span class="prefix">$ </span>Runtime &amp; Env</h3>
-                <span class="material-symbols-outlined">terminal</span>
-              </div>
-              <div class="toolbox-shell-block">
-                <div class="label">Shell Mastery</div>
-                <code>$ curl -sL technical.toolbox | sh</code>
-              </div>
-              <p>Git-flow architecture and containerized dev environments for seamless collaboration across remote creative teams.</p>
-            </div>
-
-            <!-- Interactive & Visuals -->
-            <div class="toolbox-card toolbox-visuals fade-in" style="transition-delay:180ms">
-              <div class="toolbox-visuals-text">
-                <h3>Interactive &amp; Visuals <span class="ref">REF: 0x82FA93</span></h3>
-                <p>Real-time engines and shader programming. Where the mathematical precision meets visual storytelling.</p>
-                <div class="toolbox-stats">
-                  <div class="toolbox-stat-box">
-                    <div class="val">4K</div>
-                    <div class="lbl">Texture Master</div>
-                  </div>
-                  <div class="toolbox-stat-box">
-                    <div class="val">GLSL</div>
-                    <div class="lbl">Shader Dev</div>
-                  </div>
-                </div>
-              </div>
-              <div class="toolbox-visuals-img">
-                <span class="material-symbols-outlined">hub</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Quote -->
-          <div class="quote-section fade-in">
-            <blockquote>&ldquo;The most powerful tools are the ones that disappear when the artist starts to work.&rdquo;</blockquote>
-            <cite>&mdash; Dianah&rsquo;s Philosophy</cite>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- ── Contact ────────────────────────────────────────────── -->
-      <section id="contact">
-        <div class="section-inner">
-          <p class="section-label">Get In Touch</p>
-          <h2 class="fade-in">Let's build something that works.</h2>
-          <p class="contact-sub fade-in" style="transition-delay:60ms">
-            Open to pipeline TD, tools developer, or technical artist roles.
-          </p>
-          <div class="contact-links fade-in" style="transition-delay:120ms">
-
-            <a href="https://github.com/ddlite92" class="contact-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
-              </svg>
-              github.com/ddlite92
-            </a>
-
-            <a href="#" class="contact-link" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-              LinkedIn
-            </a>
-
-            <a href="mailto:dianah.rosli@monsta.com" class="contact-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
-                <polyline points="22,6 12,13 2,6"/>
-              </svg>
-              dianah.rosli@monsta.com
-            </a>
-
-          </div>
-        </div>
-      </section>
-
-      <!-- ── Footer ─────────────────────────────────────────────── -->
-      <footer class="site-footer">
-        <div class="footer-inner">
-          <p class="footer-copy">&copy; 2025 Dianah Rosli &mdash; Technical Direction &amp; Creative Development</p>
-          <div class="footer-links">
-            <a href="https://github.com/ddlite92" class="footer-link" target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href="#" class="footer-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-            <a href="mailto:dianah.rosli@monsta.com" class="footer-link">Email</a>
-          </div>
-        </div>
-      </footer>
-
-    </main>
-  </div>
-
-  <script>
-    // ── Avatar fallback ──────────────────────────────────────────
-    var avatarImg = document.getElementById('avatar-img');
-    avatarImg.addEventListener('error', function() {
-      var wrap = this.parentElement;
-      wrap.innerHTML = '<div class="avatar-initials">DR</div>';
-    });
-
-    // ── Mobile sidebar toggle ─────────────────────────────────────
-    var toggle  = document.getElementById('nav-toggle');
-    var sidebar = document.getElementById('sidebar');
-    var overlay = document.getElementById('overlay');
-
-    function openSidebar() {
-      sidebar.classList.add('open');
-      overlay.classList.add('visible');
-      toggle.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('visible');
-      toggle.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
-    }
-
-    toggle.addEventListener('click', function() {
-      if (sidebar.classList.contains('open')) { closeSidebar(); } else { openSidebar(); }
-    });
-
-    overlay.addEventListener('click', closeSidebar);
-
-    // ── Smooth scroll nav ─────────────────────────────────────────
-    document.querySelectorAll('[data-section]').forEach(function(link) {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        var id = this.getAttribute('data-section');
-        var target = document.getElementById(id);
-        if (target) { target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        if (window.innerWidth <= 768) { closeSidebar(); }
+    <script>
+      // ── Avatar fallback ──────────────────────────────────────────
+      var avatarImg = document.getElementById("avatar-img");
+      avatarImg.addEventListener("error", function () {
+        var wrap = this.parentElement;
+        wrap.innerHTML = '<div class="avatar-initials">DR</div>';
       });
-    });
 
-    // ── Active nav on scroll ──────────────────────────────────────
-    var sections = document.querySelectorAll('section[id]');
-    var navLinks = document.querySelectorAll('.nav-link[data-section]');
-    var topbarLinks = document.querySelectorAll('.topbar-link[data-section]');
+      // ── Mobile sidebar toggle ─────────────────────────────────────
+      var toggle = document.getElementById("nav-toggle");
+      var sidebar = document.getElementById("sidebar");
+      var overlay = document.getElementById("overlay");
 
-    var sectionObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          var id = entry.target.id;
-          navLinks.forEach(function(link) {
-            if (link.getAttribute('data-section') === id) {
-              link.classList.add('active');
-            } else {
-              link.classList.remove('active');
+      function openSidebar() {
+        sidebar.classList.add("open");
+        overlay.classList.add("visible");
+        toggle.classList.add("open");
+        toggle.setAttribute("aria-expanded", "true");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeSidebar() {
+        sidebar.classList.remove("open");
+        overlay.classList.remove("visible");
+        toggle.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+        document.body.style.overflow = "";
+      }
+
+      toggle.addEventListener("click", function () {
+        if (sidebar.classList.contains("open")) {
+          closeSidebar();
+        } else {
+          openSidebar();
+        }
+      });
+
+      overlay.addEventListener("click", closeSidebar);
+
+      // ── Smooth scroll nav ─────────────────────────────────────────
+      document.querySelectorAll("[data-section]").forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          var id = this.getAttribute("data-section");
+          var target = document.getElementById(id);
+          if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+          if (window.innerWidth <= 768) {
+            closeSidebar();
+          }
+        });
+      });
+
+      // ── Active nav on scroll ──────────────────────────────────────
+      var sections = document.querySelectorAll("section[id]");
+      var navLinks = document.querySelectorAll(".nav-link[data-section]");
+      var topbarLinks = document.querySelectorAll(".topbar-link[data-section]");
+
+      var sectionObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              var id = entry.target.id;
+              navLinks.forEach(function (link) {
+                if (link.getAttribute("data-section") === id) {
+                  link.classList.add("active");
+                } else {
+                  link.classList.remove("active");
+                }
+              });
+              topbarLinks.forEach(function (link) {
+                if (link.getAttribute("data-section") === id) {
+                  link.classList.add("active");
+                } else {
+                  link.classList.remove("active");
+                }
+              });
             }
           });
-          topbarLinks.forEach(function(link) {
-            if (link.getAttribute('data-section') === id) {
-              link.classList.add('active');
-            } else {
-              link.classList.remove('active');
+        },
+        { rootMargin: "-40% 0px -40% 0px", threshold: 0 },
+      );
+
+      sections.forEach(function (s) {
+        sectionObserver.observe(s);
+      });
+
+      // ── Fade-in on scroll ─────────────────────────────────────────
+      var fadeEls = document.querySelectorAll(".fade-in");
+
+      var fadeObserver = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              fadeObserver.unobserve(entry.target);
             }
           });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -40px 0px" },
+      );
+
+      // Hero elements: fire immediately on load
+      document.querySelectorAll("#hero .fade-in").forEach(function (el) {
+        el.classList.add("visible");
+      });
+
+      // All other sections: observe on scroll
+      fadeEls.forEach(function (el) {
+        if (!el.closest("#hero")) {
+          fadeObserver.observe(el);
         }
       });
-    }, { rootMargin: '-40% 0px -40% 0px', threshold: 0 });
 
-    sections.forEach(function(s) { sectionObserver.observe(s); });
+      // ── Terminal hero typing animation ───────────────────────────
+      function typeTerminalHero() {
+        var lines = document.querySelectorAll(".terminal-line");
+        var charDelay = 35;
+        var lineDelay = 250;
 
-    // ── Fade-in on scroll ─────────────────────────────────────────
-    var fadeEls = document.querySelectorAll('.fade-in');
-
-    var fadeObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          fadeObserver.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-    // Hero elements: fire immediately on load
-    document.querySelectorAll('#hero .fade-in').forEach(function(el) {
-      el.classList.add('visible');
-    });
-
-    // All other sections: observe on scroll
-    fadeEls.forEach(function(el) {
-      if (!el.closest('#hero')) { fadeObserver.observe(el); }
-    });
-
-    // ── Terminal hero typing animation ───────────────────────────
-    function typeTerminalHero() {
-      var lines = document.querySelectorAll('.terminal-line');
-      var charDelay = 35;
-      var lineDelay = 250;
-
-      function getTextContent(element) {
-        var texts = [];
-        element.querySelectorAll('.cmd-text, .terminal-output p, .terminal-stat span:last-child').forEach(function(el) {
-          texts.push(el.textContent);
-        });
-        return texts.join(' ');
-      }
-
-      function processLines(lineIndex) {
-        if (lineIndex >= lines.length) {
-          return;
+        function getTextContent(element) {
+          var texts = [];
+          element
+            .querySelectorAll(
+              ".cmd-text, .terminal-output p, .terminal-stat span:last-child",
+            )
+            .forEach(function (el) {
+              texts.push(el.textContent);
+            });
+          return texts.join(" ");
         }
 
-        var line = lines[lineIndex];
-        line.classList.add('visible');
+        function processLines(lineIndex) {
+          if (lineIndex >= lines.length) {
+            return;
+          }
 
-        var text = getTextContent(line);
-        var totalTime = Math.min(text.length * charDelay, 800);
+          var line = lines[lineIndex];
+          line.classList.add("visible");
 
-        setTimeout(function() {
-          processLines(lineIndex + 1);
-        }, totalTime + lineDelay);
+          var text = getTextContent(line);
+          var totalTime = Math.min(text.length * charDelay, 800);
+
+          setTimeout(function () {
+            processLines(lineIndex + 1);
+          }, totalTime + lineDelay);
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(function () {
+              processLines(0);
+            }, 600);
+          });
+        } else {
+          setTimeout(function () {
+            processLines(0);
+          }, 600);
+        }
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(function() { processLines(0); }, 600);
-        });
-      } else {
-        setTimeout(function() { processLines(0); }, 600);
-      }
-    }
-
-    typeTerminalHero();
-  </script>
-
-</body>
+      typeTerminalHero();
+    </script>
+  </body>
 </html>
